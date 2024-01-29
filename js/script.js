@@ -1,4 +1,4 @@
-// JS
+// JQuery
 $(document).ready(function () {
   // Slider
   $('.slider-img').on('click', function () {
