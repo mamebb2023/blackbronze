@@ -1,0 +1,297 @@
+@charset "UTF-8";
+
+/*-------- index.html --------*/
+
+header {
+	position: relative;
+	height: 100vh;
+	max-height: 1000px;
+	background: url("../img/hr-bg.jpg") no-repeat fixed;
+	background-size: cover;
+	padding: 10px;
+	z-index: 10;
+}
+
+header .head {
+	width: 100%;
+	padding: 5px 30px;
+	backdrop-filter: blur(5px);
+	border-radius: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+header .head.fixed {
+    position: fixed;
+	top: 50px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+}
+
+header .head.fixed i.logo {
+	width: 50px;
+	height: 50px;
+}
+
+header .head.fixed nav.links {
+	font-size: .9em;
+	text-shadow: black 5px 5px 10px;
+}
+
+header .head i.logo {
+	width: 70px;
+	height: 70px;
+	background: url("../img/bb-logo-white.png") no-repeat center center;
+	background-size: cover;
+}
+
+header nav.links {
+	padding: 10px;
+}
+
+header nav.links a {
+	position: relative;
+	color: #fff;
+	padding: 5px 15px;
+}
+
+header nav.links a::before {
+	content: "";
+	position: absolute;
+	right: 15px;
+	bottom: 0;
+	width: 0;
+	height: 3px;
+	border-radius: 25px;
+	background: #fff;
+	transition: .5s ease;
+}
+
+header nav.links a:hover {
+	text-decoration: none;
+}
+
+header nav.links a:hover:before {
+	width: 60%;
+}
+
+header .head-info {
+	color: white;
+	width: 100%;
+	height: 90%;
+	padding: 10px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+header .head-info img {
+	height: 150px;
+}
+
+header .head-info h1 {
+	letter-spacing: 5px;
+	padding: 5px 0;
+}
+
+header .head-info p {
+	padding: 5px 0;
+	font-weight: 600;
+}
+
+header .head-info a.explore {
+	margin: 5px 0;
+	padding: 10px 50px;
+	color: #fff;
+	border: 2px solid #fff;
+	background: transparent;
+	border-radius: 25px;
+}
+
+header .head-info a.explore:hover {
+	color: #000;
+	border: 2px solid transparent;
+	background: #fff;
+	box-shadow: #fff 0 0 10px;
+}
+
+.contents .poster {
+	height: 400px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: url("../img/tech.gif") no-repeat center center;
+	background-size: cover;
+}
+
+.contents .poster .sec {
+	width: 80%;
+	height: 80%;
+	backdrop-filter: blur(10px);
+	box-shadow: rgb(0, 157, 255) 0 0 10px;
+}
+
+.contents .slider {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.contents .slider .slides {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.contents .slider .slides .slider-img {
+	cursor: pointer;
+	position: relative;
+	border-radius: 6px;
+	overflow: hidden;
+	width: 90px;
+	height: 450px;
+	transition: .7s ease;
+}
+
+.contents .slider .slides .slider-img h1 {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	font-size: 1.8em;
+	font-weight: 700;
+	text-align: left;
+	text-transform: uppercase;
+	color: #fff;
+	transform: rotate(270deg);
+	transition: .7s ease;	
+}
+
+.contents .slider .slides .slider-img .image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
+}
+
+.contents .slider .slides .slider-img .details {
+	display: none;
+	color: #fff;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	padding: 0 0 40px 40px;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 50%, transparent);	
+	transition: 1s .7s linear;
+}
+
+.contents .slider .slides .slider-img .details h2 {
+	font-size: 1.5em;
+	font-weight: 700;
+	text-align: left;
+	line-height: 44px;
+	text-transform: uppercase;
+	transition: .7s ease;
+}
+
+.contents .slider .slides .slider-img .details p {
+	font-size: 1em;
+	text-align: left;
+	line-height: 33px;
+	transition: .7s ease;
+}
+
+.contents .slider .slides .slider-img.active {
+	width: 550px !important;
+	height: 550px !important;
+	cursor: auto;
+}
+
+.contents .slider .slides .slider-img.active .details {
+	display: block;
+}
+
+.contents .slider .slides .slider-img.active h1 {
+	opacity: 0;
+}
+
+footer {
+	padding: 10px;
+}
+
+footer .foot {
+	position: relative;
+	overflow: hidden;
+	margin: 0 50px;
+	padding: 10px 40px;
+	border: 1px solid rgb(225, 225, 225);
+	border-radius: 35px;
+	height: 400px;
+	background: linear-gradient(to right, transparent, white 30%);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+footer .foot img {
+	margin-left: 100px;
+	width: 200px;
+}
+
+footer .foot .content {
+	padding: 0;
+}
+
+footer .foot::before {
+	content: "";
+	opacity: .5;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url("../img/bb-logo-blk.png") no-repeat left center;
+	background-size: contain;
+}
+
+footer .foot .row {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+footer .foot .row .col {
+	padding: 10px 50px 10px 20px;
+	margin: 0 40px 0 0;
+	border-radius: 25px;
+}
+
+footer .foot .row .col h2 {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+footer .foot .row .col nav {
+	display: flex;
+	flex-direction: column;
+}
+
+footer .foot .row .col nav a {
+	font-size: .85em;
+	color: #000;
+	padding: 5px;
+	margin-top: 7px;
+}
+
+footer .foot .credit {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color: gray;
+	font-size: .8em;
+	margin-top: 20px;
+	padding: 20px 0;
+	text-align: right;
+}
