@@ -1,0 +1,59 @@
+.gradient-underline {
+  position: relative;
+}
+
+.gradient-underline:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 5px;
+  border-radius: 5px;
+  width: 100%;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+}
+
+/* Button Styles */
+.btn {
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 45px;
+  max-width: 160px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+  position: relative;
+  transition: .3s ease;
+  border: 1px solid black;
+  overflow: hidden;
+  position: relative;
+  background: black;
+}
+
+.btn:hover {
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background: transparent;
+  color: black;
+}
+
+.btn-4:after {
+  content: '';
+  background: white;
+  height: 155px;
+  left: -75px;
+  opacity: 0.2;
+  position: absolute;
+  top: -50px;
+  transform: rotate(35deg);
+  transition: all 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+  width: 50px;
+}
+
+.btn-4:hover:after {
+  left: 120%;
+  background: black;
+}

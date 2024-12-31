@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('../public/styles.css');
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
+
+:root {
+  --color-primary: #00ffff; /* Cool Cyan */
+  --color-secondary: #00ff00; /* Green */
+  --color-tertiary: #0000ff; /* Cool Blue */
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem
+  }
+}
