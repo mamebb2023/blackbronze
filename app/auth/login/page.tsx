@@ -13,10 +13,11 @@ export default function Login() {
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ rememberMe, email, password }),
     });
 
     const data = await res.json();
@@ -47,7 +48,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center justify-between text-xs">
             <div className="cursor-pointer flex-center">
               <input
                 type="checkbox"
@@ -56,7 +57,7 @@ export default function Login() {
                 onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label htmlFor="rememberMe" className="ml-2">
-                Remember me
+                Remember me (3 days)
               </label>
             </div>
             <Link href="#" className="">

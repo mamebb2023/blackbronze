@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/utils/database";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { email, password }: { email: string; password: string } =
+  const { email, password, rememberMe }: { email: string; password: string, rememberMe: boolean } =
     await req.json();
 
   if (!email || !password) {
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWT_SECRET!,
-      { expiresIn: "1d" }
+      { expiresIn: rememberMe ? "3d" : "1d" }
     );
 
     return NextResponse.json({ token }, { status: 200 });
