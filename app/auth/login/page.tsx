@@ -57,7 +57,7 @@ export default function Login() {
                 onChange={(e) => setRememberMe(e.target.checked)}
               />
               <label htmlFor="rememberMe" className="ml-2">
-                Remember me (3 days)
+                Login for 3 days
               </label>
             </div>
             <Link href="#" className="">
