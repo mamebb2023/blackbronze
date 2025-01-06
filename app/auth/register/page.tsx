@@ -7,7 +7,7 @@ import { verifyEmail, verifyName, verifyPassword } from "@/utils/verification";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Register() {
   const { toast } = useToast();
@@ -40,6 +40,8 @@ export default function Register() {
       error = validEmail.error!;
     } else if (!validPassword.valid) {
       error = validPassword.error!;
+    } else if (password !== confirmPwd) {
+      error = "Passwords don't match";
     }
 
     if (error) {
@@ -89,12 +91,7 @@ export default function Register() {
   };
 
   return (
-    // <motion.div className="h-screen flex flex-col md:flex-row">
-    <div
-      // initial={{ opacity: 0, scale: 0.9 }}
-      // animate={{ opacity: 1, scale: 1 }}
-      className="h-screen flex flex-col md:flex-row"
-    >
+    <div className="h-screen flex flex-col md:flex-row">
       <div
         className="w-full h-[90px] md:h-auto md:w-[30%] lg:w-[50%]"
         style={{
@@ -102,11 +99,15 @@ export default function Register() {
         }}
       />
       <div className="flex-1 w-full md:w-[70%] lg:w-[50%] flex-center">
-        <div className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
+        >
+          {" "}
           <div className="flex items-start">
             <h4 className="h4 font-bold gradient-underline">Register</h4>
           </div>
-
           <form onSubmit={register} className="flex flex-col gap-3">
             <div className="flex flex-col md:flex-row gap-3">
               <Input
@@ -139,7 +140,11 @@ export default function Register() {
                 className="size-10 cursor-pointer"
                 onClick={() => setViewPwd(!viewPwd)}
               >
-                {viewPwd ? "s" : "h"}
+                {viewPwd ? (
+                  <i className="bx bx-show"></i>
+                ) : (
+                  <i className="bx bx-hide"></i>
+                )}
               </div>
             </div>
             <Input
@@ -166,7 +171,7 @@ export default function Register() {
               </Link>
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

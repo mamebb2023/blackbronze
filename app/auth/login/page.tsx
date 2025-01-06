@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import { verifyEmail, verifyPassword } from "@/utils/verification";
 import Link from "next/link";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Login() {
   const { toast } = useToast();
@@ -77,12 +78,7 @@ export default function Login() {
   };
 
   return (
-    // <motion.div className="h-screen flex flex-col md:flex-row">
-    <div
-      // initial={{ opacity: 0, scale: 0.9 }}
-      // animate={{ opacity: 1, scale: 1 }}
-      className="h-screen flex flex-col md:flex-row"
-    >
+    <div className="h-screen flex flex-col md:flex-row">
       <div
         className="w-full h-[90px] md:h-auto md:w-[30%] lg:w-[50%]"
         style={{
@@ -90,7 +86,11 @@ export default function Login() {
         }}
       />
       <div className="flex-1 w-full md:w-[70%] lg:w-[50%] flex-center">
-        <div className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
+        >
           <div className="flex items-start">
             <h4 className="h4 font-bold gradient-underline">Login</h4>
           </div>
@@ -141,7 +141,7 @@ export default function Login() {
               </Link>
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
