@@ -7,11 +7,11 @@ export function verifyName(name: string): { valid: boolean; error?: string } {
   if (name.length < 2) {
     return {
       valid: false,
-      error: "Fullname must be at least 2 characters long",
+      error: "Name must be at least 2 characters long",
     };
   }
   if (name.length > 225) {
-    return { valid: false, error: "Fullname must be 225 characters or less" };
+    return { valid: false, error: "Name must be 225 characters or less" };
   }
   return { valid: true };
 }

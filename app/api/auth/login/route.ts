@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
   if (!email || !password) {
     return NextResponse.json(
-      { error: "Email and password are required" },
+      { error: "Invalid Inputs" }, // No email or password
       { status: 400 }
     );
   }
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const user: IUser | null = await User.findOne({ email });
     if (!user) {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "Invalid credentials" }, // User not found
         { status: 401 }
       );
     }
@@ -29,18 +29,18 @@ export async function POST(req: Request) {
     const isPasswordCorrect = await bcrypt.compare(password, user.password);
     if (!isPasswordCorrect) {
       return NextResponse.json(
-        { error: "Invalid credentials" },
+        { error: "Invalid credentials" }, // Invalid password
         { status: 401 }
       );
     }
 
     const token = jwt.sign(
-      { id: user._id, email: user.email },
+      { id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email },
       process.env.JWT_SECRET!,
-      { expiresIn: rememberMe ? "3d" : "5h" }
+      { expiresIn: rememberMe ? "3d" : "2h" }
     );
 
-    return NextResponse.json({ token }, { status: 200 });
+    return NextResponse.json({ token, name: `${user.firstName} ${user.lastName}` }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: `Internal Server Error: ${error}` },
