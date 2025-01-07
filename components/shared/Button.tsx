@@ -22,13 +22,13 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={`${className} flex-center gap-2 my-2 ${
         disabled
-          ? "text-white/50 bg-gray-400 cursor-not-allowed"
-          : "btn btn-4 active:scale-95"
+          ? "text-white/80 bg-gray-400 cursor-not-allowed"
+          : "btn active:scale-95"
       }`}
     >
       {children}
       {disabled && (
-        <div className="size-5 border-s-2 border-white/50 rounded-s-full rounded animate-spin"></div>
+        <div className="size-5 border-s-2 border-white/80 rounded-s-full rounded animate-spin"></div>
       )}
     </button>
   );

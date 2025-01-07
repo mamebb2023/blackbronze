@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({
       value={value}
       onChange={onChange}
       className={`
-        w-full text-[.9em] border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-gray-500/30 ${className}`}
+        w-full text-[.9em] border border-gray-300 p-2 focus:outline-none focus:ring-1 focus:ring-gray-500/30 ${className}`}
     />
   );
 };

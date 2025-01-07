@@ -115,7 +115,7 @@ export default function Login() {
                   checked={rememberMe}
                   onChange={(e) => setRememberMe(e.target.checked)}
                 />
-                <label htmlFor="rememberMe" className="ml-2">
+                <label htmlFor="rememberMe" className="ml-2 cursor-pointer">
                   Login for 3 days
                 </label>
               </div>
