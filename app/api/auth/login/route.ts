@@ -5,7 +5,7 @@ import { connectToDatabase } from "@/utils/database";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-  const { email, password, rememberMe }: { email: string; password: string, rememberMe: boolean } =
+  const { email, password }: { email: string; password: string, rememberMe: boolean } =
     await req.json();
 
   if (!email || !password) {
@@ -37,10 +37,10 @@ export async function POST(req: Request) {
     const token = jwt.sign(
       { id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email },
       process.env.JWT_SECRET!,
-      { expiresIn: rememberMe ? "3d" : "2h" }
+      { expiresIn: "3d" }
     );
 
-    return NextResponse.json({ token, name: `${user.firstName} ${user.lastName}` }, { status: 200 });
+    return NextResponse.json({ token }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
       { error: `Internal Server Error: ${error}` },

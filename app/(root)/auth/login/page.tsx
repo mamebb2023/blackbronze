@@ -7,16 +7,19 @@ import { verifyEmail, verifyPassword } from "@/utils/verification";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useUser } from "@/context/UserContext";
 
 export default function Login() {
+  const { login } = useUser();
   const { toast } = useToast();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+
   const [disabledBtn, setDisabledBtn] = useState(false);
 
-  const login = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     let error = null;
@@ -39,6 +42,7 @@ export default function Login() {
     }
 
     setDisabledBtn(true);
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -46,34 +50,43 @@ export default function Login() {
         body: JSON.stringify({ rememberMe, email, password }),
       });
 
+      if (!res.ok) {
+        const { error: errorMessage } = await res.json();
+        throw new Error(errorMessage || "An unknown error occurred");
+      }
+
       const data = await res.json();
+
       if (data.token) {
         toast({
           title: "Login Success",
           description: `Welcome, ${data.name}`,
           variant: "success",
         });
-        localStorage.setItem("token", data.token);
-        setDisabledBtn(false);
-      } else {
-        setDisabledBtn(false);
 
+        login(rememberMe, data.token);
+      } else {
         toast({
           title: "Error",
-          description: data.error,
+          description: data.error || "An unknown error occurred",
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.";
+
       toast({
-        title: "Registration Failed",
-        description: "Failed to register. Please try again later.",
+        title: "Login Failed",
+        description: errorMessage,
         variant: "destructive",
       });
 
+      console.error(error);
+    } finally {
       setDisabledBtn(false);
-
-      return console.error(error);
     }
   };
 
@@ -94,7 +107,7 @@ export default function Login() {
           <div className="flex items-start">
             <h4 className="h4 font-bold gradient-underline">Login</h4>
           </div>
-          <form onSubmit={login} className="flex flex-col gap-3">
+          <form onSubmit={handleLogin} className="flex flex-col gap-3">
             <Input
               type="email"
               placeholder="Email"

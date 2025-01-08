@@ -53,6 +53,7 @@ export default function Register() {
     }
 
     setDisabledBtn(true);
+
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",
@@ -60,33 +61,35 @@ export default function Register() {
         body: JSON.stringify({ firstName, lastName, email, password }),
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        toast({
-          title: "Registration Successful",
-          description:
-            "You have successfully registered. Please login to continue.",
-          variant: "success",
-        });
-        return router.push("/auth/login");
-      } else {
-        setDisabledBtn(false);
-
-        toast({
-          title: "Registration Failed",
-          description: data.error,
-          variant: "destructive",
-        });
+      if (!res.ok) {
+        const { error: errorMessage } = await res.json();
+        throw new Error(errorMessage || "An unknown error occurred");
       }
-    } catch (error) {
+
+      toast({
+        title: "Registration Successful",
+        description:
+          "You have successfully registered. Please login to continue.",
+        variant: "success",
+      });
+
+      router.push("/auth/login");
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.";
+
       toast({
         title: "Registration Failed",
-        description: "Failed to register. Please try again later.",
+        description: errorMessage,
         variant: "destructive",
       });
+
+      console.error(error);
+    } finally {
+      // Ensure the button is always re-enabled
       setDisabledBtn(false);
-      return console.error(error);
     }
   };
 
@@ -104,7 +107,6 @@ export default function Register() {
           animate={{ opacity: 1, scale: 1 }}
           className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
         >
-          {" "}
           <div className="flex items-start">
             <h4 className="h4 font-bold gradient-underline">Register</h4>
           </div>
