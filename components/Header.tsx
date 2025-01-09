@@ -31,7 +31,7 @@ const Header = () => {
                 Login
               </Link>
               <Link href="/auth/register" className="text-sm">
-                <Button type="button" className="px-3 py-2 text-sm">
+                <Button type="button" className="h-[50px] w-[150px] text-sm">
                   Get Started
                 </Button>
               </Link>
