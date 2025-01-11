@@ -19,11 +19,8 @@ const UserContext = createContext<UserContextType>({
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<DecodedToken | null>(null);
   const router = useRouter();
-  // const token =
-  //   localStorage.getItem("token") || sessionStorage.getItem("token");
 
   useEffect(() => {
-    // if (!token) return;
     const userInfo = getUserInfo();
     setUser(userInfo);
   }, []);
@@ -35,7 +32,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const userInfo = getUserInfo();
     setUser(userInfo);
 
-    router.push("/user/dashboard");
+    // router.push("/user/dashboard");
   };
 
   const logout = () => {

@@ -139,13 +139,13 @@ export default function Register() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <div
-                className="size-10 cursor-pointer"
+                className="size-10 flex-center cursor-pointer text-2xl active:scale-95 text-green-950"
                 onClick={() => setViewPwd(!viewPwd)}
               >
                 {viewPwd ? (
-                  <i className="bx bx-show"></i>
+                  <i className="bx bx-show" />
                 ) : (
-                  <i className="bx bx-hide"></i>
+                  <i className="bx bx-hide" />
                 )}
               </div>
             </div>

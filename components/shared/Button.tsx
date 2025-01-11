@@ -20,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${className} flex-center gap-2 my-2 ${
+      className={`${className} flex-center gap-2 ${
         disabled
           ? "text-white/80 bg-gray-400 cursor-not-allowed"
           : "btn active:scale-95"

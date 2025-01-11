@@ -1,11 +1,15 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User, { IUser } from "@/models/User";
-import { connectToDatabase } from "@/utils/database";
 import { NextResponse } from "next/server";
+import { connectToDatabase } from "@/lib/mongodb";
+import Key from "@/models/Key";
 
 export async function POST(req: Request) {
-  const { email, password }: { email: string; password: string, rememberMe: boolean } =
+  const {
+    email,
+    password,
+  }: { email: string; password: string; rememberMe: boolean } =
     await req.json();
 
   if (!email || !password) {
@@ -34,8 +38,19 @@ export async function POST(req: Request) {
       );
     }
 
+    const key = await Key.findOne({ user_id: user._id });
+    // if (!api_key) {
+    //   return NextResponse.json(
+    // }
+
     const token = jwt.sign(
-      { id: user._id, firstName: user.firstName, lastName: user.lastName, email: user.email },
+      {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        api_key: key.api_key,
+      },
       process.env.JWT_SECRET!,
       { expiresIn: "3d" }
     );

@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { useUser } from "@/context/UserContext";
 
 export default function Login() {
-  const { login } = useUser();
+  const { user, login } = useUser();
   const { toast } = useToast();
 
   const [email, setEmail] = useState("");
@@ -23,6 +23,7 @@ export default function Login() {
     e.preventDefault();
 
     let error = null;
+    console.log("handleLogin user", user);
 
     const validEmail = verifyEmail(email);
     const validPassword = verifyPassword(password);
@@ -50,21 +51,24 @@ export default function Login() {
         body: JSON.stringify({ rememberMe, email, password }),
       });
 
-      if (!res.ok) {
-        const { error: errorMessage } = await res.json();
-        throw new Error(errorMessage || "An unknown error occurred");
-      }
-
       const data = await res.json();
 
-      if (data.token) {
+      if (res.ok && data) {
+        login(rememberMe, data.token);
+
+        console.log("handleLogin await user", user);
+
         toast({
           title: "Login Success",
-          description: `Welcome, ${data.name}`,
+          description: (
+            <div>
+              User:
+              <p>UserName: {user?.firstName}</p>
+              <p>UserEmail: {user?.email}</p>
+            </div>
+          ),
           variant: "success",
         });
-
-        login(rememberMe, data.token);
       } else {
         toast({
           title: "Error",
@@ -136,7 +140,7 @@ export default function Login() {
                 Forgot password?
               </Link>
             </div>
-            <div className="flex-center">
+            <div className="flex-center my-2">
               <Button
                 type="submit"
                 className="h-[50px] w-[150px]"

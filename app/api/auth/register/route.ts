@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import User, { IUser } from "@/models/User";
-import { connectToDatabase } from "@/utils/database";
 import { NextResponse } from "next/server";
+import { connectToDatabase } from "@/lib/mongodb";
 
 export async function POST(req: Request) {
   const {
@@ -35,8 +35,15 @@ export async function POST(req: Request) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
+
     const newUser: IUser = new User({ firstName, lastName, email, password: hashedPassword });
     await newUser.save();
+
+    await fetch("http://localhost:3000/api/key", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: newUser._id })
+    })
 
     return NextResponse.json(
       { message: "User registered successfully" },
