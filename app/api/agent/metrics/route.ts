@@ -1,21 +1,16 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
-import Metric from "@/models/Metric";
-import Key from "@/models/Key";
+import Metric from "@/models/metric.model";
+import Key from "@/models/key.model";
 
 export async function POST(request: Request) {
   try {
-    // Connect to the database
     await connectToDatabase();
 
-    // Parse the incoming request body
     const data = await request.json();
 
-    // Extract the API key from the Authorization header
     const authHeader = request.headers.get("Authorization");
     const providedApiKey = authHeader?.split("Bearer ")[1]; // Extract the key after "Bearer "
-
-    // Validate the presence of the API key
     if (!providedApiKey) {
       return NextResponse.json(
         { error: "API key is required in the Authorization header." },
@@ -23,25 +18,29 @@ export async function POST(request: Request) {
       );
     }
 
-    // // Fetch the user with the provided API key from the database
     const key = await Key.findOne({ api_key: providedApiKey });
-
-    // If no user is found, the API key is invalid
     if (!key) {
       return NextResponse.json({ error: "Invalid API key." }, { status: 401 });
     }
 
-    // Log the received metrics data (for debugging purposes)
     console.log("Received metrics from agent:", data);
 
-    // Store the received metrics data in the database
-    const newMetric = new Metric({
-      ...data,
+    const agentMetrics = await Metric.findOne({
       user_id: key.user_id,
       agent_id: data.agent_id,
-    }); // Associate the metrics with the user
-    await newMetric.save();
+    });
+    if (!agentMetrics) {
+      await Metric.create({
+        user_id: key.user_id,
+        agent_id: data.agent_id,
+        metrics: [data],
+      });
+    } else {
+      agentMetrics.metrics.push(data);
+      await agentMetrics.save();
+    }
 
+    
     return NextResponse.json({
       message: "Metrics received and stored successfully.",
     });

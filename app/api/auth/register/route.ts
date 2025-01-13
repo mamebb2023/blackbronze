@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import User, { IUser } from "@/models/User";
+import User, { IUser } from "@/models/user.model";
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 

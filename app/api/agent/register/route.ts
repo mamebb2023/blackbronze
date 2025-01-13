@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
-import Key, { IKey } from "@/models/Key";
+import Key, { IKey } from "@/models/key.model";
 
 export async function POST(request: Request) {
   try {

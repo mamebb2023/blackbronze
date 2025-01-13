@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import User, { IUser } from "@/models/User";
+import User, { IUser } from "@/models/user.model";
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
-import Key from "@/models/Key";
+import Key from "@/models/key.model";
 
 export async function POST(req: Request) {
   const {

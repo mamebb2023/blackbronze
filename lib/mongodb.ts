@@ -7,11 +7,11 @@ export const connectToDatabase = async () => {
   mongoose.set('strictQuery', true);
 
   if (!process.env.MONGODB_URL) {
-    return console.log('MongoDB URL is not provided');
+    return console.log('MongoDB URL is not provided!');
   }
 
   if (isConnected) {
-    return console.log('...using existing database connection');
+    return console.log('Using existing database connection...');
   }
 
   try {
@@ -20,7 +20,7 @@ export const connectToDatabase = async () => {
     })
     
     isConnected = true;
-    console.log("MongoDB Connected")
+    console.log("MongoDB Connected.")
   } catch (error) {
     console.log(error)
   }

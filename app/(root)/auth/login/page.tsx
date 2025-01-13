@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 import { useUser } from "@/context/UserContext";
 
 export default function Login() {
-  const { user, login } = useUser();
+  const { login } = useUser();
   const { toast } = useToast();
 
   const [email, setEmail] = useState("");
@@ -23,7 +23,6 @@ export default function Login() {
     e.preventDefault();
 
     let error = null;
-    console.log("handleLogin user", user);
 
     const validEmail = verifyEmail(email);
     const validPassword = verifyPassword(password);
@@ -56,17 +55,9 @@ export default function Login() {
       if (res.ok && data) {
         login(rememberMe, data.token);
 
-        console.log("handleLogin await user", user);
-
         toast({
           title: "Login Success",
-          description: (
-            <div>
-              User:
-              <p>UserName: {user?.firstName}</p>
-              <p>UserEmail: {user?.email}</p>
-            </div>
-          ),
+          description: "You are being redirected!",
           variant: "success",
         });
       } else {
