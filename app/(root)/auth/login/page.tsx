@@ -72,7 +72,6 @@ export default function Login() {
         error instanceof Error
           ? error.message
           : "Something went wrong. Please try again.";
-
       toast({
         title: "Login Failed",
         description: errorMessage,

@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const userInfo = getUserInfo();
     setUser(userInfo);
 
-    // router.push("/user/dashboard");
+    router.push("/dashboard");
   };
 
   const logout = () => {

@@ -1,9 +1,10 @@
 import { Schema, Document, models, model } from "mongoose";
 
-interface IMetric extends Document {
+export interface IMetric extends Document {
   user_id: string;
   agent_id: string;
   metrics: {
+    timestamp: Date;
     cpu_usage: number;
     memory_usage: number;
     disk_usage: number;
@@ -11,7 +12,6 @@ interface IMetric extends Document {
       download: number;
       upload: number;
     };
-    timestamp: Date;
   }[];
 }
 

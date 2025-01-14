@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (user) {
-      window.location.href = "/user/dashboard";
+      window.location.href = "/dashboard";
     }
   }, [user]);
 
