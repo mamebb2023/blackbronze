@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Metric from "@/models/metric.model";
 import Key from "@/models/key.model";
+import jwt from "jsonwebtoken";
+
 
 export async function POST(request: Request) {
   try {
@@ -58,15 +60,44 @@ export async function GET(request: Request) {
 
     // Extract query parameters
     const { searchParams } = new URL(request.url);
-    const user_id = searchParams.get("user_id");
-    const agent_id = searchParams.get("agent_id");
     const start_date = searchParams.get("start_date"); // Optional: Start of time range
     const end_date = searchParams.get("end_date"); // Optional: End of time range
 
-    // Build the query object
-    const query: { [key: string]: string | { $gte?: string; $lte?: string } } = {};
-    if (user_id) query.user_id = user_id;
-    if (agent_id) query.agent_id = agent_id;
+    const authHeader = request.headers.get("Authorization");
+    const token = authHeader?.split("Bearer ")[1]; // Extract the JWT token after "Bearer "
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "JWT token is required in the Authorization header." },
+        { status: 401 }
+      );
+    }
+
+    // Verify and decode the JWT token
+    const query: { user_id?: string; "metrics.timestamp"?: { $gte?: string; $lte?: string } } = {};
+
+    interface DecodedToken {
+      id: string;
+      // Add other properties if needed
+    }
+
+    let decodedToken: DecodedToken ;
+    try {
+      decodedToken = jwt.verify(token, process.env.JWT_SECRET!) as DecodedToken;
+    } catch (error) {
+      console.error("Error verifying the JWT token:", error);
+      return NextResponse.json({ error: "Invalid or expired token." }, { status: 401 });
+    }
+
+    console.log("decodedToken", decodedToken);
+
+    query.user_id = decodedToken.id;
+    // TODO: request the agents from the key model
+
+    // const key = await Key.findOne({ user_id: decodedToken.id, api_key: decodedToken.api_key });
+    // if (!key) {
+    //   return NextResponse.json({ error: "Invalid" }, { status: 401 });
+    // }
 
     if (start_date || end_date) {
       query["metrics.timestamp"] = {};
@@ -74,11 +105,9 @@ export async function GET(request: Request) {
       if (end_date) query["metrics.timestamp"].$lte = new Date(end_date).toISOString();
     }
 
-    // Fetch the metrics
     const metrics = await Metric.find(query);
 
-    // Return the fetched metrics
-    return NextResponse.json({ metrics });
+return NextResponse.json({ metrics });
   } catch (error) {
     console.error("Error fetching metrics:", error);
     return NextResponse.json(
@@ -87,4 +116,6 @@ export async function GET(request: Request) {
     );
   }
 }
+
+
 

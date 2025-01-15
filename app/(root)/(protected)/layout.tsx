@@ -73,11 +73,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex flex-row">
+      {/* placetaker */}
       <div
         className={`flex-shrink-0 h-screen ${
           collapse ? "w-[40px]" : "w-[150px]"
         }`}
-      />
+      ></div>
 
       <div
         className={`fixed top-0 left-0 h-screen text-sm border-r flex flex-col justify-between gap-1 bg-black text-white transition-all ${
@@ -143,7 +144,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
 
-      <div className="">{children}</div>
+      <div className="flex-1">{children}</div>
     </div>
   );
 };
