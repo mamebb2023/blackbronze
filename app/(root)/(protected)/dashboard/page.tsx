@@ -128,6 +128,17 @@ const Page = () => {
                     <i className="bx bxs-bar-chart-alt-2 text-4xl text-color-primary"></i>
                   </div>
                 </div>
+
+                {/* error */}
+                <div className="flex flex-col w-full max-w-[300px] shadow-lg rounded-lg py-3 px-7 border-b-4 border-red-500 bg-white">
+                  <div>
+                    <p className="text-sm uppercase text-gray-500/50">Errors</p>
+                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <h1 className="h1 text-red-500">1</h1>
+                    <i className="bx bxs-danger text-4xl text-red-500"></i>
+                  </div>
+                </div>
               </>
             )}
           </div>
