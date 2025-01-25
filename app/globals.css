@@ -10,6 +10,11 @@
   }
 }
 
+::selection {
+  color: white;
+  background: #51dc4f;
+}
+
 :root {
   --color-primary: #00ffff; /* Cool Cyan */
   --color-secondary: #00ff00; /* Green */

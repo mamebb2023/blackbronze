@@ -11,8 +11,8 @@ const Agents = new Schema(
     agent_id: { type: String, required: true },
     created_at: { type: String, required: true },
   },
-  { _id: false },
-)
+  { _id: false }
+);
 
 const KeySchema: Schema = new Schema({
   user_id: { type: String, required: true },

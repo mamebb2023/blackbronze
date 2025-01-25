@@ -4,7 +4,6 @@ import Metric from "@/models/metric.model";
 import Key from "@/models/key.model";
 import jwt from "jsonwebtoken";
 
-
 export async function POST(request: Request) {
   try {
     await connectToDatabase();
@@ -74,23 +73,26 @@ export async function GET(request: Request) {
     }
 
     // Verify and decode the JWT token
-    const query: { user_id?: string; "metrics.timestamp"?: { $gte?: string; $lte?: string } } = {};
+    const query: {
+      user_id?: string;
+      "metrics.timestamp"?: { $gte?: string; $lte?: string };
+    } = {};
 
     interface DecodedToken {
       id: string;
       // Add other properties if needed
     }
 
-    let decodedToken: DecodedToken ;
+    let decodedToken: DecodedToken;
     try {
       decodedToken = jwt.verify(token, process.env.JWT_SECRET!) as DecodedToken;
     } catch (error) {
       console.error("Error verifying the JWT token:", error);
-      return NextResponse.json({ error: "Invalid or expired token." }, { status: 401 });
+      return NextResponse.json(
+        { error: "Invalid or expired token." },
+        { status: 401 }
+      );
     }
-
-    console.log("decodedToken", decodedToken);
-
     query.user_id = decodedToken.id;
     // TODO: request the agents from the key model
 
@@ -101,13 +103,15 @@ export async function GET(request: Request) {
 
     if (start_date || end_date) {
       query["metrics.timestamp"] = {};
-      if (start_date) query["metrics.timestamp"].$gte = new Date(start_date).toISOString();
-      if (end_date) query["metrics.timestamp"].$lte = new Date(end_date).toISOString();
+      if (start_date)
+        query["metrics.timestamp"].$gte = new Date(start_date).toISOString();
+      if (end_date)
+        query["metrics.timestamp"].$lte = new Date(end_date).toISOString();
     }
 
     const metrics = await Metric.find(query);
 
-return NextResponse.json({ metrics });
+    return NextResponse.json({ metrics });
   } catch (error) {
     console.error("Error fetching metrics:", error);
     return NextResponse.json(
@@ -116,6 +120,3 @@ return NextResponse.json({ metrics });
     );
   }
 }
-
-
-

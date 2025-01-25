@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
-import Key, { IKey } from "@/models/key.model";
+import Key from "@/models/key.model";
 
 export async function POST(request: Request) {
   try {
@@ -22,9 +22,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid key." }, { status: 401 });
     }
 
+    interface Agents {
+      agent_id: string;
+      created_at: string;
+    }
+
     // Check if the agent ID already exists
     const existingAgent = keyRecord.agents.find(
-      (agent: IKey) => agent.agent_id === agent_id
+      (agent: Agents) => agent.agent_id === agent_id
     );
     if (existingAgent) {
       return NextResponse.json(

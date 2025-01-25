@@ -35,7 +35,7 @@
   color: black;
 }
 
-.btn::after {
+/* .btn::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -48,9 +48,8 @@
 .btn:hover:after {
   width: 110%;
   height: 120%;
-}
+} */
 
-/* HTML: <div class="loader"></div> */
 .loader {
   width: 12px;
   aspect-ratio: 1;
@@ -60,6 +59,7 @@
   animation: l2 1.5s infinite ease;
   position: relative;
 }
+
 .loader:before,
 .loader:after {
   content: "";
@@ -70,9 +70,21 @@
   animation: inherit;
   animation-delay: -0.5s;
 }
+
 .loader:after {
   animation-delay: -1s;
 }
+
 @keyframes l2 {
     100% {box-shadow: 0 0 0 20px #0000}
+}
+
+.agent {
+  transition: 0.5s all ease;
+}
+
+.agent:hover .agent-card {
+  display: flex;
+  opacity: 1;
+  transition: 0.5s all ease;
 }
