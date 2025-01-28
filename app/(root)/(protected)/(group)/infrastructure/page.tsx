@@ -66,54 +66,48 @@ const Page = () => {
           </h6>
         </div>
       ) : (
-        <div className="flex flex-1">
+        <div className="flex-center flex-1">
           {agents && agents.length > 0 ? (
-            <div className="flex-1 flex-center gap-1">
-              {agents.map((agent, index) => (
-                <HoverCard.Root openDelay={0} closeDelay={0} key={index}>
-                  <HoverCard.Trigger asChild>
-                    <div
-                      // <Link
-                      //   href={`/infrastructure/${agent.agent_id}`}
-                      // color change will be implimented based on onlinitivity
-                      className="flex-center text-5xl text-green-400 hover:text-green-500 rotate-45 transition-all"
+            <div className="flex-1 flex justify-center">
+              <div className="flex flex-wrap justify-center gap-1 max-w-[90%]">
+                {agents.map((agent, index) => (
+                  <HoverCard.Root openDelay={0} closeDelay={0} key={index}>
+                    <HoverCard.Trigger asChild>
+                      <div className="relative flex-center text-5xl text-green-400 hover:text-green-500 transition-all">
+                        <i className="bx bxs-square rotate-45" />
+                      </div>
+                    </HoverCard.Trigger>
+                    <HoverCard.Content
+                      sideOffset={-3}
+                      side="top"
+                      className="HoverCardContent w-[350px] bg-white rounded-md p-2"
                     >
-                      <i className="bx bxs-square" />
-                      {/* </Link> */}
-                    </div>
-                  </HoverCard.Trigger>
-                  <HoverCard.Content
-                    sideOffset={5}
-                    side="top"
-                    className="HoverCardContent w-[350px] bg-white rounded-md p-2"
-                  >
-                    <div className="flex justify-between text-xs">
-                      <span className="text-gray-500/40">
-                        id: {agent.agent_id}
-                      </span>
-
-                      <Link
-                        href={`/agent/${agent.agent_id}`}
-                        className="flex-center p-1 rounded-full hover:bg-gray-500/10"
-                      >
-                        <i className="bx bx-link-external"></i>
-                      </Link>
-                    </div>
-
-                    <div>
-                      <h4>
-                        name, os icon, notif/alert some details like cpu usage,
-                        memory usage, status on/offline
-                      </h4>
-                    </div>
-
-                    <div className="flex items-center justify-end text-gray-500/40 text-xs">
-                      created at: {new Date(agent.created_at).toLocaleString()}
-                    </div>
-                    <HoverCard.Arrow className="fill-white" />
-                  </HoverCard.Content>
-                </HoverCard.Root>
-              ))}
+                      <div className="flex justify-between text-xs">
+                        <span className="text-gray-500/40">
+                          id: {agent.agent_id}
+                        </span>
+                        <Link
+                          href={`/agent/${agent.agent_id}`}
+                          className="flex-center p-1 rounded-full hover:bg-gray-500/10"
+                        >
+                          <i className="bx bx-link-external"></i>
+                        </Link>
+                      </div>
+                      <div>
+                        <h4>
+                          name, os icon, notif/alert, CPU usage, memory usage,
+                          status
+                        </h4>
+                      </div>
+                      <div className="flex items-center justify-end text-gray-500/40 text-xs">
+                        created at:{" "}
+                        {new Date(agent.created_at).toLocaleString()}
+                      </div>
+                      <HoverCard.Arrow className="fill-white" />
+                    </HoverCard.Content>
+                  </HoverCard.Root>
+                ))}
+              </div>
             </div>
           ) : (
             <p>No server/agents available.</p>
