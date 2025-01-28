@@ -6,6 +6,7 @@ import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import Image from "next/image";
 import Divider from "@/components/shared/Divider";
+import { HoverCard } from "radix-ui";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -143,18 +144,31 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {/* Main links */}
         <div className="flex flex-col gap-1">
           {links.map((link, index) => (
-            <Link
-              key={index}
-              href={link.href}
-              className="p-1 px-3 flex items-center gap-2 hover:bg-white/20 transition"
-            >
-              <div className="flex items-center gap-2">
-                {link.icon && <i className={`text-[1.2em] ${link.icon}`} />}
-                <span className={dbMenuCollapsed ? "hidden" : "block"}>
-                  {link.label}
-                </span>
-              </div>
-            </Link>
+            <HoverCard.Root openDelay={0} closeDelay={0} key={index}>
+              <HoverCard.Trigger asChild>
+                <Link
+                  href={link.href}
+                  className="p-1 px-3 flex items-center gap-2 hover:bg-white/20 transition"
+                >
+                  <div className="flex items-center gap-2">
+                    {link.icon && <i className={`text-[1.2em] ${link.icon}`} />}
+                    <span className={dbMenuCollapsed ? "hidden" : "block"}>
+                      {link.label}
+                    </span>
+                  </div>
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content
+                sideOffset={5}
+                side="left"
+                className="HoverCardContent"
+              >
+                <div className="p-2 bg-black rounded-md">
+                  <p className="text-xs text-white">{link.label}</p>
+                </div>
+                <HoverCard.Arrow className="text-black/70" />
+              </HoverCard.Content>
+            </HoverCard.Root>
           ))}
         </div>
 
@@ -162,15 +176,31 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <div className="mb-5">
           <Divider />
           <div className="flex flex-col">
-            <Link
-              href="/user/profile"
-              className="p-1 flex items-center px-3 gap-2 hover:bg-white/20"
-            >
-              <i className="bx bxs-user" />
-              <span className={dbMenuCollapsed ? "hidden" : "block"}>
-                Profile
-              </span>
-            </Link>
+            <HoverCard.Root openDelay={0} closeDelay={0}>
+              <HoverCard.Trigger asChild>
+                <Link
+                  href={"/profile"}
+                  className="p-1 px-3 flex items-center gap-2 hover:bg-white/20 transition"
+                >
+                  <div className="flex items-center gap-2">
+                    <i className={`text-[1.3em] bx bx-user-circle`} />
+                    <span className={dbMenuCollapsed ? "hidden" : "block"}>
+                      Profile
+                    </span>
+                  </div>
+                </Link>
+              </HoverCard.Trigger>
+              <HoverCard.Content
+                sideOffset={5}
+                side="left"
+                className="HoverCardContent"
+              >
+                <div className="p-2 bg-black rounded-md">
+                  <p className="text-xs text-white">Profile</p>
+                </div>
+                <HoverCard.Arrow className="text-black/70" />
+              </HoverCard.Content>
+            </HoverCard.Root>
           </div>
         </div>
       </div>

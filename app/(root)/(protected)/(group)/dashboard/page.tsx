@@ -78,11 +78,11 @@ const Page = () => {
           {metrics.length === 0 ? (
             <p>No metrics data available.</p>
           ) : (
-            <div className="flex-1 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="flex-1 grid grid-cols-2 gap-5 lg:grid-cols-4">
               {/* number of agents/servers */}
               <div className="flex flex-col  shadow-lg rounded-lg py-3 px-7 border-b-4 border-black bg-white">
                 <div>
-                  <p className="text-sm uppercase text-gray-500/50">Servers</p>
+                  <p className="text-xs uppercase text-gray-500/60">Servers</p>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <h1 className="h1">{metrics.length}</h1>
@@ -99,7 +99,7 @@ const Page = () => {
               {/* total number of metrics */}
               <div className="flex flex-col  shadow-lg rounded-lg py-3 px-7 border-b-4 border-color-primary bg-white">
                 <div>
-                  <p className="text-sm uppercase text-gray-500/50">
+                  <p className="text-xs uppercase text-gray-500/60">
                     Total Metrics
                   </p>
                 </div>
@@ -117,7 +117,7 @@ const Page = () => {
               {/* error */}
               <div className="flex flex-col  shadow-lg rounded-lg py-3 px-7 border-b-4 border-red-500 bg-white">
                 <div>
-                  <p className="text-sm uppercase text-gray-500/50">Errors</p>
+                  <p className="text-xs uppercase text-gray-500/60">Errors</p>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <h1 className="h1 text-red-500">1</h1>
@@ -126,15 +126,15 @@ const Page = () => {
               </div>
 
               {/* something */}
-              <div className="flex flex-col  shadow-lg rounded-lg py-3 px-7 border-b-4 border-color-teritary bg-white">
+              <div className="flex flex-col  shadow-lg rounded-lg py-3 px-7 border-b-4 border-color-tertiary bg-white">
                 <div>
-                  <p className="text-sm uppercase text-gray-500/50">
+                  <p className="text-xs uppercase text-gray-500/60">
                     something
                   </p>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <h1 className="h1">3.4</h1>
-                  <i className="bx bxs-error text-4xl text-color-teritary"></i>
+                  <i className="bx bxs-error text-4xl text-color-tertiary"></i>
                 </div>
               </div>
             </div>

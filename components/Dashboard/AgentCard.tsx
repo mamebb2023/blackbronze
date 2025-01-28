@@ -8,11 +8,14 @@ interface Props {
 
 const AgentCard = ({ agent }: Props) => {
   return (
-    <div className="agent-card flex-col p-2 absolute w-[300px] hidden opacity-0 bg-white rounded-md transition-all">
+    <div className="agent-card flex-col p-2 absolute -translate-y-[70%] w-[300px] hidden opacity-0 bg-white rounded-md transition-all">
       <div className="flex justify-between text-xs">
         <span className="text-gray-500/40">id: {agent.agent_id}</span>
 
-        <Link href={`/agent/${agent.agent_id}`}>
+        <Link
+          href={`/agent/${agent.agent_id}`}
+          className="flex-center p-1 rounded-full hover:bg-gray-500/10"
+        >
           <i className="bx bx-link-external"></i>
         </Link>
       </div>

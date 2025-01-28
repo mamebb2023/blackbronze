@@ -1,11 +1,11 @@
 "use client";
 
-import AgentCard from "@/components/Dashboard/AgentCard";
 import Title from "@/components/Dashboard/Title";
 import Tracker from "@/components/Dashboard/Tracker";
 import Loading from "@/components/shared/Loading";
 import { IKey } from "@/models/key.model";
 import Link from "next/link";
+import { HoverCard } from "radix-ui";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
@@ -68,21 +68,51 @@ const Page = () => {
       ) : (
         <div className="flex flex-1">
           {agents && agents.length > 0 ? (
-            <div className="flex-1 flex-center">
+            <div className="flex-1 flex-center gap-1">
               {agents.map((agent, index) => (
-                <div
-                  key={index}
-                  className={`agent flex-center relative size-10`}
-                >
-                  <Link
-                    href={`/infrastructure/${agent.agent_id}`}
-                    // color change will be implimented based on oninitivity
-                    className="text-5xl text-green-400 hover:text-green-500 rotate-45 transition-all"
+                <HoverCard.Root openDelay={0} closeDelay={0} key={index}>
+                  <HoverCard.Trigger asChild>
+                    <div
+                      // <Link
+                      //   href={`/infrastructure/${agent.agent_id}`}
+                      // color change will be implimented based on onlinitivity
+                      className="flex-center text-5xl text-green-400 hover:text-green-500 rotate-45 transition-all"
+                    >
+                      <i className="bx bxs-square" />
+                      {/* </Link> */}
+                    </div>
+                  </HoverCard.Trigger>
+                  <HoverCard.Content
+                    sideOffset={5}
+                    side="top"
+                    className="HoverCardContent w-[350px] bg-white rounded-md p-2"
                   >
-                    <i className="bx bxs-square" />
-                  </Link>
-                  <AgentCard agent={agent} />
-                </div>
+                    <div className="flex justify-between text-xs">
+                      <span className="text-gray-500/40">
+                        id: {agent.agent_id}
+                      </span>
+
+                      <Link
+                        href={`/agent/${agent.agent_id}`}
+                        className="flex-center p-1 rounded-full hover:bg-gray-500/10"
+                      >
+                        <i className="bx bx-link-external"></i>
+                      </Link>
+                    </div>
+
+                    <div>
+                      <h4>
+                        name, os icon, notif/alert some details like cpu usage,
+                        memory usage, status on/offline
+                      </h4>
+                    </div>
+
+                    <div className="flex items-center justify-end text-gray-500/40 text-xs">
+                      created at: {new Date(agent.created_at).toLocaleString()}
+                    </div>
+                    <HoverCard.Arrow className="fill-white" />
+                  </HoverCard.Content>
+                </HoverCard.Root>
               ))}
             </div>
           ) : (
