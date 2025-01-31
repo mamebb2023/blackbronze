@@ -1,17 +1,18 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Key from "@/models/key.model";
+import Agent from "@/models/agent.modes";
 
 export async function POST(request: Request) {
   try {
     await connectToDatabase();
 
     const data = await request.json();
-    const { api_key, agent_id } = data;
+    const { api_key, agent_id, device_info } = data;
 
-    if (!api_key || !agent_id) {
+    if (!api_key || !agent_id || !device_info) {
       return NextResponse.json(
-        { error: "API Key and Agent ID are required." },
+        { error: "Invalid Request!" },
         { status: 400 }
       );
     }
@@ -22,34 +23,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid key." }, { status: 401 });
     }
 
-    interface Agents {
-      agent_id: string;
-      created_at: string;
-    }
+    const existingAgent = await Agent.findOne({ agent_id });
+    if (!existingAgent) {
+      const newAgent = new Agent({
+        created_at: new Date().toISOString(),
+        agent_id,
+        api_key,
+        device_info,
+      });
 
-    // Check if the agent ID already exists
-    const existingAgent = keyRecord.agents.find(
-      (agent: Agents) => agent.agent_id === agent_id
-    );
-    if (existingAgent) {
+      await newAgent.save();
+      return NextResponse.json({ message: "Agent registered" }, { status: 201 });
+    } else {
       return NextResponse.json(
-        { message: "Agent is already registered." },
-        { status: 200 }
+        { message: "Agent already registered" },
+        { status: 201 }
       );
     }
-
-    // Add the new agent ID
-    const newAgent = {
-      agent_id,
-      created_at: new Date().toISOString(),
-    };
-    keyRecord.agents.push(newAgent);
-    await keyRecord.save();
-
-    return NextResponse.json(
-      { message: "Agent registered successfully." },
-      { status: 201 }
-    );
+    
   } catch (error) {
     console.error(error);
     return NextResponse.json(

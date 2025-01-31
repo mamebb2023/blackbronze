@@ -14,16 +14,22 @@ export async function POST(req: Request) {
 
     const user = await User.findOne({ _id: user_id });
     if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json({ error: "Unathorized" }, { status: 401 });
     }
 
     const key = await Key.findOne({ user_id });
     if (!key) {
+      // let newApiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      let newApiKey = "bb_api_key";
+      // const keyExists = await Key.find({ api_key: newApiKey });
+      // while (keyExists.length > 0) {
+        // newApiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        newApiKey = "bb_api_key";
+      // }
+
       const newKey = new Key({
         user_id,
-        // api_key: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
-        api_key: "bb_api_key",
-        agents: [],
+        api_key: newApiKey,
       });
 
       await newKey.save();
@@ -35,8 +41,9 @@ export async function POST(req: Request) {
       );
     }
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
-      { error: `Internal Server Error: ${error}` },
+      { error: `Internal Server Error` },
       { status: 500 }
     );
   }

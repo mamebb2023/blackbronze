@@ -93,7 +93,7 @@
   box-shadow:
 		hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
 		hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-	animation-duration: 0.s;
+	animation-duration: 0.3s;
 	animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 .HoverCardContent[data-side="top"] {
@@ -133,11 +133,11 @@
 @keyframes slideDownAndFade {
 	0% {
 		opacity: 0;
-		transform: translateY(-3px);
+		transform: translateY(-5px);
 	}
 	100% {
 		opacity: 1;
-		transform: translateY(2px);
+		transform: translateY(0px);
 	}
 }
 
@@ -150,4 +150,8 @@
 		opacity: 1;
 		transform: translateX(0);
 	}
+}
+
+.icon {
+  color: red;
 }

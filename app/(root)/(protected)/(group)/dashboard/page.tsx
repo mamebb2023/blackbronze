@@ -76,7 +76,9 @@ const Page = () => {
       ) : (
         <div className="flex-1 flex items-start justify-start gap-5">
           {metrics.length === 0 ? (
-            <p>No metrics data available.</p>
+            <div className="flex-1 flex-center">
+              <p>No metrics data available.</p>
+            </div>
           ) : (
             <div className="flex-1 grid grid-cols-2 gap-5 lg:grid-cols-4">
               {/* number of agents/servers */}

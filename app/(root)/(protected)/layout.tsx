@@ -158,11 +158,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </Link>
               </HoverCard.Trigger>
-              <HoverCard.Content
-                sideOffset={5}
-                side="left"
-                className="HoverCardContent"
-              >
+              <HoverCard.Content side="left" className="HoverCardContent">
                 <div className="p-2 bg-black rounded-md">
                   <p className="text-xs text-white">{link.label}</p>
                 </div>
@@ -179,7 +175,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <HoverCard.Root openDelay={0} closeDelay={0}>
               <HoverCard.Trigger asChild>
                 <Link
-                  href={"/profile"}
+                  href={"/user/profile"}
                   className="p-1 px-3 flex items-center gap-2 hover:bg-white/20 transition"
                 >
                   <div className="flex items-center gap-2">
@@ -190,11 +186,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </Link>
               </HoverCard.Trigger>
-              <HoverCard.Content
-                sideOffset={5}
-                side="left"
-                className="HoverCardContent"
-              >
+              <HoverCard.Content side="left" className="HoverCardContent">
                 <div className="p-2 bg-black rounded-md">
                   <p className="text-xs text-white">Profile</p>
                 </div>

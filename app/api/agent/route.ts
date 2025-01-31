@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { DecodedToken } from "@/utils/auth";
 import Key from "@/models/key.model";
+import Agent from "@/models/agent.modes";
 
 // get the servers/agents id and the date of creation only
 export async function GET(request: Request) {
@@ -35,7 +36,9 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Invalid Request!" }, { status: 401 });
     }
 
-    return NextResponse.json({ agents: key.agents });
+    const agents = await Agent.find({ api_key: key.api_key });
+
+    return NextResponse.json({ agents });
   } catch (error) {
     console.error("Error processing the request:", error);
     return NextResponse.json(
