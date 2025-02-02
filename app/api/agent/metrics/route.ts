@@ -66,17 +66,8 @@ export async function GET(request: Request) {
     const token = authHeader?.split("Bearer ")[1]; // Extract the JWT token after "Bearer "
 
     if (!token) {
-      return NextResponse.json(
-        { error: "JWT token is required in the Authorization header." },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
-    // Verify and decode the JWT token
-    const query: {
-      user_id?: string;
-      "metrics.timestamp"?: { $gte?: string; $lte?: string };
-    } = {};
 
     interface DecodedToken {
       id: string;
@@ -93,6 +84,13 @@ export async function GET(request: Request) {
         { status: 401 }
       );
     }
+
+    // Verify and decode the JWT token
+    const query: {
+      user_id?: string;
+      "metrics.timestamp"?: { $gte?: string; $lte?: string };
+    } = {};
+
     query.user_id = decodedToken.id;
     // TODO: request the agents from the key model
 

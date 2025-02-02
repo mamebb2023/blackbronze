@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { DecodedToken } from "@/utils/auth";
 import Key from "@/models/key.model";
 import Agent from "@/models/agent.modes";
+import Metric from "@/models/metric.model";
 
 // get the servers/agents id and the date of creation only
 export async function GET(request: Request) {
@@ -36,9 +37,34 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: "Invalid Request!" }, { status: 401 });
     }
 
-    const agents = await Agent.find({ api_key: key.api_key });
+    const agents = await Agent.find({ api_key: key.api_key }).select(
+      "agent_id created_at device_info"
+    ).lean();
+    const metrics = await Metric.find({
+      api_key: key.api_key,
+      agent_id: { $in: agents.map((agent) => agent.agent_id) },
+    }).select("agent_id metrics").lean();
 
-    return NextResponse.json({ agents });
+    const agentsWithMetrics = agents.map((agent) => {
+      const agentMetrics = metrics.filter(
+        (metric) => metric.agent_id === agent.agent_id
+      );
+      const latestMetric =
+        agentMetrics.length > 0
+          ? agentMetrics[agentMetrics.length - 1].metrics.slice(-1)[0]
+          : null;
+
+      return {
+        agent_id: agent.agent_id,
+        created_at: agent.created_at,
+        device_info: agent.device_info,
+        latest_metrics: latestMetric,
+      };
+    });
+
+    console.log("Agents with metrics:", agentsWithMetrics);
+
+    return NextResponse.json({ agents: agentsWithMetrics });
   } catch (error) {
     console.error("Error processing the request:", error);
     return NextResponse.json(

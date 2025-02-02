@@ -23,7 +23,8 @@ export async function POST(req: Request) {
       let newApiKey = "bb_api_key";
       // const keyExists = await Key.find({ api_key: newApiKey });
       // while (keyExists.length > 0) {
-        // newApiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // anotherKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        // newApiKey = anotherKey
         newApiKey = "bb_api_key";
       // }
 
@@ -41,7 +42,7 @@ export async function POST(req: Request) {
       );
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return NextResponse.json(
       { error: `Internal Server Error` },
       { status: 500 }

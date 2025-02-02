@@ -3,16 +3,44 @@
 import Title from "@/components/Dashboard/Title";
 import Tracker from "@/components/Dashboard/Tracker";
 import Loading from "@/components/shared/Loading";
-import { IAgent } from "@/models/agent.modes";
+import { KBtoMB } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { HoverCard } from "radix-ui";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
-  const [agents, setAgents] = useState<IAgent[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [agents, setAgents] = useState<any[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+
+  const simpleMetrics = [
+    {
+      title: "CPU (%)",
+      icon: "memory_alt",
+      color: "text-blue-500 bg-blue-100",
+      alt: "cpu_usage",
+    },
+    {
+      title: "Memory (%)",
+      icon: "memory",
+      color: "text-red-500 bg-red-100",
+      alt: "memory_usage",
+    },
+    {
+      title: "Disk (%)",
+      icon: "storage",
+      color: "text-green-500 bg-green-100",
+      alt: "disk_usage",
+    },
+    {
+      title: "Network (up/down, MB/s)",
+      icon: "swap_vert",
+      color: "text-purple-500 bg-purple-100",
+      alt: "network_usage",
+    },
+  ];
 
   useEffect(() => {
     const fetchAgents = async () => {
@@ -37,7 +65,6 @@ const Page = () => {
         }
 
         const data = await response.json();
-        console.log("data.agents", data.agents);
         setAgents(data.agents);
       } catch (error) {
         console.error("Error fetching agents:", error);
@@ -96,14 +123,14 @@ const Page = () => {
                           </span>
                           <Link
                             href={`/agent/${agent.agent_id}`}
-                            className="flex-center p-1 rounded-full hover:bg-gray-500/10"
+                            className="flex-center p-2 rounded-full hover:bg-gray-500/10"
                           >
                             <i className="bx bx-link-external"></i>
                           </Link>
                         </div>
 
                         {/* agent/server details */}
-                        <div className="p-2 flex">
+                        <div className="p-2 flex items-center">
                           <div className="flex-1">
                             <span className="block text-xs text-gray-500/60">
                               public ip:{" "}
@@ -134,18 +161,65 @@ const Page = () => {
                         </div>
 
                         {/* simple meticses showen like cpu, memory, disk, network/data usages */}
-                        <div className="p-2 flex-center">
-                          {/* svg called cpu.svg */}
-                          <div className="flex-center flex-col text-red-600">
-                            {/* <Image
-                              src="/icons/icon.svg"
-                              width={20}
-                              height={20}
-                              alt="cpu"
-                              className="fill-red-500"
-                            /> */}
-                            <span className="material-icons">star</span>
-                            <p className="font-bold">CPU</p>
+                        <div className="my-2 w-full p-1 flex flex-col gap-1">
+                          <p className="text-xs text-gray-500/60">
+                            Latest Record:{" "}
+                            {new Date(
+                              agent.latest_metrics.timestamp
+                            ).toLocaleString()}
+                          </p>
+                          <div className="flex items-center justify-evenly">
+                            {simpleMetrics.map((item, index) => (
+                              <HoverCard.Root
+                                openDelay={0}
+                                closeDelay={0}
+                                key={index}
+                              >
+                                <HoverCard.Trigger asChild>
+                                  <div
+                                    className="flex flex-col items-center gap-1"
+                                    key={index}
+                                  >
+                                    <div
+                                      className={`py-1 px-4 rounded-md flex flex-col gap-1 items-center ${item.color}`}
+                                    >
+                                      <span className="material-symbols-rounded">
+                                        {item.icon}
+                                      </span>
+                                      <p className="font-bold text-xs">
+                                        {item.alt !== "network_usage" ? (
+                                          agent.latest_metrics[`${item.alt}`]
+                                        ) : (
+                                          <span>
+                                            {KBtoMB(
+                                              agent.latest_metrics[
+                                                `network_usage`
+                                              ].upload
+                                            )}
+                                            /
+                                            {KBtoMB(
+                                              agent.latest_metrics[
+                                                `network_usage`
+                                              ].download
+                                            )}
+                                          </span>
+                                        )}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </HoverCard.Trigger>
+                                <HoverCard.Content
+                                  sideOffset={0}
+                                  side="bottom"
+                                  className="HoverCardContent text-white text-xs"
+                                >
+                                  <div className="p-2 bg-black rounded-md">
+                                    {item.title}
+                                  </div>
+                                  <HoverCard.Arrow className="fill-black" />
+                                </HoverCard.Content>
+                              </HoverCard.Root>
+                            ))}
                           </div>
                         </div>
 

@@ -42,7 +42,6 @@ const Page = () => {
         }
 
         const data = await response.json();
-        console.log("data.metrics", data.metrics);
 
         setMetrics(data.metrics);
       } catch (error) {

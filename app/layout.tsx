@@ -28,7 +28,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded"
           rel="stylesheet"
         />
       </head>
