@@ -3,7 +3,7 @@
 import Title from "@/components/Dashboard/Title";
 import Tracker from "@/components/Dashboard/Tracker";
 import Loading from "@/components/shared/Loading";
-import { KBtoMB } from "@/lib/utils";
+import { convertSize } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { HoverCard } from "radix-ui";
@@ -35,7 +35,7 @@ const Page = () => {
       alt: "disk_usage",
     },
     {
-      title: "Network (up/down, MB/s)",
+      title: "Network",
       icon: "swap_vert",
       color: "text-purple-500 bg-purple-100",
       alt: "network_usage",
@@ -191,17 +191,21 @@ const Page = () => {
                                           agent.latest_metrics[`${item.alt}`]
                                         ) : (
                                           <span>
-                                            {KBtoMB(
-                                              agent.latest_metrics[
-                                                `network_usage`
-                                              ].upload
-                                            )}
+                                            {
+                                              convertSize(
+                                                agent.latest_metrics[
+                                                  `network_usage`
+                                                ].upload
+                                              ).value
+                                            }
                                             /
-                                            {KBtoMB(
-                                              agent.latest_metrics[
-                                                `network_usage`
-                                              ].download
-                                            )}
+                                            {
+                                              convertSize(
+                                                agent.latest_metrics[
+                                                  `network_usage`
+                                                ].download
+                                              ).value
+                                            }{" "}
                                           </span>
                                         )}
                                       </p>
@@ -213,8 +217,21 @@ const Page = () => {
                                   side="bottom"
                                   className="HoverCardContent text-white text-xs"
                                 >
-                                  <div className="p-2 bg-black rounded-md">
-                                    {item.title}
+                                  <div className="p-2 bg-black rounded-md flex-center">
+                                    {item.title}{" "}
+                                    {item.alt === "network_usage" && (
+                                      <p>
+                                        (
+                                        {
+                                          convertSize(
+                                            agent.latest_metrics[
+                                              `network_usage`
+                                            ].upload
+                                          ).in
+                                        }
+                                        /s)
+                                      </p>
+                                    )}
                                   </div>
                                   <HoverCard.Arrow className="fill-black" />
                                 </HoverCard.Content>

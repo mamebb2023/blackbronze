@@ -5,8 +5,14 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function KBtoMB(number: number) {
-  // Convert KB to MB then return only 2 decimal places
-  return (number / 1024).toFixed(1)
+export function convertSize(kb: number) {
+  if (kb >= 1024 * 1024) {
+    return { value: (kb / (1024 * 1024)).toFixed(2), in: "GB" };
+  } else if (kb >= 1024) {
+    return { value: (kb / 1024).toFixed(2), in: "MB" };
+  } else {
+    return { value: kb.toFixed(2), in: "KB" };
+  }
 }
+
 
