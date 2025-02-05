@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Divider from "@/components/shared/Divider";
 import { HoverCard } from "radix-ui";
+import { getToken } from "@/lib/utils";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -49,8 +50,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token =
-        localStorage.getItem("token") || sessionStorage.getItem("token");
+      const token = getToken();
 
       if (!token) {
         toast({

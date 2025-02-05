@@ -6,6 +6,7 @@ import { IMetric } from "@/models/metric.model";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Title from "@/components/Dashboard/Title";
+import { getToken } from "@/lib/utils";
 
 const Page = () => {
   const [metrics, setMetrics] = useState<IMetric[]>([]);
@@ -15,9 +16,7 @@ const Page = () => {
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const token =
-          localStorage.getItem("token") || sessionStorage.getItem("token");
-
+        const token = getToken();
         const start_date = ""; // Optional: Set start date if required
         const end_date = ""; // Optional: Set end date if required
 
@@ -80,10 +79,10 @@ const Page = () => {
             </div>
           ) : (
             <div className="flex-1 grid grid-cols-2 gap-5 lg:grid-cols-4">
-              {/* number of agents/servers */}
+              {/* number of agents/servers/hosts */}
               <div className="flex flex-col  shadow-lg rounded-lg py-3 px-7 border-b-4 border-black bg-white">
                 <div>
-                  <p className="text-xs uppercase text-gray-500/60">Servers</p>
+                  <p className="text-xs uppercase text-gray-500/60">Hosts</p>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   <h1 className="h1">{metrics.length}</h1>

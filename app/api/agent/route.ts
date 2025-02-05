@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { DecodedToken } from "@/utils/auth";
 import Key from "@/models/key.model";
-import Agent from "@/models/agent.modes";
+import Agent from "@/models/agent.model";
 import Metric from "@/models/metric.model";
 
 // get the servers/agents id and the date of creation only

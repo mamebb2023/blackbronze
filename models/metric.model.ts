@@ -5,6 +5,7 @@ export interface IMetric extends Document {
   agent_id: string;
   metrics: {
     timestamp: Date;
+    status: string;
     cpu_usage: number;
     memory_usage: number;
     disk_usage: number;
@@ -18,6 +19,7 @@ export interface IMetric extends Document {
 const Metrics = new Schema(
   {
     timestamp: { type: Date, required: true },
+    status: { type: String, required: true },
     cpu_usage: { type: Number, required: true },
     memory_usage: { type: Number, required: true },
     disk_usage: { type: Number, required: true },

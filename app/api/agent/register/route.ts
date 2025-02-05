@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Key from "@/models/key.model";
-import Agent from "@/models/agent.modes";
+import Agent from "@/models/agent.model";
 
 export async function POST(request: Request) {
   try {

@@ -1,3 +1,4 @@
+import { getToken } from "@/lib/utils";
 import { jwtDecode } from "jwt-decode";
 
 export type DecodedToken = {
@@ -10,8 +11,7 @@ export type DecodedToken = {
 };
 
 export const getUserInfo = (): DecodedToken | null => {
-  const token =
-    localStorage.getItem("token") || sessionStorage.getItem("token");
+  const token = getToken();
   if (!token) {
     return null;
   }
