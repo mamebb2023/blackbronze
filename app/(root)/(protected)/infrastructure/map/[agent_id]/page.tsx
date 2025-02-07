@@ -15,9 +15,13 @@ const Page = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  setInterval(() => {
-    setUpdateTrigger((prev) => !prev);
-  }, 15000);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setUpdateTrigger((prev) => !prev);
+    }, 15000);
+
+    return () => clearInterval(interval); // Correct cleanup function
+  }, []);
 
   useEffect(() => {
     if (!agent_id) return;
@@ -37,7 +41,8 @@ const Page = () => {
           throw new Error("Failed to fetch agent data.");
         }
         const data = await response.json();
-        setAgent(data);
+        console.log("data", data);
+        setAgent(data.agent);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);

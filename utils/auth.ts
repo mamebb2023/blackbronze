@@ -7,7 +7,7 @@ export type DecodedToken = {
   lastName: string;
   email: string;
   api_key: string;
-  exp: number; // Expiration time (in seconds)
+  exp: number;
 };
 
 export const getUserInfo = (): DecodedToken | null => {
