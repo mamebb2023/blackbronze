@@ -7,6 +7,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Title from "@/components/Dashboard/Title";
 import { getToken } from "@/lib/utils";
+import Link from "next/link";
 
 const Page = () => {
   const [metrics, setMetrics] = useState<IMetric[]>([]);
@@ -72,10 +73,27 @@ const Page = () => {
           </h6>
         </div>
       ) : (
-        <div className="flex-1 flex items-start justify-start gap-5">
+        <div className="flex-1 flex gap-5">
           {metrics.length === 0 ? (
             <div className="flex-1 flex-center">
-              <p>No metrics data available.</p>
+              <div className="flex-center flex-col">
+                <Image
+                  src="/icons/server.png"
+                  width={100}
+                  height={100}
+                  alt="Server image"
+                />
+                <h3 className="h3">No Data</h3>
+                <p className="body-2 text-gray-500/50">
+                  Deploy your first host with just simple steps
+                </p>
+                <Link
+                  href="/docs/get-started"
+                  className="text-color-tertiary underline"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
           ) : (
             <div className="flex-1 grid grid-cols-2 gap-5 lg:grid-cols-4">

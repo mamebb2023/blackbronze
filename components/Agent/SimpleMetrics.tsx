@@ -1,22 +1,23 @@
 import React from "react";
 import { HoverCard } from "radix-ui";
 import { convertSize } from "@/lib/utils";
+import { simpleMetrics } from "@/constants";
 
 interface SimpleMetricsProps {
-  metrics: {
-    title: string;
-    icon: string;
-    color: string;
-    alt: string;
-  }[];
+  // metrics: {
+  //   title: string;
+  //   icon: string;
+  //   color: string;
+  //   alt: string;
+  // }[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   agent: any;
 }
 
-const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ metrics, agent }) => {
+const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
   return (
     <div className="flex items-center justify-evenly">
-      {metrics.map((item, index) => (
+      {simpleMetrics.map((item, index) => (
         <HoverCard.Root openDelay={0} closeDelay={0} key={index}>
           <HoverCard.Trigger asChild>
             <div className="flex flex-col items-center gap-1" key={index}>

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const Page = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/docs/get-started");
+    router.push("/settings/general");
   }, [router]);
 };
 

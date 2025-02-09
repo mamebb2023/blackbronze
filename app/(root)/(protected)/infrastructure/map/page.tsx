@@ -5,6 +5,8 @@ import Title from "@/components/Dashboard/Title";
 import Tracker from "@/components/Dashboard/Tracker";
 import Loading from "@/components/shared/Loading";
 import { getToken } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Page = () => {
@@ -14,38 +16,12 @@ const Page = () => {
   const [loading, setLoading] = useState(true);
   const [updateTrigger, setUpdateTrigger] = useState(false);
 
-  const simpleMetrics = [
-    {
-      title: "CPU (%)",
-      icon: "memory_alt",
-      color: "text-blue-500 bg-blue-100",
-      alt: "cpu_usage",
-    },
-    {
-      title: "Memory (%)",
-      icon: "memory",
-      color: "text-red-500 bg-red-100",
-      alt: "memory_usage",
-    },
-    {
-      title: "Disk (%)",
-      icon: "storage",
-      color: "text-green-500 bg-green-100",
-      alt: "disk_usage",
-    },
-    {
-      title: "Network",
-      icon: "swap_vert",
-      color: "text-purple-500 bg-purple-100",
-      alt: "network_usage",
-    },
-  ];
-
   useEffect(() => {
     const interval = setInterval(() => {
       setUpdateTrigger((prev) => !prev);
     }, 15000);
-    return clearInterval(interval);
+
+    return () => clearInterval(interval); // Correct cleanup function
   }, []);
 
   useEffect(() => {
@@ -100,9 +76,28 @@ const Page = () => {
       ) : (
         <div className="flex-center flex-1">
           {agents && agents.length > 0 ? (
-            <AgentsList agents={agents} simpleMetrics={simpleMetrics} />
+            <AgentsList agents={agents} />
           ) : (
-            <p>No server/agents available.</p>
+            <div className="flex-1 flex-center">
+              <div className="flex-center flex-col">
+                <Image
+                  src="/icons/server.png"
+                  width={100}
+                  height={100}
+                  alt="Server image"
+                />
+                <h3 className="h3">No Data</h3>
+                <p className="body-2 text-gray-500/50">
+                  Deploy your first host with just simple steps
+                </p>
+                <Link
+                  href="/docs/get-started"
+                  className="text-color-tertiary underline"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
           )}
         </div>
       )}

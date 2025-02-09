@@ -1,12 +1,13 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Page = () => {
-  return (
-    <div>
-      <Link href="/infrastructure/map">Hosts Map</Link>
-    </div>
-  );
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/infrastructure/map");
+  }, [router]);
 };
 
 export default Page;

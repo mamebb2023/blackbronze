@@ -9,15 +9,9 @@ interface AgentCardProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   agent: any;
   device_name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  simpleMetrics: any[];
 }
 
-const AgentCard: React.FC<AgentCardProps> = ({
-  agent,
-  device_name,
-  simpleMetrics,
-}) => {
+const AgentCard: React.FC<AgentCardProps> = ({ agent, device_name }) => {
   return (
     <HoverCard.Root openDelay={0} closeDelay={0}>
       <HoverCard.Trigger asChild>
@@ -54,7 +48,8 @@ const AgentCard: React.FC<AgentCardProps> = ({
             </span>
             <p className="font-bold">{agent.device_info.hostname}</p>
             <p className="text-xs">
-              {agent.device_info.machine} - {agent.device_info.version}
+              {agent.device_info.node_name} - {agent.device_info.machine} -{" "}
+              {agent.device_info.version}
             </p>
           </div>
 
@@ -74,7 +69,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
           <p className="text-xs text-gray-500/60">
             Latest Record: {getTimeAgo(agent.latest_metrics.timestamp)}
           </p>
-          <SimpleMetrics metrics={simpleMetrics} agent={agent} />
+          <SimpleMetrics agent={agent} />
         </div>
 
         <div className="flex items-center justify-between text-gray-500/60 text-xs">

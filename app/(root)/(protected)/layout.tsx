@@ -139,7 +139,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               } text-xl`}
             />
           </div>
-          <Divider />
+          <Divider width="80" opacity="0.5" />
         </div>
 
         {/* Main links */}
@@ -169,27 +169,27 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           ))}
         </div>
 
-        {/* Profile */}
+        {/* Setting */}
         <div className="mb-5">
-          <Divider />
+          <Divider width="80" opacity="0.5" />
           <div className="flex flex-col">
             <HoverCard.Root openDelay={0} closeDelay={0}>
               <HoverCard.Trigger asChild>
                 <Link
-                  href={"/user/profile"}
+                  href={"/settings/general"}
                   className="p-1 px-3 flex items-center gap-2 hover:bg-white/20 transition"
                 >
                   <div className="flex items-center gap-2">
-                    <i className={`text-[1.3em] bx bx-user-circle`} />
+                    <i className={`text-[1.3em] bx bx-clog`} />
                     <span className={dbMenuCollapsed ? "hidden" : "block"}>
-                      Profile
+                      Settings
                     </span>
                   </div>
                 </Link>
               </HoverCard.Trigger>
               <HoverCard.Content side="left" className="HoverCardContent">
                 <div className="p-2 bg-black rounded-md">
-                  <p className="text-xs text-white">Profile</p>
+                  <p className="text-xs text-white">Settings</p>
                 </div>
                 <HoverCard.Arrow className="text-black/70" />
               </HoverCard.Content>

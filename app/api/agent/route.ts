@@ -6,7 +6,11 @@ import Key from "@/models/key.model";
 import Agent from "@/models/agent.model";
 import Metric from "@/models/metric.model";
 
-// get the servers/agents id and the date of creation only
+/**
+ * Gets Agents and then adds the latest metrics in to the array
+ * @param request This Fetch API interface represents a resource request.
+ * @returns A Next Response json
+ */
 export async function GET(request: Request) {
   try {
     await connectToDatabase();
@@ -40,6 +44,7 @@ export async function GET(request: Request) {
     const agents = await Agent.find({ api_key: key.api_key }).select(
       "agent_id created_at device_info"
     ).lean();
+
     const metrics = await Metric.find({
       api_key: key.api_key,
       agent_id: { $in: agents.map((agent) => agent.agent_id) },
@@ -61,8 +66,6 @@ export async function GET(request: Request) {
         latest_metrics: latestMetric,
       };
     });
-
-    console.log("Agents with metrics:", agentsWithMetrics);
 
     return NextResponse.json({ agents: agentsWithMetrics });
   } catch (error) {
