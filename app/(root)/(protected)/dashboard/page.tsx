@@ -73,9 +73,9 @@ const Page = () => {
           </h6>
         </div>
       ) : (
-        <div className="flex-1 flex gap-5">
+        <div className="flex-1 flex items-start gap-5">
           {metrics.length === 0 ? (
-            <div className="flex-1 flex-center">
+            <div className="flex-1 flex-center h-full">
               <div className="flex-center flex-col">
                 <Image
                   src="/icons/server.png"
