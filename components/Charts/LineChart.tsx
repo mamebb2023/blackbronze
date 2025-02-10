@@ -61,7 +61,12 @@ const LineChart = ({ labels, datasets, title }: LineChartProps) => {
     },
     scales: {
       x: {
-        display: false,
+        display: true,
+        ticks: {
+          callback: function (value: number | string) {
+            return value === 100 ? value : "";
+          },
+        },
       },
       y: {
         type: "linear" as const,
