@@ -10,6 +10,8 @@ export async function POST(request: Request) {
     const data = await request.json();
     const { api_key, agent_id, device_info } = data;
 
+    console.log("device_info", device_info);
+
     if (!api_key || !agent_id || !device_info) {
       return NextResponse.json(
         { error: "Invalid Request!" },

@@ -1,45 +1,22 @@
 import { Schema, model, models, Document } from "mongoose";
 
+// IAgent interface updated to use `any` for `device_info`
 export interface IAgent extends Document {
   created_at: string;
   agent_id: string;
   api_key: string;
-  device_info: {
-    node_name: string;
-    hostname: string;
-    system: string;
-    release: string;
-    version: string;
-    machine: string;
-    processor: string;
-    local_ip: string;
-    public_ip: string;
-  };
+  device_info: unknown; // Allow any type for device_info
 }
-
-const InfoSchema = new Schema(
-  {
-    node_name: String,
-    hostname: String,
-    system: String,
-    release: String,
-    version: String,
-    machine: String,
-    processor: String,
-    local_ip: String,
-    public_ip: String,
-  },
-  { _id: false }
-);
 
 const AgentSchema = new Schema(
   {
     created_at: { type: String, required: true },
     agent_id: { type: String, required: true, unique: true },
     api_key: { type: String, required: true },
-    device_info: InfoSchema,
+    device_info: { type: Schema.Types.Mixed, required: true }, // Use `Mixed` type for flexible data
   }
 );
 
+// Create and export the Agent model
 const Agent = models.Agent || model<IAgent>("Agent", AgentSchema);
 export default Agent;
