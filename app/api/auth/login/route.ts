@@ -39,9 +39,6 @@ export async function POST(req: Request) {
     }
 
     const key = await Key.findOne({ user_id: user._id });
-    // if (!api_key) {
-    //   return NextResponse.json(
-    // }
 
     const token = jwt.sign(
       {

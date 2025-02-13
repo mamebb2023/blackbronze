@@ -3,6 +3,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 import Metric from "@/models/metric.model";
 import Key from "@/models/key.model";
 import jwt from "jsonwebtoken";
+import { DecodedToken } from "@/utils/auth";
 
 export async function POST(request: Request) {
   try {
@@ -67,11 +68,6 @@ export async function GET(request: Request) {
 
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    interface DecodedToken {
-      id: string;
-      // Add other properties if needed
     }
 
     let decodedToken: DecodedToken;
