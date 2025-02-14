@@ -9,7 +9,7 @@ export interface IMetric extends Document {
 const MetricSchema = new Schema<IMetric>({
   user_id: { type: String, required: true },
   agent_id: { type: String, required: true },
-  metrics: { type: Schema.Types.Mixed, required: true },
+  metrics: { type: [Schema.Types.Mixed], required: true },
 });
 
 const Metric = models.Metric || model<IMetric>("Metric", MetricSchema);

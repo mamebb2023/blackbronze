@@ -9,15 +9,19 @@ export function getToken() {
   return localStorage.getItem("token") || sessionStorage.getItem("token");
 }
 
-export function convertSize(kb: number) {
-  if (kb >= 1024 * 1024) {
-    return { value: (kb / (1024 * 1024)).toFixed(1), in: "GB" };
-  } else if (kb >= 1024) {
-    return { value: (kb / 1024).toFixed(1), in: "MB" };
+export function convertSize(size: number, type: "B" | "K" = "K") {
+  // Convert to KB if input is in Bytes
+  const sizeInKB = type === "B" ? size / 1024 : size;
+
+  if (sizeInKB >= 1024 * 1024) {
+    return { value: (sizeInKB / (1024 * 1024)).toFixed(1), in: "GB" };
+  } else if (sizeInKB >= 1024) {
+    return { value: (sizeInKB / 1024).toFixed(1), in: "MB" };
   } else {
-    return { value: kb.toFixed(1), in: "KB" };
+    return { value: sizeInKB.toFixed(1), in: "KB" };
   }
 }
+
 
 export function getTimeAgo(time: string | number): string {
   const timestamp = typeof time === "string" ? new Date(time).getTime() : time;

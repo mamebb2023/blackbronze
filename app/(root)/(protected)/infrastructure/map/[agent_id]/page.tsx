@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LineChart from "@/components/Charts/LineChart"; // Import the updated LineChart component
 import Image from "next/image";
+import InfoCard from "@/components/Agent/InfoCard";
 
 const Page = () => {
   const pathname = usePathname();
@@ -143,7 +144,14 @@ const Page = () => {
               <p className="text-gray-500/60">
                 public ip:{" "}
                 <span className="font-bold">
-                  {agent?.device_info.public_ip}
+                  {
+                    metric?.metrics[metric?.metrics.length - 1].network
+                      .public_ip
+                  }
+                </span>{" "}
+                local ip:{" "}
+                <span className="font-bold">
+                  {metric?.metrics[metric?.metrics.length - 1].network.local_ip}
                 </span>
               </p>
               <p className="text-gray-500/60">
@@ -190,88 +198,70 @@ const Page = () => {
             </div>
 
             <Divider width="90" opacity="0.2" />
-            <div className="grid grid-cols-2 md:grid-cols-4 items-start">
-              <div className="">
-                <p className="font-bold">CPU</p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Name:{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.cpu.cpu_name}
-                  </span>
-                </p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Architecture:{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.cpu.cpu_architecture}
-                  </span>
-                </p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Physical Core(s):{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.cpu.cpu_physical_cores}
-                  </span>
-                </p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Logical Core(s):{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.cpu.cpu_logical_cores}
-                  </span>
-                </p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Frequency (min, max):{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.cpu.cpu_freq.min},{" "}
-                    {agent?.device_info.cpu.cpu_freq.max}
-                  </span>
-                </p>
-              </div>
-              <div className="">
-                <p className="font-bold">Memory</p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Total Space:{" "}
-                  <span className="font-bold">
-                    {convertSize(agent?.device_info.memory.total).value}
-                  </span>
-                </p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Slots:{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.memory.slots}
-                  </span>
-                </p>
-              </div>
-              <div className="">
-                <p className="font-bold">Disk</p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Total Space:{" "}
-                  <span className="font-bold">
-                    {
-                      convertSize(agent?.device_info.disk.disk_total_space)
-                        .value
-                    }
-                  </span>
-                </p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Partitions:{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.disk.disk_partitions.length}
-                  </span>
-                </p>
-              </div>
-              <div className="">
-                <p className="font-bold">Network</p>
-                <p className="text-xs body-2 text-gray-500/60">
-                  Network Interfaces:{" "}
-                  <span className="font-bold">
-                    {agent?.device_info.network.network_interfaces.map(
-                      (network: any, index: number) => (
-                        <ul key={index} className="list-disc">
-                          <li>{network.interface}</li>
-                        </ul>
-                      )
-                    )}
-                  </span>
-                </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <InfoCard
+                title="CPU"
+                data={[
+                  { label: "Name", value: agent?.device_info.cpu.cpu_name },
+                  {
+                    label: "Architecture",
+                    value: agent?.device_info.cpu.cpu_architecture,
+                  },
+                  {
+                    label: "Physical Cores",
+                    value: agent?.device_info.cpu.cpu_physical_cores,
+                  },
+                  {
+                    label: "Logical Cores",
+                    value: agent?.device_info.cpu.cpu_logical_cores,
+                  },
+                  {
+                    label: "Frequency (min, max)",
+                    value: `${agent?.device_info.cpu.cpu_freq.min}, ${agent?.device_info.cpu.cpu_freq.max}`,
+                  },
+                ]}
+              />
+
+              <InfoCard
+                title="Memory"
+                data={[
+                  {
+                    label: "Total Space",
+                    value: convertSize(agent?.device_info.memory.total, "B")
+                      .value,
+                  },
+                  { label: "Slots", value: agent?.device_info.memory.slots },
+                ]}
+              />
+
+              <InfoCard
+                title="Disk"
+                data={[
+                  {
+                    label: "Total Space",
+                    value: convertSize(
+                      agent?.device_info.disk.disk_total_space,
+                      "B"
+                    ).value,
+                  },
+                  {
+                    label: "Partitions",
+                    value: agent?.device_info.disk.disk_partitions.length,
+                  },
+                ]}
+              />
+
+              <div className="text-xs">
+                <p className="text-gray-500/80">Network</p>
+                <span className="font-bold">
+                  {agent?.device_info.network.network_interfaces.map(
+                    (network: any, index: number) => (
+                      <ul key={index} className="list-disc">
+                        <li>{network.interface}</li>
+                      </ul>
+                    )
+                  )}
+                </span>
               </div>
             </div>
           </div>

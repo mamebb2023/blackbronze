@@ -32,12 +32,14 @@ export async function POST(request: Request) {
       agent_id: data.agent_id,
     });
     if (!agentMetrics) {
+      console.log("if called");
       await Metric.create({
         user_id: key.user_id,
         agent_id: data.agent_id,
         metrics: [data],
       });
     } else {
+      console.log("else called");
       agentMetrics.metrics.push(data);
       await agentMetrics.save();
     }
@@ -48,7 +50,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error processing the request:", error);
     return NextResponse.json(
-      { error: "Internal Server Error", details: String(error) },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

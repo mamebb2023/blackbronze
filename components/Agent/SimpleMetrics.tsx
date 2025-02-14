@@ -19,27 +19,29 @@ const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
       title: "CPU (%)",
       icon: "memory_alt",
       color: "text-blue-500 bg-blue-100",
-      alt: "cpu_usage",
+      alt: "cpu",
     },
     {
       title: "Memory (%)",
       icon: "memory",
       color: "text-red-500 bg-red-100",
-      alt: "memory_usage",
+      alt: "memory",
     },
     {
       title: "Disk (%)",
       icon: "storage",
       color: "text-green-500 bg-green-100",
-      alt: "disk_usage",
+      alt: "disk",
     },
     {
       title: "Network",
       icon: "swap_vert",
       color: "text-purple-500 bg-purple-100",
-      alt: "network_usage",
+      alt: "network",
     },
   ];
+
+  console.log("simple agent", agent);
 
   return (
     <div className="flex items-center justify-evenly">
@@ -51,22 +53,13 @@ const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
             >
               <span className="material-symbols-rounded">{item.icon}</span>
               <p className="font-bold text-xs">
-                {item.alt !== "network_usage" ? (
-                  agent.latest_metrics[`${item.alt}`]
-                ) : (
-                  <span>
-                    {
-                      convertSize(agent.latest_metrics[`network_usage`].upload)
-                        .value
-                    }
-                    /
-                    {
-                      convertSize(
-                        agent.latest_metrics[`network_usage`].download
-                      ).value
-                    }
-                  </span>
-                )}
+                {agent.latest_metrics[item.alt].cpu_percent}
+                {agent.latest_metrics[item.alt].disk_space_percent}
+                {agent.latest_metrics[item.alt].percent}
+                {
+                  agent.latest_metrics[item.alt].active_interfaces[0]
+                    .total_bytes
+                }
               </p>
             </div>
           </HoverCard.Trigger>
@@ -77,13 +70,6 @@ const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
           >
             <div className="p-2 bg-black rounded-md flex-center">
               {item.title}
-              {item.alt === "network_usage" && (
-                <p>
-                  (
-                  {convertSize(agent.latest_metrics[`network_usage`].upload).in}
-                  /s)
-                </p>
-              )}
             </div>
             <HoverCard.Arrow className="fill-black" />
           </HoverCard.Content>

@@ -180,7 +180,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   className="p-1 px-3 flex items-center gap-2 hover:bg-white/20 transition"
                 >
                   <div className="flex items-center gap-2">
-                    <i className={`text-[1.3em] bx bx-clog`} />
+                    <i className={`text-[1.3em] bx bx-cog`} />
                     <span className={dbMenuCollapsed ? "hidden" : "block"}>
                       Settings
                     </span>

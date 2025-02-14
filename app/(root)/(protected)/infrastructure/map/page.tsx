@@ -79,6 +79,7 @@ const Page = () => {
                       : "linux";
                   return (
                     <HoverCard.Root key={index} openDelay={0} closeDelay={0}>
+                      {/* trigger */}
                       <HoverCard.Trigger asChild>
                         <div
                           className={`relative flex-center text-5xl transition-all ${
@@ -95,6 +96,7 @@ const Page = () => {
                         side="top"
                         className="HoverCardContent w-[300px] bg-white rounded-md p-2"
                       >
+                        {/* id and link to the host/agent */}
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-gray-500/60">
                             id: {agent.agent_id}
@@ -107,12 +109,13 @@ const Page = () => {
                           </Link>
                         </div>
 
+                        {/* simple device info */}
                         <div className="p-2 flex items-center">
                           <div className="flex-1">
                             <span className="block text-xs text-gray-500/60">
                               public ip:{" "}
                               <span className="font-bold">
-                                {agent.device_info.public_ip}
+                                {agent.latest_metrics.network.public_ip}
                               </span>
                             </span>
                             <p className="font-bold">
@@ -138,14 +141,16 @@ const Page = () => {
                           </div>
                         </div>
 
+                        {/* simple latest metrics */}
                         <div className="my-2 w-full p-1 flex flex-col gap-1">
                           <p className="text-xs text-gray-500/60">
                             Latest Record:{" "}
                             {getTimeAgo(agent.latest_metrics.timestamp)}
                           </p>
-                          {/* <SimpleMetrics agent={agent} /> */}
+                          <SimpleMetrics agent={agent} />
                         </div>
 
+                        {/* onlinitivity and created at */}
                         <div className="flex items-center justify-between text-gray-500/60 text-xs">
                           <div
                             className={`text-xs rounded-full py-1 font-bold px-2 ${
