@@ -170,7 +170,7 @@ export default function Register() {
               </Button>
             </div>
           </form>
-          <div className="flex-center">
+          <div className="flex-center text-sm">
             <p>
               Already have an account?{" "}
               <Link href="/auth/login" className="text-blue-500">

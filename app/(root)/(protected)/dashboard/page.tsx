@@ -1,6 +1,5 @@
 "use client";
 
-import Loading from "@/components/shared/Loading";
 import Tracker from "@/components/Dashboard/Tracker";
 import { IMetric } from "@/models/metric.model";
 import Image from "next/image";
@@ -8,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import Title from "@/components/Dashboard/Title";
 import { getToken } from "@/lib/utils";
 import NoData from "@/components/Dashboard/NoData";
+import ErrorOrLoading from "@/components/Dashboard/ErrorOrLoading";
 
 const Page = () => {
   const [metrics, setMetrics] = useState<IMetric[]>([]);
@@ -62,16 +62,7 @@ const Page = () => {
       <Tracker />
 
       {error || loading ? (
-        <div className="flex-center flex-1">
-          <h6 className="h6 font-normal">
-            {error && (
-              <p className="text-red-500">
-                <span className="font-bold">Error</span>: {error}
-              </p>
-            )}
-            {loading && <Loading />}
-          </h6>
-        </div>
+        <ErrorOrLoading error={error} loading={loading} />
       ) : metrics.length === 0 ? (
         <NoData />
       ) : (

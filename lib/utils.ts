@@ -13,7 +13,9 @@ export function convertSize(size: number, type: "B" | "K" = "K") {
   // Convert to KB if input is in Bytes
   const sizeInKB = type === "B" ? size / 1024 : size;
 
-  if (sizeInKB >= 1024 * 1024) {
+  if (sizeInKB >= 1024 * 1024 * 1024) {
+    return { value: (sizeInKB / (1024 * 1024 * 1024)).toFixed(1), in: "TB" };
+  } else if (sizeInKB >= 1024 * 1024) {
     return { value: (sizeInKB / (1024 * 1024)).toFixed(1), in: "GB" };
   } else if (sizeInKB >= 1024) {
     return { value: (sizeInKB / 1024).toFixed(1), in: "MB" };
@@ -21,6 +23,7 @@ export function convertSize(size: number, type: "B" | "K" = "K") {
     return { value: sizeInKB.toFixed(1), in: "KB" };
   }
 }
+
 
 
 export function getTimeAgo(time: string | number): string {

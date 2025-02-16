@@ -140,7 +140,7 @@ export default function Login() {
               </Button>
             </div>
           </form>
-          <div className="flex-center">
+          <div className="flex-center text-sm">
             <p>
               Don&apos;t have an account?{" "}
               <Link href="/auth/register" className="text-blue-500">
