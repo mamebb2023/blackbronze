@@ -36,7 +36,7 @@ const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
           agent.latest_metrics.network.active_interfaces[0].total_bytes,
           "B"
         ).in
-      })`,
+      }) total bytes`,
       icon: "swap_vert",
       color: "text-purple-500 bg-purple-100",
       alt: "network",

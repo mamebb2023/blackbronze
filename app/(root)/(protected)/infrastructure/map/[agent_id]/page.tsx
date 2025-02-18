@@ -65,15 +65,18 @@ const Page = () => {
   }, [updateTrigger, agent_id]);
 
   // Prepare data for the chart
-  const chartLabels = metric?.metrics.map(
-    (m: { timestamp: string | number | Date }) =>
-      new Date(m.timestamp).toLocaleTimeString()
-  );
+  const chartLabels =
+    metric?.metrics?.map((m: { timestamp: string | number | Date }) =>
+      m.timestamp ? new Date(m.timestamp).toLocaleTimeString() : ""
+    ) || [];
 
   // Individual datasets
   const cpuUsage = {
     label: "CPU Usage (%)",
-    data: metric?.metrics.map((m: { cpu_usage: any }) => m.cpu_usage) || [],
+    data:
+      metric?.metrics.map(
+        (m: { cpu: { cpu_percent: any } }) => m.cpu.cpu_percent
+      ) || [],
     borderColor: "rgba(75, 192, 192, 1)",
     backgroundColor: "rgba(75, 192, 192, 0.2)",
   };
@@ -81,42 +84,48 @@ const Page = () => {
   const memoryUsage = {
     label: "Memory Usage (%)",
     data:
-      metric?.metrics.map((m: { memory_usage: any }) => m.memory_usage) || [],
+      metric?.metrics.map(
+        (m: { memory: { percent: any } }) => m.memory.percent
+      ) || [],
     borderColor: "rgba(153, 102, 255, 1)",
     backgroundColor: "rgba(153, 102, 255, 0.2)",
   };
 
   const diskUsage = {
     label: "Disk Usage (%)",
-    data: metric?.metrics.map((m: { disk_usage: any }) => m.disk_usage) || [],
+    data:
+      metric?.metrics.map(
+        (m: { disk: { disk_space_percent: any } }) => m.disk.disk_space_percent
+      ) || [],
     borderColor: "rgba(255, 159, 64, 1)",
     backgroundColor: "rgba(255, 159, 64, 0.2)",
   };
 
-  // const networkUsage = {
-  //   label: "Network Usage",
-  //   datasets: [
-  //     {
-  //       label: "Upload (%)",
-  //       data:
-  //         metric?.metrics.map(
-  //           (m: { network_usage: { upload: any } }) => m.network_usage.upload
-  //         ) || [],
-  //       borderColor: "rgba(255, 99, 132, 1)",
-  //       backgroundColor: "rgba(255, 99, 132, 0.2)",
-  //     },
-  //     {
-  //       label: "Download (%)",
-  //       data:
-  //         metric?.metrics.map(
-  //           (m: { network_usage: { download: any } }) =>
-  //             m.network_usage.download
-  //         ) || [],
-  //       borderColor: "rgba(54, 162, 235, 1)",
-  //       backgroundColor: "rgba(54, 162, 235, 0.2)",
-  //     },
-  //   ],
-  // };
+  const networkUsage = {
+    label: "Network Usage",
+    datasets: [
+      {
+        label: "Packets Sent (%)",
+        data:
+          metric?.metrics?.map(
+            (m: { network: { active_interfaces: { packets_sent: any }[] } }) =>
+              m.network.active_interfaces?.[0]?.packets_sent || 0
+          ) || [],
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+      },
+      {
+        label: "Packets Received (%)",
+        data:
+          metric?.metrics?.map(
+            (m: { network: { active_interfaces: { packets_recv: any }[] } }) =>
+              m.network.active_interfaces?.[0]?.packets_recv || 0
+          ) || [],
+        borderColor: "rgba(54, 162, 235, 1)",
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
+      },
+    ],
+  };
 
   // Array of individual datasets
   const datasets = [cpuUsage, memoryUsage, diskUsage];
@@ -189,6 +198,7 @@ const Page = () => {
 
             {/* Information about the server/host */}
             <div className="p-2 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {/* cpu */}
               <div>
                 <p className="font-bold">CPU</p>
                 <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
@@ -217,6 +227,7 @@ const Page = () => {
                   </p> */}
                 </div>
               </div>
+              {/* memory */}
               <div>
                 <p className="font-bold">Memory</p>
                 <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
@@ -234,6 +245,7 @@ const Page = () => {
                   </p>
                 </div>
               </div>
+              {/* disk */}
               <div>
                 <p className="font-bold">Disk</p>
                 <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
@@ -273,10 +285,11 @@ const Page = () => {
                   </div>
                 </div>
               </div>
+              {/* network */}
               <div>
                 <p className="font-bold">Network</p>
                 <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
-                  <p className="font-bold">
+                  <div className="font-bold">
                     <ul className="list-disc list-inside">
                       {agent?.device_info.network.network_interfaces.map(
                         (network: any, index: number) => (
@@ -284,7 +297,7 @@ const Page = () => {
                         )
                       )}
                     </ul>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -302,13 +315,13 @@ const Page = () => {
             ))}
 
             {/* Network Usage Chart */}
-            {/* <div className="bg-white rounded-md p-3">
+            <div className="bg-white rounded-md p-3">
               <LineChart
                 labels={chartLabels || []}
                 datasets={networkUsage.datasets} // Pass both upload and download datasets
                 title="Network Usage"
               />
-            </div> */}
+            </div>
           </div>
         </div>
       )}

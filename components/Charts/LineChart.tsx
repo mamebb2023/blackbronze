@@ -52,7 +52,7 @@ const LineChart = ({ labels, datasets, title }: LineChartProps) => {
     stacked: false,
     plugins: {
       legend: {
-        display: false,
+        display: datasets.length > 1 ? true : false, // Enable legend for multiple network datasets
       },
       title: {
         display: true,
@@ -61,26 +61,22 @@ const LineChart = ({ labels, datasets, title }: LineChartProps) => {
     },
     scales: {
       x: {
-        display: true,
-        ticks: {
-          callback: function (value: number | string) {
-            return value === 100 ? value : "";
-          },
-        },
+        display: false,
+        // ticks: {
+        //   callback: function (value: number | string) {
+        //     return value === 100 ? value : "";
+        //   },
+        // },
       },
       y: {
         type: "linear" as const,
         display: true,
         position: "left" as const,
-        min: 0,
-        max: 100,
+        beginAtZero: true,
         ticks: {
           callback: function (value: number | string) {
-            return value === 0 || value === 100 ? value : "";
+            return value;
           },
-        },
-        title: {
-          display: false,
         },
       },
     },
