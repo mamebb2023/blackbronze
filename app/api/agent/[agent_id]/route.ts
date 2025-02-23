@@ -11,7 +11,7 @@ export async function GET(
   request: Request,
   { params }: { params: { [key: string]: string } } // Correct type definition
 ) {
-  const { agent_id } = params;
+  const { agent_id } = await params;
 
   const authHeader = request.headers.get("Authorization");
   const token = authHeader?.split("Bearer ")[1];
