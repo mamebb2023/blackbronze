@@ -23,7 +23,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex flex-col">
-      <Title title="Settings" bx_icon="bx bx-clog" />
+      <Title title="Settings" bx_icon="bx bx-cog" />
       <Tracker />
       <div className="flex items-start gap-2">
         <div className="sticky top-3 flex flex-col gap-1 w-56 bg-white rounded-md p-2 text-sm">
@@ -38,7 +38,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           ))}
         </div>
 
-        <div className="flex-1 p-3 border">{children}</div>
+        <div className="flex-1 p-3">{children}</div>
       </div>
     </div>
   );

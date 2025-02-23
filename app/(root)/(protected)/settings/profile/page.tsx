@@ -26,7 +26,7 @@ const Page = () => {
           <h6 className="h6 font-bold">Danger Zone</h6>
           <div className="flex justify-end items-center">
             <Button
-              className="w-[140px] h-[50px] bg-red-500 border-red-500 hover:text-red-500"
+              className="w-[110px] h-[40px] bg-red-500 border-red-500 hover:text-red-500"
               onClick={logout}
             >
               Log out

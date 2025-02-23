@@ -94,7 +94,7 @@ const Page = () => {
                       <HoverCard.Content
                         sideOffset={-3}
                         side="top"
-                        className="HoverCardContent w-[300px] bg-white rounded-md p-2"
+                        className="HoverCardContent w-[350px] bg-white rounded-md p-2"
                       >
                         {/* id and link to the host/agent */}
                         <div className="flex items-center justify-between text-xs">

@@ -9,9 +9,9 @@ import Metric from "@/models/metric.model";
 // Using the `params` object and awaiting it
 export async function GET(
   request: Request,
-  { params }: { params: { agent_id: string } }
+  context: { params: { agent_id: string } }
 ) {
-  const { agent_id } = await params;
+  const { agent_id } = await context.params;
 
   const authHeader = request.headers.get("Authorization");
   const token = authHeader?.split("Bearer ")[1];
