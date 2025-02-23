@@ -9,7 +9,8 @@ import Metric from "@/models/metric.model";
 // Using the `params` object and awaiting it
 export async function GET(
   request: Request,
-  { params }: { params: { [key: string]: string } } // Correct type definition
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { params }: any // Correct type definition
 ) {
   const { agent_id } = await params;
 
