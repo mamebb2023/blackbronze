@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb";
 import Agent from "@/models/agent.model";
@@ -8,7 +7,10 @@ import User from "@/models/user.model";
 import Metric from "@/models/metric.model";
 
 // Using the `params` object and awaiting it
-export async function GET(request: Request, params: any) {
+export async function GET(
+  request: Request,
+  { params }: { params: { agent_id: string } }
+) {
   const { agent_id } = await params;
 
   const authHeader = request.headers.get("Authorization");
@@ -42,7 +44,7 @@ export async function GET(request: Request, params: any) {
       return NextResponse.json({ error: "Agent not found" }, { status: 404 });
     }
 
-    const metric = await Metric.findOne({ agent_id, user_id: user._id });
+    const metric   = await Metric.findOne({ agent_id, user_id: user._id })
 
     return NextResponse.json({ agent, metric }, { status: 201 });
   } catch (error) {
