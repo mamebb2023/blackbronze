@@ -11,7 +11,7 @@ const User = () => {
         className="size-7 rounded-full bg-gray-200 flex items-center justify-center text-sm text-gray-500 cursor-pointer"
         onClick={logout}
       >
-        <i className="bx bx-log-out-circle"></i>
+        <i className="bx bx-log-out-circle" />
       </div>
     </div>
   );

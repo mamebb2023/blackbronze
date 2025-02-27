@@ -8,13 +8,13 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   type,
   className,
   children,
   disabled,
   onClick,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       type={type}

@@ -3,22 +3,59 @@
 import { useUser } from "@/context/UserContext";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import Button from "./shared/Button";
-import User from "./User";
+import React, { useEffect, useState } from "react";
+import Button from "@/components/shared/Button";
+import User from "@/components/User";
 
 const Header = () => {
   const { user } = useUser();
+  const [scrollY, setScrollY] = useState(0);
+  const links = [
+    {
+      text: "Docs",
+      href: "/docs",
+    },
+    {
+      text: "Pricing",
+      href: "/#pricing",
+    },
+    {
+      text: "About",
+      href: "/about",
+    },
+    {
+      text: "Help",
+      href: "/help",
+    },
+  ];
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScrollY(window.scrollY);
+    });
+
+    return window.removeEventListener("scroll", () =>
+      setScrollY(window.scrollY)
+    );
+  }, []);
 
   return (
-    <div className="px-5 md:px-10 py-2 border-b border-gray-100">
-      <div className="flex items-center justify-between md:justify-center text-sm">
-        {/* links */}
+    <div
+      className={`flex items-center sticky top-0 z-10 ${
+        scrollY > 10 ? "h-[50px]" : "h-[110px]"
+      } transition-all px-5 md:px-10 py-2 bg-white/90 backdrop-blur-sm shadow-lg`}
+    >
+      <div className="flex-1 flex items-center justify-between md:justify-center text-sm">
         <nav className="hidden md:flex w-[33%] gap-4">
-          <Link href="/docs">Docs</Link>
-          <Link href="/">Pricing</Link>
-          <Link href="/">About</Link>
-          <Link href="/">Help</Link>
+          {links.map((link, index) => (
+            <Link
+              key={index}
+              href={link.href}
+              className="hover:font-bold transition-all on-hover-underline"
+            >
+              {link.text}
+            </Link>
+          ))}
         </nav>
 
         {/* mobile screen menu section */}
@@ -30,13 +67,17 @@ const Header = () => {
 
         {/* logo */}
         <div className="flex-center md:w-[33%] md:border-r md:border-l">
-          <Link href="/" className="text-2xl font-semibold">
+          <Link href="/" className="flex-center gap-2 flex-col text-2xl">
             <Image
               src="/images/bb-logo-black.png"
-              width={45}
-              height={45}
+              width={scrollY < 10 ? 50 : 40}
+              height={scrollY < 10 ? 50 : 40}
               alt="Logo"
+              className="transition-all"
             />
+            {scrollY < 10 && (
+              <p className="on-hover-underline after:w-[75%]">BLACKBRONZE</p>
+            )}
           </Link>
         </div>
 
@@ -52,11 +93,11 @@ const Header = () => {
           {user ? (
             <User />
           ) : (
-            <div className="flex items-center gap-5">
-              <Link href="/auth/login" className="text-sm">
+            <div className="flex items-center gap-5 text-sm">
+              <Link href="/auth/login" className="on-hover-underline">
                 Login
               </Link>
-              <Link href="/auth/register" className="text-sm">
+              <Link href="/auth/register">
                 <Button type="button" className="h-[50px] w-[150px] text-sm">
                   Get Started
                 </Button>
