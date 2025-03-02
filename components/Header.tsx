@@ -30,20 +30,23 @@ const Header = () => {
   ];
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       setScrollY(window.scrollY);
-    });
+      console.log(scrollY);
+    };
 
-    return window.removeEventListener("scroll", () =>
-      setScrollY(window.scrollY)
-    );
-  }, []);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollY]);
 
   return (
     <div
-      className={`flex items-center sticky top-0 z-10 ${
-        scrollY > 10 ? "h-[50px]" : "h-[110px]"
-      } transition-all px-5 md:px-10 py-2 bg-white/90 backdrop-blur-sm shadow-lg`}
+      className={`flex items-center sticky top-0 z-10 transition-all duration-500 ease-in-out 
+                  ${scrollY > 0 ? "h-[50px] py-1" : "h-[110px] py-3"} 
+                  px-5 md:px-10 bg-white shadow-lg`}
     >
       <div className="flex-1 flex items-center justify-between md:justify-center text-sm">
         <nav className="hidden md:flex w-[33%] gap-4">
