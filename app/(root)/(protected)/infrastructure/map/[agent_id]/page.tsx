@@ -70,66 +70,6 @@ const Page = () => {
       m.timestamp ? new Date(m.timestamp).toLocaleTimeString() : ""
     ) || [];
 
-  // Individual datasets
-  const cpuUsage = {
-    label: "CPU Usage (%)",
-    data:
-      metric?.metrics.map(
-        (m: { cpu: { cpu_percent: any } }) => m.cpu.cpu_percent
-      ) || [],
-    borderColor: "rgba(75, 192, 192, 1)",
-    backgroundColor: "rgba(75, 192, 192, 0.2)",
-  };
-
-  const memoryUsage = {
-    label: "Memory Usage (%)",
-    data:
-      metric?.metrics.map(
-        (m: { memory: { percent: any } }) => m.memory.percent
-      ) || [],
-    borderColor: "rgba(153, 102, 255, 1)",
-    backgroundColor: "rgba(153, 102, 255, 0.2)",
-  };
-
-  const diskUsage = {
-    label: "Disk Usage (%)",
-    data:
-      metric?.metrics.map(
-        (m: { disk: { disk_space_percent: any } }) => m.disk.disk_space_percent
-      ) || [],
-    borderColor: "rgba(255, 159, 64, 1)",
-    backgroundColor: "rgba(255, 159, 64, 0.2)",
-  };
-
-  const networkUsage = {
-    label: "Network Usage",
-    datasets: [
-      {
-        label: "Packets Sent (%)",
-        data:
-          metric?.metrics?.map(
-            (m: { network: { active_interfaces: { packets_sent: any }[] } }) =>
-              m.network.active_interfaces?.[0]?.packets_sent || 0
-          ) || [],
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-      },
-      {
-        label: "Packets Received (%)",
-        data:
-          metric?.metrics?.map(
-            (m: { network: { active_interfaces: { packets_recv: any }[] } }) =>
-              m.network.active_interfaces?.[0]?.packets_recv || 0
-          ) || [],
-        borderColor: "rgba(54, 162, 235, 1)",
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
-      },
-    ],
-  };
-
-  // Array of individual datasets
-  const datasets = [cpuUsage, memoryUsage, diskUsage];
-
   return (
     <div className="flex flex-col flex-1">
       <Tracker />
@@ -137,12 +77,12 @@ const Page = () => {
       {error || loading ? (
         <ErrorOrLoading error={error} loading={loading} />
       ) : (
-        <div className="flex-1 flex flex-col">
-          <div className="bg-white rounded-md p-3">
-            {/* ip and id */}
-            <div className="flex items-center justify-between">
-              <p className="text-gray-500/60">
-                public ip:{" "}
+        <>
+          <div className="flex flex-col gap-1 bg-white rounded-md p-3">
+            {/* ip address and host-id */}
+            <div className="text-gray-500/60 flex items-center justify-between">
+              <p>
+                Public ip:{" "}
                 <span className="font-bold">
                   {
                     metric?.metrics[metric?.metrics.length - 1].network
@@ -150,30 +90,42 @@ const Page = () => {
                   }
                 </span>
               </p>
-              <p className="text-gray-500/60">
-                id: <span className="font-bold">{agent?.agent_id}</span>
+
+              <p>
+                host-id: <span className="font-bold">{agent?.agent_id}</span>
               </p>
             </div>
 
             {/* name and logo */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <h3 className="h3 font-bold">{agent?.device_info.hostname}</h3>
-                <div
-                  className={`px-3 rounded-full ${
-                    metric?.metrics[metric?.metrics.length - 1].status ===
-                    "Online"
-                      ? "bg-green-500"
-                      : "bg-gray-500"
-                  }`}
-                >
-                  <p className="text-white text-sm">
-                    {metric?.metrics[metric?.metrics.length - 1].status}
-                  </p>
+            <div className="flex gap-2 items-center justify-between px-2">
+              <div>
+                <div className="flex gap-2 items-center">
+                  <h5 className="h5 leading-tight font-bold">
+                    {agent?.device_info.hostname}
+                  </h5>
+
+                  <div
+                    className={`px-3 rounded-full ${
+                      metric?.metrics[metric?.metrics.length - 1].status ===
+                      "online"
+                        ? "bg-green-500"
+                        : "bg-gray-500"
+                    }`}
+                  >
+                    <p className="text-white text-sm">
+                      {metric?.metrics[metric?.metrics.length - 1].status}
+                    </p>
+                  </div>
                 </div>
+                <p className="text-sm body-2 text-gray-500/70">
+                  Aliases:{" "}
+                  <span className="font-bold">
+                    {agent?.device_info.node_name}
+                  </span>
+                </p>
               </div>
 
-              <div className="px-3 flex items-center gap-2">
+              <div className="flex items-center gap-2">
                 <Image
                   src={`/os/${agent?.device_info.system}${
                     agent?.device_info.system === "Windows" &&
@@ -188,142 +140,136 @@ const Page = () => {
                     {agent?.device_info.system} {agent?.device_info.release}
                   </p>
                   <p className="text-gray-500/60">
-                    {agent?.device_info.version}
+                    {agent?.device_info.version} - {agent?.device_info.machine}
                   </p>
                 </div>
               </div>
             </div>
+          </div>
 
-            <Divider width="90" opacity="0.2" />
-
-            {/* Information about the server/host */}
-            <div className="p-2 grid grid-cols-2 md:grid-cols-4 gap-4">
-              {/* cpu */}
-              <div>
-                <p className="font-bold">CPU</p>
-                <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
-                  <p className="font-bold">
-                    {agent?.device_info.cpu.cpu_name} -{" "}
+          <div className="mt-2 flex gap-2">
+            {/* cpu */}
+            <div className="flex-grow bg-white rounded-md p-2">
+              <p className="font-bold text-green-500">CPU</p>
+              <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
+                <p className="">{agent?.device_info.cpu.cpu_name}</p>
+                <p className="">
+                  {agent?.device_info.cpu.cpu_architecture} -{" "}
+                  <span className="font-bold">
                     {agent?.device_info.cpu.cpu_freq.max / 1000}GHz
-                  </p>
-                  <p>
-                    <span className="font-bold">
-                      {agent?.device_info.cpu.cpu_physical_cores}
-                    </span>{" "}
-                    Pyhsical Cores
-                  </p>
-                  <p>
-                    <span className="font-bold">
-                      {agent?.device_info.cpu.cpu_logical_cores}
-                    </span>{" "}
-                    Logical Cores
-                  </p>
-                  {/* <p>
-                    Frequency (min, max):{" "}
-                    <span className="font-bold">
-                      {agent?.device_info.cpu.cpu_freq.min},{" "}
-                      {agent?.device_info.cpu.cpu_freq.max}
-                    </span>
-                  </p> */}
+                  </span>
+                </p>
+                <p>
+                  <span className="font-bold">
+                    {agent?.device_info.cpu.cpu_physical_cores}
+                  </span>{" "}
+                  Pyhsical Cores
+                </p>
+                <p>
+                  <span className="font-bold">
+                    {agent?.device_info.cpu.cpu_logical_cores}
+                  </span>{" "}
+                  Logical Cores
+                </p>
+                <p>
+                  Frequency (min, max):{" "}
+                  <span className="font-bold">
+                    {agent?.device_info.cpu.cpu_freq.min},{" "}
+                    {agent?.device_info.cpu.cpu_freq.max}
+                  </span>
+                </p>
+              </div>
+            </div>
+            {/* memory */}
+            <div className="flex-grow bg-white rounded-md p-2">
+              <p className="font-bold text-red-500">Memory</p>
+              <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
+                <div className="flex items-center justify-between">
+                  <p>Total Space</p>
+                  <span className="font-bold">
+                    {convertSize(agent?.device_info.memory.total, "B").value}{" "}
+                    {convertSize(agent?.device_info.memory.total, "B").in}
+                  </span>{" "}
+                </div>
+                <div className="flex items-center justify-between">
+                  <p>Slots</p>
+                  <span className="font-bold">
+                    {agent?.device_info.memory.slots}
+                  </span>{" "}
                 </div>
               </div>
-              {/* memory */}
-              <div>
-                <p className="font-bold">Memory</p>
-                <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
-                  <p>
-                    <span className="font-bold">
-                      {convertSize(agent?.device_info.memory.total, "B").value}{" "}
-                      {convertSize(agent?.device_info.memory.total, "B").in}
-                    </span>{" "}
-                  </p>
-                  <p>
-                    <span className="font-bold">
-                      {agent?.device_info.memory.slots}
-                    </span>{" "}
-                    Memory Slots
-                  </p>
+            </div>
+            {/* disk */}
+            <div className="flex-grow bg-white rounded-md p-2">
+              <p className="font-bold text-blue-500">Disk</p>
+              <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
+                <div className="flex items-center justify-between">
+                  <p>Total Space</p>
+                  <span className="font-bold">
+                    {
+                      convertSize(agent?.device_info.disk.disk_total_space, "B")
+                        .value
+                    }{" "}
+                    {
+                      convertSize(agent?.device_info.disk.disk_total_space, "B")
+                        .in
+                    }
+                  </span>
                 </div>
-              </div>
-              {/* disk */}
-              <div>
-                <p className="font-bold">Disk</p>
-                <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
-                  <p>
-                    Total space: {""}
-                    <span className="font-bold">
-                      {
-                        convertSize(
-                          agent?.device_info.disk.disk_total_space,
-                          "B"
-                        ).value
-                      }{" "}
-                      {
-                        convertSize(
-                          agent?.device_info.disk.disk_total_space,
-                          "B"
-                        ).in
-                      }
-                    </span>
-                  </p>
-                  <div>
-                    Partitions:{" "}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <p>Partitions</p>
                     <span className="font-bold">
                       {agent?.device_info.disk.disk_partitions.length}
                     </span>
-                    <ul className="list-disc list-inside">
-                      {agent?.device_info.disk.disk_partitions?.map(
-                        (disk: any, index: number) => (
-                          <li key={index} className="">
-                            <span className="font-bold">{disk.device}</span>{" "}
-                            {disk.fstype} {convertSize(disk.space, "B").value}{" "}
-                            {convertSize(disk.space, "B").in}
-                          </li>
-                        )
-                      )}
-                    </ul>
                   </div>
+                  <ul className="list-disc list-inside">
+                    {agent?.device_info.disk.disk_partitions?.map(
+                      (disk: any, index: number) => (
+                        <li key={index} className="">
+                          <span className="font-bold">{disk.device}</span>{" "}
+                          {disk.fstype} {convertSize(disk.space, "B").value}{" "}
+                          {convertSize(disk.space, "B").in}
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </div>
               </div>
-              {/* network */}
-              <div>
-                <p className="font-bold">Network</p>
-                <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
-                  <div className="font-bold">
-                    <ul className="list-disc list-inside">
-                      {agent?.device_info.network.network_interfaces.map(
-                        (network: any, index: number) => (
-                          <li key={index}>{network.interface}</li>
-                        )
-                      )}
-                    </ul>
-                  </div>
+            </div>
+            {/* network */}
+            <div className="flex-grow bg-white rounded-md p-2">
+              <p className="font-bold text-purple-500">Network</p>
+              <div className="px-3 text-gray-500/70 text-xs flex flex-col gap-1">
+                <div className="font-bold">
+                  <ul className="flex flex-col gap-1">
+                    {agent?.device_info.network.network_interfaces.map(
+                      (network: any, index: number) => (
+                        <li
+                          key={index}
+                          className="flex items-center justify-between"
+                        >
+                          {network.interface}
+                          <span className="font-normal">
+                            {network.mac_address || "Unknown"}
+                          </span>
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-2">
-            {datasets.map((dataset, index) => (
-              <div key={index} className="bg-white rounded-md p-3">
-                <LineChart
-                  labels={chartLabels || []}
-                  datasets={[dataset]} // Pass all network datasets
-                  title={dataset.label}
-                />
-              </div>
-            ))}
+          <Divider width="90" opacity="0.2" />
 
-            {/* Network Usage Chart */}
-            <div className="bg-white rounded-md p-3">
-              <LineChart
-                labels={chartLabels || []}
-                datasets={networkUsage.datasets} // Pass both upload and download datasets
-                title="Network Usage"
-              />
+          <div className="">
+            <div className="p-2 bg-white">
+              <h6 className="h6 font-normal">Cpu Usage</h6>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
