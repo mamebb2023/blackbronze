@@ -3,7 +3,7 @@
 
 import Tracker from "@/components/Dashboard/Tracker";
 import Divider from "@/components/shared/Divider";
-import { convertSize, getToken } from "@/lib/utils";
+import { convertSize, getTimeAgo, getToken } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LineChart from "@/components/Charts/LineChart";
@@ -70,6 +70,36 @@ const Page = () => {
       m.timestamp ? new Date(m.timestamp).toLocaleTimeString() : ""
     ) || [];
 
+  const cpuData = [
+    {
+      label: "Overall usage",
+      data: [100, 20, 40, 10, 43, 29, 10, 29, 39, 65, 78, 53, 92],
+      borderColor: "rgba(0, 200, 0, 1)",
+      backgroundColor: "rgba(0, 200, 0, 0.2)",
+    },
+  ];
+
+  const cpu_time_percent = [
+    {
+      label: "Idle",
+      data: [100, 20, 40, 10, 43, 29, 10, 29, 39, 65, 78, 53, 92],
+      borderColor: "rgba(0, 200, 0, 1)",
+      backgroundColor: "rgba(0, 200, 0, 0.2)",
+    },
+    {
+      label: "User",
+      data: [20, 40, 10, 43, 29, 10, 29, 39, 65, 78, 53, 92, 100],
+      borderColor: "rgba(50, 10, 100, 1)",
+      backgroundColor: "rgba(50, 10, 100, 0.2)",
+    },
+    {
+      label: "Nice",
+      data: [29, 100, 20, 40, 10, 43, 92, 10, 29, 39, 65, 78, 53],
+      borderColor: "rgba(100, 100, 0, 1)",
+      backgroundColor: "rgba(100, 100, 0, 0.2)",
+    },
+  ];
+
   return (
     <div className="flex flex-col flex-1">
       <Tracker />
@@ -80,7 +110,7 @@ const Page = () => {
         <>
           <div className="flex flex-col gap-1 bg-white rounded-md p-3">
             {/* ip address and host-id */}
-            <div className="text-gray-500/60 flex items-center justify-between">
+            <div className="text-gray-500/60 flex items-center justify-between text-sm">
               <p>
                 Public ip:{" "}
                 <span className="font-bold">
@@ -265,8 +295,40 @@ const Page = () => {
           <Divider width="90" opacity="0.2" />
 
           <div className="">
-            <div className="p-2 bg-white">
-              <h6 className="h6 font-normal">Cpu Usage</h6>
+            <h6 className="h6 font-normal text-sm text-gray-700">
+              Latest Metrics:{" "}
+              <span className="font-bold">
+                {getTimeAgo(
+                  metric?.metrics[metric?.metrics.length - 1].timestamp
+                )}{" "}
+                (
+                {new Date(
+                  metric?.metrics[metric?.metrics.length - 1].timestamp
+                ).toLocaleDateString()}
+                )
+              </span>
+            </h6>
+
+            <div className="flex flex-wrap mt-3">
+              <div className="bg-white p-3">
+                <p className="font-bold">CPU</p>
+                <div className="flex gap-3">
+                  <div>
+                    <LineChart
+                      title="Overall usage"
+                      labels={chartLabels || []}
+                      datasets={cpuData || []}
+                    />
+                  </div>
+                  <div>
+                    <LineChart
+                      title="Usage per mode"
+                      labels={chartLabels || []}
+                      datasets={cpu_time_percent || []}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </>

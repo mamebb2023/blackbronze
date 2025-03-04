@@ -37,6 +37,7 @@
 
 .on-hover-underline {
   position: relative;
+  transition: all .3s ease;
 }
 
 .on-hover-underline::after {
