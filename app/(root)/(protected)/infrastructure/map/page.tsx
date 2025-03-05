@@ -98,10 +98,10 @@ const Page = () => {
                         {/* id and link to the host/agent */}
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-gray-500/60">
-                            id: {agent.agent_id}
+                            host-id: {agent?.agent_id}
                           </span>
                           <Link
-                            href={`/infrastructure/map/${agent.agent_id}`}
+                            href={`/infrastructure/map/${agent?.agent_id}`}
                             className="flex-center p-2 rounded-full hover:bg-gray-500/10"
                           >
                             <i className="bx bx-link-external"></i>
@@ -114,16 +114,16 @@ const Page = () => {
                             <span className="block text-xs text-gray-500/60">
                               public ip:{" "}
                               <span className="font-bold">
-                                {agent.latest_metrics?.network.public_ip}
+                                {agent?.latest_metrics?.network.public_ip}
                               </span>
                             </span>
                             <p className="font-bold">
-                              {agent.device_info.hostname}
+                              {agent?.device_info?.hostname}
                             </p>
                             <p className="text-xs">
-                              {agent.device_info.node_name} -{" "}
-                              {agent.device_info.machine} -{" "}
-                              {agent.device_info.version}
+                              {agent?.device_info?.node_name} -{" "}
+                              {agent?.device_info?.machine} -{" "}
+                              {agent?.device_info?.version}
                             </p>
                           </div>
 
@@ -131,12 +131,12 @@ const Page = () => {
                             <Image
                               src={`${
                                 device_name === "Windows"
-                                  ? `/os/${device_name}-${agent.device_info.release}.png`
+                                  ? `/os/${device_name}-${agent?.device_info?.release}.png`
                                   : `/os/${device_name}.png`
                               }`}
                               width={35}
                               height={35}
-                              alt={`${agent.device_info.system}-${agent.device_info.release}`}
+                              alt={`${agent?.device_info?.system}-${agent?.device_info?.release}`}
                             />
                           </div>
                         </div>
@@ -145,7 +145,7 @@ const Page = () => {
                         <div className="my-2 w-full p-1 flex flex-col gap-1">
                           <p className="text-xs text-gray-500/60">
                             Latest Record:{" "}
-                            {getTimeAgo(agent.latest_metrics?.timestamp)}
+                            {getTimeAgo(agent?.latest_metrics?.timestamp)}
                           </p>
                           <SimpleMetrics agent={agent} />
                         </div>

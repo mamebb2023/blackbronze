@@ -49,7 +49,7 @@ const Header = () => {
                   px-5 md:px-10 bg-white shadow-lg`}
     >
       <div className="flex-1 flex items-center justify-between md:justify-center text-sm">
-        <nav className="hidden md:flex w-[33%] gap-4">
+        <nav className="hidden md:flex flex-grow gap-4">
           {links.map((link, index) => (
             <Link
               key={index}
@@ -92,12 +92,15 @@ const Header = () => {
         </div>
 
         {/* user info or login btn */}
-        <div className="hidden md:flex w-[33%] justify-end">
+        <div className="hidden md:flex flex-grow justify-end">
           {user ? (
             <User />
           ) : (
             <div className="flex items-center gap-5 text-sm">
-              <Link href="/auth/login" className="on-hover-underline">
+              <Link
+                href="/auth/login"
+                className="hover:font-bold on-hover-underline"
+              >
                 Login
               </Link>
               <Link href="/auth/register">
