@@ -73,17 +73,15 @@ const Page = () => {
             <div className="flex-1 flex justify-center">
               <div className="flex flex-wrap justify-center gap-1 max-w-[90%]">
                 {agents.map((agent, index) => {
-                  const device_name =
-                    agent.device_info.system === "Windows"
-                      ? "windows"
-                      : "linux";
+                  const device_name = agent?.device_info?.system;
+
                   return (
                     <HoverCard.Root key={index} openDelay={0} closeDelay={0}>
                       {/* trigger */}
                       <HoverCard.Trigger asChild>
                         <div
                           className={`relative flex-center text-5xl transition-all ${
-                            agent.latest_metrics.status === "online"
+                            agent?.latest_metrics?.status === "online"
                               ? "text-green-400 hover:text-green-500"
                               : "text-gray-400 hover:text-gray-500"
                           }`}
@@ -91,6 +89,7 @@ const Page = () => {
                           <i className="bx bxs-square rotate-45" />
                         </div>
                       </HoverCard.Trigger>
+
                       <HoverCard.Content
                         sideOffset={-3}
                         side="top"
@@ -115,7 +114,7 @@ const Page = () => {
                             <span className="block text-xs text-gray-500/60">
                               public ip:{" "}
                               <span className="font-bold">
-                                {agent.latest_metrics.network.public_ip}
+                                {agent.latest_metrics?.network.public_ip}
                               </span>
                             </span>
                             <p className="font-bold">
@@ -130,13 +129,14 @@ const Page = () => {
 
                           <div className="">
                             <Image
-                              src={`/os/${device_name}${
-                                device_name === "windows" &&
-                                `-${agent.device_info.release}`
-                              }.png`}
+                              src={`${
+                                device_name === "Windows"
+                                  ? `/os/${device_name}-${agent.device_info.release}.png`
+                                  : `/os/${device_name}.png`
+                              }`}
                               width={35}
                               height={35}
-                              alt={`${agent.device_info.system}${agent.device_info.release}`}
+                              alt={`${agent.device_info.system}-${agent.device_info.release}`}
                             />
                           </div>
                         </div>
@@ -145,7 +145,7 @@ const Page = () => {
                         <div className="my-2 w-full p-1 flex flex-col gap-1">
                           <p className="text-xs text-gray-500/60">
                             Latest Record:{" "}
-                            {getTimeAgo(agent.latest_metrics.timestamp)}
+                            {getTimeAgo(agent.latest_metrics?.timestamp)}
                           </p>
                           <SimpleMetrics agent={agent} />
                         </div>
@@ -154,17 +154,17 @@ const Page = () => {
                         <div className="flex items-center justify-between text-gray-500/60 text-xs">
                           <div
                             className={`text-xs rounded-full py-1 font-bold px-2 ${
-                              agent.latest_metrics.status === "online"
+                              agent?.latest_metrics?.status === "online"
                                 ? "bg-green-200 text-green-600"
                                 : "bg-gray-200 text-gray-600"
                             }`}
                           >
-                            {agent.latest_metrics.status}
+                            {agent?.latest_metrics?.status}
                           </div>
                           <div>
                             created at:{" "}
                             <span className="font-bold">
-                              {new Date(agent.created_at).toLocaleString()}
+                              {new Date(agent?.created_at).toLocaleString()}
                             </span>
                           </div>
                         </div>

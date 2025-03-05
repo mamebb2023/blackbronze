@@ -33,7 +33,7 @@ const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
     {
       title: `Network (${
         convertSize(
-          agent.latest_metrics.network.active_interfaces[0].total_bytes,
+          agent.latest_metrics?.network.active_interfaces[0].total_bytes,
           "B"
         ).in
       }) total bytes`,
@@ -45,7 +45,7 @@ const SimpleMetrics: React.FC<SimpleMetricsProps> = ({ agent }) => {
         undefined
           ? `${
               convertSize(
-                agent.latest_metrics.network.active_interfaces[0].total_bytes,
+                agent.latest_metrics?.network.active_interfaces[0].total_bytes,
                 "B"
               ).value
             }`
