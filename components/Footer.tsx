@@ -67,7 +67,7 @@ const Footer = () => {
             <div className="hidden md:block flex-grow">links</div>
           </div>
 
-          <div className="border-t mx-10 md:mx-14 lg:mx-20 px-5 md:px-7 lg:px-10 py-5 flex items-center justify-end">
+          <div className="border-t border-gray-500/60 text-gray-500/80 mx-10 md:mx-14 lg:mx-20 px-5 md:px-7 lg:px-10 py-5 flex items-center justify-end">
             <p className="text-sm">&copy; BlackBronze, All rights reserved.</p>
           </div>
         </div>
