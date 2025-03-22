@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext, useContext, useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { DecodedToken } from "@/utils/auth";
@@ -17,31 +15,30 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const getStoredToken = () =>
-    localStorage.getItem("token") || sessionStorage.getItem("token");
-
-  const [token, setToken] = useState<string | null>(getStoredToken);
+  const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<DecodedToken | null>(null);
 
   useEffect(() => {
-    if (token) {
-      try {
-        const decoded: DecodedToken = jwtDecode(token);
-        setUser(decoded);
-      } catch (error) {
-        console.error("Invalid token:", error);
-        logout(); // If decoding fails, clear auth state
+    if (typeof window !== "undefined") {
+      const storedToken =
+        localStorage.getItem("token") || sessionStorage.getItem("token");
+      if (storedToken) {
+        setToken(storedToken);
+        try {
+          setUser(jwtDecode(storedToken));
+        } catch (error) {
+          console.error("Invalid token:", error);
+          logout();
+        }
       }
     }
-  }, [token]);
+  }, []);
 
   const login = (newToken: string, rememberMe: boolean) => {
-    try {
-      setToken(newToken);
+    setToken(newToken);
+    setUser(jwtDecode(newToken));
 
-      const decoded: DecodedToken = jwtDecode(newToken);
-      setUser(decoded);
-
+    if (typeof window !== "undefined") {
       if (rememberMe) {
         localStorage.setItem("token", newToken);
         sessionStorage.removeItem("token");
@@ -49,19 +46,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         sessionStorage.setItem("token", newToken);
         localStorage.removeItem("token");
       }
-    } catch (error) {
-      console.error("Failed to decode token:", error);
     }
   };
 
   const logout = () => {
     setToken(null);
     setUser(null);
-
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-
-    window.location.href = "/";
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+    }
   };
 
   const isAuthenticated = !!token;

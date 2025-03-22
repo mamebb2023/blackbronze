@@ -13,6 +13,7 @@ const NoData = () => {
       <Link href="/docs/get-started" className="text-color-tertiary underline">
         Get Started
       </Link>
+      login with <b>johndoe@gmail.com:12345678</b> to see what it looks like
     </div>
   );
 };
