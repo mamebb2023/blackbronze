@@ -1,9 +1,9 @@
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 import Link from "next/link";
 import React from "react";
 
 const User = () => {
-  const { user, logout } = useUser();
+  const { user, logout } = useAuth();
 
   return (
     <div className="flex items-center gap-2">

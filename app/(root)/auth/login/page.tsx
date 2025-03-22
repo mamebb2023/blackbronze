@@ -7,10 +7,10 @@ import { verifyEmail, verifyPassword } from "@/utils/verification";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
-  const { login } = useUser();
+  const { login } = useAuth();
   const { toast } = useToast();
 
   const [email, setEmail] = useState("");
@@ -53,7 +53,7 @@ export default function Login() {
       const data = await res.json();
 
       if (res.ok && data) {
-        login(rememberMe, data.token);
+        login(data.token, rememberMe);
 
         toast({
           title: "Login Success",
@@ -85,71 +85,61 @@ export default function Login() {
   };
 
   return (
-    <div className="h-screen flex flex-col md:flex-row">
-      <div
-        className="w-full h-[90px] md:h-auto md:w-[30%] lg:w-[50%]"
-        style={{
-          background: `url("/images/bg-0.png") no-repeat center center/cover`,
-        }}
-      />
-      <div className="flex-1 w-full md:w-[70%] lg:w-[50%] flex-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
-        >
-          <div className="flex items-start">
-            <h4 className="h4 font-bold gradient-underline">Login</h4>
-          </div>
-          <form onSubmit={handleLogin} className="flex flex-col gap-3">
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <Input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <div className="flex items-center justify-between text-xs">
-              <div className="cursor-pointer flex-center">
-                <input
-                  type="checkbox"
-                  id="rememberMe"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                />
-                <label htmlFor="rememberMe" className="ml-2 cursor-pointer">
-                  Login for 3 days
-                </label>
-              </div>
-              <Link href="#" className="">
-                Forgot password?
-              </Link>
-            </div>
-            <div className="flex-center my-2">
-              <Button
-                type="submit"
-                className="h-[50px] w-[150px]"
-                disabled={disabledBtn}
-              >
-                Login
-              </Button>
-            </div>
-          </form>
-          <div className="flex-center text-sm">
-            <p>
-              Don&apos;t have an account?{" "}
-              <Link href="/auth/register" className="text-blue-500">
-                Register
-              </Link>
-            </p>
-          </div>
-        </motion.div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
+    >
+      <div className="flex items-start">
+        <h4 className="h4 font-bold gradient-underline">Login</h4>
       </div>
-    </div>
+      <form onSubmit={handleLogin} className="flex flex-col gap-3">
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className="flex items-center justify-between text-xs">
+          <div className="cursor-pointer flex-center">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+            />
+            <label htmlFor="rememberMe" className="ml-2 cursor-pointer">
+              Login for 3 days
+            </label>
+          </div>
+          <Link href="#" className="">
+            Forgot password?
+          </Link>
+        </div>
+        <div className="flex-center my-2">
+          <Button
+            type="submit"
+            className="h-[50px] w-[150px]"
+            disabled={disabledBtn}
+          >
+            Login
+          </Button>
+        </div>
+      </form>
+      <div className="flex-center text-sm">
+        <p>
+          Don&apos;t have an account?{" "}
+          <Link href="/auth/register" className="text-blue-500">
+            Register
+          </Link>
+        </p>
+      </div>
+    </motion.div>
   );
 }

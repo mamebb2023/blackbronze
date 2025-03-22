@@ -7,12 +7,14 @@ import Link from "next/link";
 import Image from "next/image";
 import Divider from "@/components/shared/Divider";
 import { HoverCard } from "radix-ui";
-import { getToken } from "@/lib/utils";
+// import { getToken } from "@/lib/utils";
 import NotificationContainer from "@/components/Dashboard/NotificationContainer";
+import { useAuth } from "@/context/AuthContext";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const { toast } = useToast();
+  const { token, isAuthenticated, logout } = useAuth();
 
   const links = [
     { href: "/dashboard", icon: "bx bxs-grid-alt", label: "Dashboard" },
@@ -51,9 +53,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = getToken();
-
-      if (!token) {
+      if (!isAuthenticated) {
         toast({
           title: "Error",
           description: "You must be logged in to access this page.",
@@ -72,30 +72,34 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
         if (!res.ok) {
           const errorData = await res.json();
-          localStorage.removeItem("token");
-          sessionStorage.removeItem("token");
+
+          logout();
+
           toast({
             title: "Error",
             description: errorData.message,
             variant: "destructive",
           });
+
           return router.push("/auth/login");
         }
       } catch (error) {
         console.error("Error checking authentication:", error);
-        localStorage.removeItem("token");
-        sessionStorage.removeItem("token");
+
+        logout();
+
         toast({
           title: "Error",
           description: "An error occurred while checking authentication.",
           variant: "destructive",
         });
+
         return router.push("/auth/login");
       }
     };
 
     checkAuth();
-  }, [router, toast]);
+  }, [isAuthenticated, logout, router, toast, token]);
 
   if (!isMounted) {
     // Avoid rendering until the component is mounted

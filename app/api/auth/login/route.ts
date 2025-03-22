@@ -46,7 +46,7 @@ export async function POST(req: Request) {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
-        api_key: key.api_key,
+        api_key: key.api_key, // for now
       },
       process.env.JWT_SECRET!,
       { expiresIn: "3d" }

@@ -3,17 +3,20 @@
 
 import Tracker from "@/components/Dashboard/Tracker";
 import Divider from "@/components/shared/Divider";
-import { convertSize, getTimeAgo, getToken } from "@/lib/utils";
+import { convertSize, getTimeAgo } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LineChart from "@/components/Charts/LineChart";
 import Image from "next/image";
 import ErrorOrLoading from "@/components/Dashboard/ErrorOrLoading";
+import { useAuth } from "@/context/AuthContext";
 
 const Page = () => {
   const pathname = usePathname();
   const agent_id = pathname?.split("/").filter(Boolean).pop();
   const [updateTrigger, setUpdateTrigger] = useState(false);
+
+  const { token } = useAuth();
 
   const [agent, setAgent] = useState<any>();
   const [metric, setMetric] = useState<any>();
@@ -34,7 +37,6 @@ const Page = () => {
 
     const fetchData = async () => {
       try {
-        const token = getToken();
         const response = await fetch(`/api/agent/${agent_id}`, {
           method: "GET",
           headers: {
@@ -62,7 +64,7 @@ const Page = () => {
     };
 
     fetchData();
-  }, [updateTrigger, agent_id]);
+  }, [updateTrigger, agent_id, token]);
 
   // Prepare data for the chart
   const chartLabels =

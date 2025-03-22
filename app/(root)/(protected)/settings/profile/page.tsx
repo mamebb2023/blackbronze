@@ -2,11 +2,11 @@
 
 import Title from "@/components/Dashboard/Title";
 import Button from "@/components/shared/Button";
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 import React from "react";
 
 const Page = () => {
-  const { user, logout } = useUser();
+  const { user, logout } = useAuth();
 
   return (
     <div className="">
@@ -18,6 +18,7 @@ const Page = () => {
           <p>Lastname: {user?.lastName}</p>
           <p>Email: {user?.email} </p>
         </div>
+
         {/* logout button */}
         <div
           id="danger_zone"

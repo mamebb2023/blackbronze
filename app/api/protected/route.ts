@@ -11,10 +11,14 @@ export async function GET(req: Request) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+
+    console.log(decoded)
+
     return NextResponse.json(
       { message: "User Authenticated!", user: decoded },
       { status: 200 }
     );
+    
   } catch (error) {
     return NextResponse.json(
       { error: `Invalid token: ${error}` },

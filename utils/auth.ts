@@ -18,6 +18,7 @@ export const getUserInfo = (): DecodedToken | null => {
 
   try {
     const decoded: DecodedToken = jwtDecode(token);
+    
     if (decoded.exp * 1000 < Date.now()) {
       sessionStorage.removeItem("token");
       localStorage.removeItem("token");

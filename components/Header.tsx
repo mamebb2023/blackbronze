@@ -1,6 +1,6 @@
 "use client";
 
-import { useUser } from "@/context/UserContext";
+import { useAuth } from "@/context/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -8,7 +8,7 @@ import Button from "@/components/shared/Button";
 import User from "@/components/User";
 
 const Header = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
   const [scrollY, setScrollY] = useState(0);
   const links = [
     {

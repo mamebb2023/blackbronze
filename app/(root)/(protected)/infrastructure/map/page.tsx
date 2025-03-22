@@ -5,11 +5,12 @@ import ErrorOrLoading from "@/components/Dashboard/ErrorOrLoading";
 import NoData from "@/components/Dashboard/NoData";
 import Title from "@/components/Dashboard/Title";
 import Tracker from "@/components/Dashboard/Tracker";
-import { getTimeAgo, getToken } from "@/lib/utils";
+import { getTimeAgo } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import SimpleMetrics from "@/components/Agent/SimpleMetrics";
+import { useAuth } from "@/context/AuthContext";
 
 const Page = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,6 +18,8 @@ const Page = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const [updateTrigger, setUpdateTrigger] = useState(false);
+
+  const { token } = useAuth();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,7 +32,6 @@ const Page = () => {
   useEffect(() => {
     const fetchAgents = async () => {
       try {
-        const token = getToken();
         if (!token) {
           throw new Error("No authentication token found.");
         }
@@ -58,7 +60,7 @@ const Page = () => {
     };
 
     fetchAgents();
-  }, [updateTrigger]);
+  }, [token, updateTrigger]);
 
   return (
     <div className="flex flex-col flex-1">

@@ -5,19 +5,19 @@ import { IMetric } from "@/models/metric.model";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Title from "@/components/Dashboard/Title";
-import { getToken } from "@/lib/utils";
 import NoData from "@/components/Dashboard/NoData";
 import ErrorOrLoading from "@/components/Dashboard/ErrorOrLoading";
+import { useAuth } from "@/context/AuthContext";
 
 const Page = () => {
   const [metrics, setMetrics] = useState<IMetric[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const { token } = useAuth();
 
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const token = getToken();
         const start_date = ""; // Optional: Set start date if required
         const end_date = ""; // Optional: Set end date if required
 
@@ -53,7 +53,7 @@ const Page = () => {
     };
 
     fetchMetrics();
-  }, []);
+  }, [token]);
 
   return (
     <div className="flex flex-1 flex-col">

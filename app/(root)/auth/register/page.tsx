@@ -71,6 +71,8 @@ export default function Register() {
         throw new Error(errorMessage || "An unknown error occurred");
       }
 
+      // email confirmation or third party login
+
       toast({
         title: "Registration Successful",
         description:
@@ -93,93 +95,82 @@ export default function Register() {
 
       console.error(error);
     } finally {
-      // Ensure the button is always re-enabled
       setDisabledBtn(false);
     }
   };
 
   return (
-    <div className="h-screen flex flex-col md:flex-row">
-      <div
-        className="w-full h-[90px] md:h-auto md:w-[30%] lg:w-[50%]"
-        style={{
-          background: `url("/images/bg-0.png") no-repeat center center/cover`,
-        }}
-      />
-      <div className="flex-1 w-full md:w-[70%] lg:w-[50%] flex-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
-        >
-          <div className="flex items-start">
-            <h4 className="h4 font-bold gradient-underline">Register</h4>
-          </div>
-          <form onSubmit={register} className="flex flex-col gap-3">
-            <div className="flex flex-col md:flex-row gap-3">
-              <Input
-                type="text"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              <Input
-                type="text"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <Input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <div className="flex items-center gap-2">
-              <Input
-                type={viewPwd ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <div
-                className="size-10 flex-center cursor-pointer text-2xl active:scale-95 text-green-950"
-                onClick={() => setViewPwd(!viewPwd)}
-              >
-                {viewPwd ? (
-                  <i className="bx bx-show" />
-                ) : (
-                  <i className="bx bx-hide" />
-                )}
-              </div>
-            </div>
-            <Input
-              type={viewPwd ? "text" : "password"}
-              placeholder="Confirm Password"
-              value={confirmPwd}
-              onChange={(e) => setConfirmPwd(e.target.value)}
-            />
-            <div className="flex-center">
-              <Button
-                type="submit"
-                className="h-[50px] w-[150px]"
-                disabled={disabledBtn}
-              >
-                Register
-              </Button>
-            </div>
-          </form>
-          <div className="flex-center text-sm">
-            <p>
-              Already have an account?{" "}
-              <Link href="/auth/login" className="text-blue-500">
-                Login
-              </Link>
-            </p>
-          </div>
-        </motion.div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="w-96 p-5 py-7 flex flex-col gap-5 border rounded-2xl"
+    >
+      <div className="flex items-start">
+        <h4 className="h4 font-bold gradient-underline">Register</h4>
       </div>
-    </div>
+      <form onSubmit={register} className="flex flex-col gap-3">
+        <div className="flex flex-col md:flex-row gap-3">
+          <Input
+            type="text"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <Input
+            type="text"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+        </div>
+        <Input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div className="flex items-center gap-2">
+          <Input
+            type={viewPwd ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div
+            className="size-10 flex-center cursor-pointer text-2xl active:scale-95 text-green-950"
+            onClick={() => setViewPwd(!viewPwd)}
+          >
+            {viewPwd ? (
+              <i className="bx bx-show" />
+            ) : (
+              <i className="bx bx-hide" />
+            )}
+          </div>
+        </div>
+        <Input
+          type={viewPwd ? "text" : "password"}
+          placeholder="Confirm Password"
+          value={confirmPwd}
+          onChange={(e) => setConfirmPwd(e.target.value)}
+        />
+        <div className="flex-center">
+          <Button
+            type="submit"
+            className="h-[50px] w-[150px]"
+            disabled={disabledBtn}
+          >
+            Register
+          </Button>
+        </div>
+      </form>
+      <div className="flex-center text-sm">
+        <p>
+          Already have an account?{" "}
+          <Link href="/auth/login" className="text-blue-500">
+            Login
+          </Link>
+        </p>
+      </div>
+    </motion.div>
   );
 }
