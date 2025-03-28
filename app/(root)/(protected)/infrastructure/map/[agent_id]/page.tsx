@@ -50,14 +50,10 @@ const Page = () => {
         const data = await response.json();
         setAgent(data.agent);
         setMetric(data.metric);
-
-        console.log(data.agent, data.metric);
       } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("An unknown error occurred.");
-        }
+        setError(
+          err instanceof Error ? err.message : "An unknown error occurred."
+        );
       } finally {
         setLoading(false);
       }
@@ -66,39 +62,97 @@ const Page = () => {
     fetchData();
   }, [updateTrigger, agent_id, token]);
 
-  // Prepare data for the chart
+  // Prepare chart labels
   const chartLabels =
-    metric?.metrics?.map((m: { timestamp: string | number | Date }) =>
-      m.timestamp ? new Date(m.timestamp).toLocaleTimeString() : ""
+    metric?.metrics?.map((m: { timestamp: string }) =>
+      new Date(m.timestamp).toLocaleTimeString()
     ) || [];
 
+  // CPU Usage Chart
   const cpuData = [
     {
-      label: "Overall usage",
-      data: [100, 20, 40, 10, 43, 29, 10, 29, 39, 65, 78, 53, 92],
+      label: "Overall Usage",
+      data: metric?.metrics?.map((m: any) => m.cpu.cpu_percent) || [],
       borderColor: "rgba(0, 200, 0, 1)",
       backgroundColor: "rgba(0, 200, 0, 0.2)",
     },
   ];
 
-  const cpu_time_percent = [
-    {
-      label: "Idle",
-      data: [100, 20, 40, 10, 43, 29, 10, 29, 39, 65, 78, 53, 92],
-      borderColor: "rgba(0, 200, 0, 1)",
-      backgroundColor: "rgba(0, 200, 0, 0.2)",
-    },
+  const cpuTimePercentData = [
     {
       label: "User",
-      data: [20, 40, 10, 43, 29, 10, 29, 39, 65, 78, 53, 92, 100],
+      data:
+        metric?.metrics?.map((m: any) => m.cpu.cpu_times_percent.user) || [],
       borderColor: "rgba(50, 10, 100, 1)",
       backgroundColor: "rgba(50, 10, 100, 0.2)",
     },
     {
-      label: "Nice",
-      data: [29, 100, 20, 40, 10, 43, 92, 10, 29, 39, 65, 78, 53],
+      label: "System",
+      data:
+        metric?.metrics?.map((m: any) => m.cpu.cpu_times_percent.system) || [],
+      borderColor: "rgba(200, 50, 0, 1)",
+      backgroundColor: "rgba(200, 50, 0, 0.2)",
+    },
+    {
+      label: "Idle",
+      data:
+        metric?.metrics?.map((m: any) => m.cpu.cpu_times_percent.idle) || [],
       borderColor: "rgba(100, 100, 0, 1)",
       backgroundColor: "rgba(100, 100, 0, 0.2)",
+    },
+  ];
+
+  // Memory Usage Chart
+  const memoryData = [
+    {
+      label: "Used Memory",
+      data: metric?.metrics?.map((m: any) => m.memory.used) || [],
+      borderColor: "rgba(255, 0, 0, 1)",
+      backgroundColor: "rgba(255, 0, 0, 0.2)",
+    },
+    {
+      label: "Free Memory",
+      data: metric?.metrics?.map((m: any) => m.memory.free) || [],
+      borderColor: "rgba(0, 0, 255, 1)",
+      backgroundColor: "rgba(0, 0, 255, 0.2)",
+    },
+  ];
+
+  // Disk Usage Chart
+  const diskData = [
+    {
+      label: "Used Disk Space",
+      data: metric?.metrics?.map((m: any) => m.disk.disk_space_used) || [],
+      borderColor: "rgba(255, 165, 0, 1)",
+      backgroundColor: "rgba(255, 165, 0, 0.2)",
+    },
+    {
+      label: "Free Disk Space",
+      data: metric?.metrics?.map((m: any) => m.disk.disk_space_free) || [],
+      borderColor: "rgba(0, 128, 0, 1)",
+      backgroundColor: "rgba(0, 128, 0, 0.2)",
+    },
+  ];
+
+  // Network Usage Chart
+  const networkData = [
+    {
+      label: "Bytes Sent",
+      data:
+        metric?.metrics?.map(
+          (m: any) => m.network.active_interfaces[0]?.bytes_sent || 0
+        ) || [],
+      borderColor: "rgba(255, 69, 0, 1)",
+      backgroundColor: "rgba(255, 69, 0, 0.2)",
+    },
+    {
+      label: "Bytes Received",
+      data:
+        metric?.metrics?.map(
+          (m: any) => m.network.active_interfaces[0]?.bytes_recv || 0
+        ) || [],
+      borderColor: "rgba(70, 130, 180, 1)",
+      backgroundColor: "rgba(70, 130, 180, 0.2)",
     },
   ];
 
@@ -260,8 +314,9 @@ const Page = () => {
                       (disk: any, index: number) => (
                         <li key={index} className="">
                           <span className="font-bold">{disk.device}</span>{" "}
-                          {disk.fstype} {convertSize(disk.space, "B").value}{" "}
-                          {convertSize(disk.space, "B").in}
+                          {disk.fstype}{" "}
+                          {convertSize(disk.total_space, "B").value}{" "}
+                          {convertSize(disk.total_space, "B").in}
                         </li>
                       )
                     )}
@@ -296,42 +351,78 @@ const Page = () => {
 
           <Divider width="90" opacity="0.2" />
 
-          <div className="">
-            <h6 className="h6 font-normal text-sm text-gray-700">
-              Latest Metrics:{" "}
-              <span className="font-bold">
-                {getTimeAgo(
-                  metric?.metrics[metric?.metrics.length - 1].timestamp
-                )}{" "}
-                (
-                {new Date(
-                  metric?.metrics[metric?.metrics.length - 1].timestamp
-                ).toLocaleDateString()}
-                )
-              </span>
-            </h6>
+          <h6 className="h6 font-normal text-sm text-gray-700">
+            Latest Metrics:{" "}
+            <span className="font-bold">
+              {getTimeAgo(
+                metric?.metrics[metric?.metrics.length - 1].timestamp
+              )}
+            </span>
+          </h6>
 
-            <div className="flex flex-wrap mt-3">
-              <div className="bg-white p-3">
-                <p className="font-bold">CPU</p>
-                <div className="flex gap-3">
-                  <div>
-                    <LineChart
-                      title="Overall usage"
-                      labels={chartLabels || []}
-                      datasets={cpuData || []}
-                    />
-                  </div>
-                  <div>
-                    <LineChart
-                      title="Usage per mode"
-                      labels={chartLabels || []}
-                      datasets={cpu_time_percent || []}
-                    />
-                  </div>
-                </div>
-              </div>
+          <div className="flex flex-wrap mt-3 gap-4">
+            <div>
+              <LineChart
+                title="CPU Usage"
+                labels={chartLabels}
+                datasets={cpuData}
+              />
             </div>
+            <div>
+              <LineChart
+                title="CPU Time Percent"
+                labels={chartLabels}
+                datasets={cpuTimePercentData}
+              />
+            </div>
+            <div>
+              <LineChart
+                title="Memory Usage"
+                labels={chartLabels}
+                datasets={memoryData}
+              />
+            </div>
+            <div>
+              <LineChart
+                title="Disk Usage"
+                labels={chartLabels}
+                datasets={diskData}
+              />
+            </div>
+            <div>
+              <LineChart
+                title="Network Usage"
+                labels={chartLabels}
+                datasets={networkData}
+              />
+            </div>
+          </div>
+
+          {/* Services Table */}
+          <div className="mt-5 bg-white rounded-md p-4">
+            <h4 className="text-lg font-bold">Running Services</h4>
+            <table className="w-full border-collapse border border-gray-200 mt-2">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="border p-2">PID</th>
+                  <th className="border p-2">Service</th>
+                  <th className="border p-2">Local Address</th>
+                  <th className="border p-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {metric?.metrics[0]?.services.map(
+                  (service: any, index: number) => (
+                    <tr key={index} className="border">
+                      <td className="p-2">{service.pid}</td>
+                      <td className="p-2">{service.service}</td>
+                      <td className="p-2">{service.local_address || "N/A"}</td>
+                      <td className="p-2">{service.status}</td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
           </div>
         </>
       )}

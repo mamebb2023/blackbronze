@@ -62,40 +62,40 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         return router.push("/auth/login");
       }
 
-      try {
-        const res = await fetch("/api/protected", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      //   try {
+      //     const res = await fetch("/api/protected", {
+      //       method: "GET",
+      //       headers: {
+      //         Authorization: `Bearer ${token}`,
+      //       },
+      //     });
 
-        if (!res.ok) {
-          const errorData = await res.json();
+      //     if (!res.ok) {
+      //       const errorData = await res.json();
 
-          logout();
+      //       logout();
 
-          toast({
-            title: "Error",
-            description: errorData.message,
-            variant: "destructive",
-          });
+      //       toast({
+      //         title: "Error",
+      //         description: errorData.message,
+      //         variant: "destructive",
+      //       });
 
-          return router.push("/auth/login");
-        }
-      } catch (error) {
-        console.error("Error checking authentication:", error);
+      //       return router.push("/auth/login");
+      //     }
+      //   } catch (error) {
+      //     console.error("Error checking authentication:", error);
 
-        logout();
+      //     logout();
 
-        toast({
-          title: "Error",
-          description: "An error occurred while checking authentication.",
-          variant: "destructive",
-        });
+      //     toast({
+      //       title: "Error",
+      //       description: "An error occurred while checking authentication.",
+      //       variant: "destructive",
+      //     });
 
-        return router.push("/auth/login");
-      }
+      //     return router.push("/auth/login");
+      //   }
     };
 
     checkAuth();
