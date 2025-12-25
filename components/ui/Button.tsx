@@ -4,19 +4,20 @@ import { cn } from "@/lib/utils";
 import { LiquidMetal } from "@paper-design/shaders-react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-xl font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer active:scale-95",
+  "inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
   {
     variants: {
       variant: {
         default:
-          "relative overflow-hidden transition-all bg-linear-to-t from-black to-gray-600 text-white shadow-gray-500/50 shadow-sm hover:shadow-lg",
+          "relative overflow-hidden rounded-xl transition-all bg-linear-to-t from-black to-gray-600 text-white shadow-gray-700/50 shadow-sm hover:shadow-lg active:scale-95",
         liquid:
-          "relative rounded-2xl overflow-hidden cursor-pointer transition-all",
+          "relative rounded-2xl overflow-hidden cursor-pointer transition-all active:scale-95",
         destructive:
-          "bg-linear-to-br from-red-600 via-red-400 to-red-600 text-white hover:bg-red-500/90",
-        outline: "border-3 hover:bg-black hover:text-white border-black",
-        ghost: "hover:bg-gray-500/20",
-        link: "text-blue-500 underline-offset-4 hover:underline",
+          "rounded-xl bg-linear-to-br from-red-600 via-red-400 to-red-600 text-white hover:bg-red-500/90 active:scale-95",
+        outline:
+          "rounded-xl border-3 hover:bg-black hover:text-white border-black active:scale-95",
+        ghost: "rounded-xl hover:bg-gray-500/20",
+        link: "relative text-gray-200 hover:text-white transition-colors after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-white after:transition-all after:duration-300 hover:after:w-[70%]",
       },
       size: {
         default: "px-7 py-3",
