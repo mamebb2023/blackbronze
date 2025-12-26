@@ -2,16 +2,11 @@
 
 
 :root {
-  --color-white: white;
-  --color-red: #000;
-  --color-black: black;
-  --color-blue: blue;
-  --color-white-alt: white;
-  --color-black-alt: black;
+  --color-background: #101010;
 }
 
 @theme inline {
-  
+  --color-background: var(--color-background);
 }
 
 @layer base {

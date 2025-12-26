@@ -3,36 +3,50 @@
 import { Button } from "./ui/Button";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const navigationLinks = [
   // { href: "#features", label: "Features" },
   { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#quote", label: "Get Quote" },
 ];
 
 const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isAtTop, setIsAtTop] = useState(true);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      if (!ticking.current) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const scrollDelta = currentScrollY - lastScrollY.current;
 
-      // Check if at top
-      setIsAtTop(currentScrollY < 50);
+          // Check if at top
+          const atTop = currentScrollY < 50;
+          setIsAtTop(atTop);
 
-      // Show header when scrolling up, hide when scrolling down
-      if (currentScrollY < lastScrollY || currentScrollY < 50) {
-        setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setIsVisible(false);
+          // Always show header when at top
+          if (atTop) {
+            setIsVisible(true);
+          } else {
+            // Show header when scrolling up, hide when scrolling down
+            // Only update if scroll delta is meaningful to reduce jitter
+            if (Math.abs(scrollDelta) > 2) {
+              setIsVisible(scrollDelta < 0);
+            }
+          }
+
+          lastScrollY.current = currentScrollY;
+          ticking.current = false;
+        });
+
+        ticking.current = true;
       }
-
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -40,14 +54,17 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, []);
 
   return (
     <motion.header
       initial={{ y: "-100%", opacity: 0 }}
-      animate={{ y: isVisible ? 0 : "-100%", opacity: isVisible ? 1 : 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className={`w-full px-6 py-4 fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      animate={isVisible ? { y: 0, opacity: 1 } : { y: "-100%", opacity: 0 }}
+      transition={{
+        duration: 0.25,
+        ease: [0.4, 0, 0.2, 1],
+      }}
+      className={`w-full px-6 py-4 fixed top-0 left-0 right-0 z-50 ${
         isAtTop
           ? "bg-transparent border-b border-transparent"
           : "bg-black/30 backdrop-blur-md border-b border-gray-800/50"
@@ -60,7 +77,7 @@ const Header = () => {
             alt="BlackBronze Logo"
             width={32}
             height={32}
-            className="w-8 h-8 object-contain"
+            className="size-10 object-contain"
           />
         </Link>
 

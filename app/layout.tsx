@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} antialiased bg-[#141414] text-white`}
+        className={`${montserrat.className} antialiased bg-black text-white`}
       >
         <ReactLenis root>{children}</ReactLenis>
       </body>
