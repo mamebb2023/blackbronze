@@ -23,7 +23,7 @@ export default function Header() {
   ];
 
   return (
-    <div className="fixed inset-0 flex flex-col justify-between p-5 pointer-events-none">
+    <div className="fixed inset-0 z-999 flex flex-col justify-between p-5 pointer-events-none">
       <div className="flex justify-between items-center pointer-events-auto">
         <Reveal>
           <Link href="/" className="flex items-center space-x-2">
