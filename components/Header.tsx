@@ -1,109 +1,100 @@
 "use client";
 
-import { Button } from "./ui/Button";
+import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { Button } from "./ui/Button";
+import { FaDribbble, FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
 
-const navigationLinks = [
-  // { href: "#features", label: "Features" },
-  { href: "#projects", label: "Projects" },
-  { href: "#about", label: "About" },
-  { href: "#quote", label: "Get Quote" },
-];
+export default function Header() {
+  const navigationLinks = [
+    { href: "#services", label: "Services" },
+    { href: "#projects", label: "Work" },
+    { href: "#about", label: "About" },
+    { href: "#contact", label: "Contact" },
+  ];
 
-const Header = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isAtTop, setIsAtTop] = useState(true);
-  const lastScrollY = useRef(0);
-  const ticking = useRef(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          const scrollDelta = currentScrollY - lastScrollY.current;
-
-          // Check if at top
-          const atTop = currentScrollY < 50;
-          setIsAtTop(atTop);
-
-          // Always show header when at top
-          if (atTop) {
-            setIsVisible(true);
-          } else {
-            // Show header when scrolling up, hide when scrolling down
-            // Only update if scroll delta is meaningful to reduce jitter
-            if (Math.abs(scrollDelta) > 2) {
-              setIsVisible(scrollDelta < 0);
-            }
-          }
-
-          lastScrollY.current = currentScrollY;
-          ticking.current = false;
-        });
-
-        ticking.current = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const socialLinks = [
+    { label: "Twitter", href: "#", Icon: FaXTwitter },
+    { label: "LinkedIn", href: "#", Icon: FaLinkedinIn },
+    { label: "GitHub", href: "#", Icon: FaGithub },
+    { label: "Dribbble", href: "#", Icon: FaDribbble },
+  ];
 
   return (
-    <motion.header
-      initial={{ y: "-100%", opacity: 0 }}
-      animate={isVisible ? { y: 0, opacity: 1 } : { y: "-100%", opacity: 0 }}
-      transition={{
-        duration: 0.25,
-        ease: [0.4, 0, 0.2, 1],
-      }}
-      className={`w-full px-6 py-4 fixed top-0 left-0 right-0 z-50 ${
-        isAtTop
-          ? "bg-transparent border-b border-transparent"
-          : "bg-black/30 backdrop-blur-md border-b border-gray-800/50"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center space-x-2">
-          <Image
-            src="/bb-logo-white.png"
-            alt="BlackBronze Logo"
-            width={32}
-            height={32}
-            className="size-10 object-contain"
-          />
-        </Link>
+    <div className="fixed inset-0 flex flex-col justify-between p-5 pointer-events-none">
+      <div className="flex justify-between items-center pointer-events-auto">
+        <Reveal>
+          <Link href="/" className="flex items-center space-x-2">
+            <Image
+              src="/bb-logo-white.png"
+              alt="BlackBronze Logo"
+              width={32}
+              height={32}
+              className="size-10 object-contain"
+            />
+          </Link>
+        </Reveal>
 
         <nav className="hidden md:flex items-center space-x-1">
-          {navigationLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              <Button
-                variant="link"
-                size="sm"
-                className="font-normal text-sm px-4 py-2"
-              >
-                {link.label}
-              </Button>
-            </Link>
+          {navigationLinks.map((link, index) => (
+            <Reveal key={link.href} index={index}>
+              <Link href={link.href}>
+                <Button
+                  variant="link"
+                  size="sm"
+                  className="uppercase tracking-wider text-xs px-4 py-2 mix-blend-difference"
+                >
+                  {link.label}
+                </Button>
+              </Link>
+            </Reveal>
           ))}
         </nav>
+      </div>
 
-        <div className="flex items-center space-x-2">
-          {/* <Button variant="ghost" size="sm" className="hidden sm:flex">
-            Login
-          </Button> */}
-          <Button variant="liquid">Get Started</Button>
+      <div className="flex justify-between items-center pointer-events-auto">
+        <Reveal>
+          <div className="flex justify-between items-center">
+            d
+          </div>
+        </Reveal>
+
+        <div className="flex justify-between items-center">
+          <div className="flex gap-3">
+            {socialLinks.map((social, index) => {
+              const Icon = social.Icon;
+              return (
+                <Reveal key={social.label} index={index}>
+                  <a
+                    href={social.href}
+                    className="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white transition-all"
+                    aria-label={social.label}
+                    target="_blank"
+                  >
+                    <Icon className="text-lg" />
+                  </a>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </motion.header>
+    </div>
   );
-};
+}
 
-export default Header;
+function Reveal({ children, index = 0 }: { children: ReactNode; index?: number }) {
+  return (
+    <div className="overflow-hidden">
+      <motion.div
+        initial={{ y: "100%" }}
+        animate={{ y: "0%" }}
+        transition={{ duration: 1.5, ease: [0.85, 0.09, 0.15, 0.91], delay: 0.1 * index }}
+      >
+        {children}
+      </motion.div>
+    </div>
+  );
+}
