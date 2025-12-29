@@ -4,19 +4,18 @@ import { cn } from "@/lib/utils";
 import { LiquidMetal } from "@paper-design/shaders-react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "flex items-center justify-center whitespace-nowrap transition-all focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 cursor-pointer rounded-2xl active:scale-95",
   {
     variants: {
       variant: {
         default:
-          "relative overflow-hidden rounded-xl transition-all bg-linear-to-t from-black to-gray-600 text-white shadow-gray-700/50 shadow-sm hover:shadow-lg active:scale-95",
-        liquid:
-          "relative rounded-2xl overflow-hidden cursor-pointer transition-all active:scale-95",
+          "relative overflow-hidden bg-linear-to-t from-black to-gray-600 text-white shadow-gray-700/50 shadow-sm hover:shadow-lg",
+        liquid: "relative overflow-hidden",
         destructive:
-          "rounded-xl bg-linear-to-br from-red-600 via-red-400 to-red-600 text-white hover:bg-red-500/90 active:scale-95",
+          "bg-linear-to-br from-red-600 via-red-400 to-red-600 text-white hover:bg-red-500/90",
         outline:
-          "rounded-xl border-3 hover:bg-black hover:text-white border-black active:scale-95",
-        ghost: "rounded-xl hover:bg-gray-500/20",
+          "border-3 text-bold border-white hover:bg-white hover:text-black duration-300",
+        ghost: "hover:bg-gray-500/20",
         link: `relative text-gray-200 transition-colors
         after:content-['']
         after:absolute 
@@ -51,7 +50,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
@@ -77,15 +76,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
                 repetition={1}
                 speed={0.6}
                 angle={45}
-                style={{
-                  width: 300,
-                  height: 90,
-                }}
-                className="shrink-0"
+                className="shrink-0 w-[calc(100%+160px)] h-[calc(100%+50px)]"
               />
             </div>
             {/* Gradient overlay */}
-            <div className="absolute size-[calc(100%-5px)] bg-linear-to-t from-black to-gray-500 rounded-xl transition-all"></div>
+            <div className="absolute size-[calc(100%-7px)] bg-linear-to-t from-black to-gray-600 rounded-xl transition-all"></div>
           </>
         )}
         <span

@@ -1,8 +1,9 @@
 "use client"
 
+import LoadingScreen from "@/components/ui/LoadingScreen";
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
-import LoadingScreen from "@/components/ui/LoadingScreen";
+import Features from "@/components/landing/Features";
 import { useState } from "react";
 
 
@@ -17,6 +18,7 @@ export default function Page() {
         <>
           <Header />
           <Hero />
+          <Features />
         </>
       )}
     </div>

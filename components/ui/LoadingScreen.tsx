@@ -3,146 +3,146 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/* ----------------------------------
+   Animated Digit
+----------------------------------- */
+function AnimatedDigit({ digit }: { digit: string }) {
+	return (
+		<motion.span
+			initial={{ y: 40, opacity: 0 }}
+			animate={{ y: 0, opacity: 1 }}
+			exit={{ y: -40, opacity: 0 }}
+			transition={{
+				duration: 0.25,
+				ease: [0.22, 1, 0.36, 1],
+			}}
+			className="absolute inset-0 flex items-center justify-center"
+		>
+			{digit || "0"}
+		</motion.span>
+	);
+}
+
+/* ----------------------------------
+   Digit Slot (IMPORTANT)
+----------------------------------- */
+function DigitSlot({ digit }: { digit: string }) {
+	return (
+		<span className="relative inline-block w-[0.75em] h-[1em] overflow-hidden">
+			<AnimatePresence mode="wait">
+				<AnimatedDigit key={digit} digit={digit} />
+			</AnimatePresence>
+		</span>
+	);
+}
+
+/* ----------------------------------
+   Loading Screen
+----------------------------------- */
 export default function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
-    const [count, setCount] = useState(0);
-    const [textVisible, setTextVisible] = useState(true);
-    const [panelsVisible, setPanelsVisible] = useState(true);
+	const [count, setCount] = useState(0);
+	const [textVisible, setTextVisible] = useState(true);
+	const [panelsVisible, setPanelsVisible] = useState(true);
 
-    useEffect(() => {
-        document.body.style.overflow = 'hidden';
+	useEffect(() => {
+		document.body.style.overflow = 'hidden';
 
-        const assets = [
-            '/bb-logo-white.png',
-            '/cta-bg.jpg'
-        ];
+		const assets = ['/bb-logo-white.png', '/cta-bg.jpg'];
+		let loadedCount = 0;
+		let realProgress = 0;
 
-        let loadedCount = 0;
-        const totalFiles = assets.length;
-        let realProgress = 0;
+		assets.forEach(url => {
+			const xhr = new XMLHttpRequest();
+			xhr.open('GET', url, true);
+			xhr.responseType = 'blob';
 
-        const loadAssets = async () => {
-            const promises = assets.map(url => {
-                return new Promise<void>((resolve, reject) => {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open('GET', url, true);
-                    xhr.responseType = 'blob';
+			xhr.onload = xhr.onerror = () => {
+				loadedCount++;
+				realProgress = (loadedCount / assets.length) * 100;
+			};
 
-                    xhr.onload = () => {
-                        loadedCount++;
-                        realProgress = (loadedCount / totalFiles) * 100;
-                        resolve();
-                    };
+			xhr.send();
+		});
 
-                    xhr.onerror = () => {
-                        loadedCount++;
-                        realProgress = (loadedCount / totalFiles) * 100;
-                        resolve();
-                    };
+		let internalCount = 0;
 
-                    xhr.send();
-                });
-            });
+		const fastInterval = setInterval(() => {
+			if (internalCount >= 100) return;
 
-            await Promise.all(promises);
-        };
+			if (internalCount < realProgress) {
+				internalCount = Math.min(internalCount + Math.random() * 1.5 + 0.5, realProgress);
+			} else if (realProgress === 0) {
+				internalCount = Math.min(internalCount + Math.random() * 1.5 + 0.5, 100);
+			}
+		}, 30);
 
-        loadAssets();
+		const slowInterval = setInterval(() => {
+			if (internalCount >= 100) {
+				clearInterval(fastInterval);
+				clearInterval(slowInterval);
+				setCount(100);
 
-        const interval = setInterval(() => {
-            setCount((prev) => {
-                if (prev >= 100) {
-                    clearInterval(interval);
+				setTimeout(() => {
+					setTextVisible(false);
 
-                    // Sequence Start
-                    // 1. Fade out text immediately (or after a very brief pause to register 100%)
-                    setTimeout(() => {
-                        setTextVisible(false); // Trigger text exit
+					setTimeout(() => {
+						setPanelsVisible(false);
+						setTimeout(() => onComplete?.(), 1500);
+					}, 1000);
+				}, 1000);
 
-                        // 2. Wait 1.5s then split panels
-                        setTimeout(() => {
-                            setPanelsVisible(false); // Trigger panel exit (split)
+				return;
+			}
 
-                            // 3. Wait 1.5s then load landing page
-                            setTimeout(() => {
-                                if (onComplete) onComplete();
-                                // Clean up overflow here or via onExitComplete of panels
-                            }, 1500);
+			setCount(internalCount);
+		}, 1000);
 
-                        }, 1000);
+		return () => {
+			clearInterval(fastInterval);
+			clearInterval(slowInterval);
+			document.body.style.overflow = '';
+		};
+	}, [onComplete]);
 
-                    }, 500); // 200ms pause at 100% before text fades
+	const formattedCount = `${count.toFixed(1)}%`;
 
-                    return 100;
-                }
+	return (
+		<>
+			{/* PANELS */}
+			<AnimatePresence>
+				{panelsVisible && (
+					<>
+						<motion.div
+							className="fixed top-0 left-0 w-full h-[50vh] bg-zinc-950 z-99"
+							exit={{ y: '-100%' }}
+							transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+						/>
 
-                if (prev < realProgress) {
-                    const increment = Math.random() * 1.5 + 0.5;
-                    const next = Math.min(prev + increment, realProgress);
-                    return next;
-                }
-                return prev;
-            });
-        }, 30);
+						<motion.div
+							className="fixed bottom-0 left-0 w-full h-[50vh] bg-zinc-950 z-99"
+							exit={{ y: '100%' }}
+							transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+						/>
+					</>
+				)}
+			</AnimatePresence>
 
-        return () => {
-            clearInterval(interval);
-        };
-    }, [onComplete]);
-
-    return (
-        <>
-            <AnimatePresence
-                onExitComplete={() => {
-                    document.body.style.overflow = '';
-                }}
-            >
-                {panelsVisible && (
-                    <>
-                        <motion.div
-                            key="top-panel"
-                            className="fixed top-0 left-0 w-full h-[50vh] bg-zinc-950 z-[100]"
-                            initial={{ y: 0 }}
-                            exit={{ y: '-100%' }}
-                            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                        />
-                        <motion.div
-                            key="loading-line"
-                            className="fixed inset-0 z-[101] flex items-center justify-center pointer-events-none text-white"
-                            initial={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.4 }}
-                        >
-                            <div className="h-[1px] bg-white rounded-full transition-all" style={{ width: `${count}%` }}></div>
-                        </motion.div>
-                        <motion.div
-                            key="bottom-panel"
-                            className="fixed bottom-0 left-0 w-full h-[50vh] bg-zinc-950 z-[100]"
-                            initial={{ y: 0 }}
-                            exit={{ y: '100%' }}
-                            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                        />
-                    </>
-                )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-                {textVisible && (
-                    <motion.div
-                        key="loading-text"
-                        className="fixed inset-0 z-[101] flex items-center justify-center pointer-events-none text-white"
-                        initial={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4 }}
-                    >
-                        <span className="text-7xl font-thin">
-                            {count.toFixed(1)}%
-                        </span>
-                    </motion.div>
-                )}
-                {/* loading line */}
-
-
-            </AnimatePresence>
-        </>
-    );
+			{/* LOADING TEXT */}
+			<AnimatePresence>
+				{textVisible && (
+					<motion.div
+						className="fixed inset-0 z-101 flex items-center justify-center pointer-events-none text-white"
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.4 }}
+					>
+						<span className="text-7xl font-thin tracking-tight flex">
+							{formattedCount.split('').map((char, index) => (
+								<DigitSlot key={index} digit={char} />
+							))}
+						</span>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</>
+	);
 }

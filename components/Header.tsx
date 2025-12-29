@@ -44,7 +44,7 @@ export default function Header() {
                 <Button
                   variant="link"
                   size="sm"
-                  className="uppercase tracking-wider text-xs px-4 py-2 mix-blend-difference"
+                  className="uppercase tracking-[2px] text-xs px-4 py-2 mix-blend-difference"
                 >
                   {link.label}
                 </Button>
@@ -56,9 +56,7 @@ export default function Header() {
 
       <div className="flex justify-between items-center pointer-events-auto">
         <Reveal>
-          <div className="flex justify-between items-center">
-            d
-          </div>
+          <div className="flex justify-between items-center" />
         </Reveal>
 
         <div className="flex justify-between items-center">
@@ -69,11 +67,13 @@ export default function Header() {
                 <Reveal key={social.label} index={index}>
                   <a
                     href={social.href}
-                    className="w-10 h-10 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white transition-all"
+                    className="relative overflow-hidden group w-10 h-10 rounded-lg bg-white/5 border border-gray-500/20 flex items-center justify-center text-white transition-all"
                     aria-label={social.label}
                     target="_blank"
                   >
+                    <div className="absolute top-0 left-0 size-5 group-hover:bottom-0 group-hover:right-0 rounded-full bg-white/40 blur-sm transition-all"/>
                     <Icon className="text-lg" />
+                    <div className="absolute bottom-0 right-0 size-5 rounded-full bg-gray-700/60 blur-sm"/>
                   </a>
                 </Reveal>
               );
@@ -91,7 +91,7 @@ function Reveal({ children, index = 0 }: { children: ReactNode; index?: number }
       <motion.div
         initial={{ y: "100%" }}
         animate={{ y: "0%" }}
-        transition={{ duration: 1.5, ease: [0.85, 0.09, 0.15, 0.91], delay: 0.1 * index }}
+        transition={{ duration: 1.5, ease: [0.85, 0.09, 0.15, 0.91], delay: 2 + (0.1 * index) }}
       >
         {children}
       </motion.div>

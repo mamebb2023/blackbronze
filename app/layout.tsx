@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Tektur, Montserrat } from "next/font/google";
 import "./globals.css";
 import ReactLenis from "lenis/react";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
+  subsets: ["latin"],
+});
+
+const tektur = Tektur({
+  variable: "--font-tektur",
   subsets: ["latin"],
 });
 
@@ -25,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.className} antialiased bg-black text-white`}
+        className={`${montserrat.className} ${tektur.variable} antialiased bg-black text-white`}
       >
         <ReactLenis root>{children}</ReactLenis>
       </body>

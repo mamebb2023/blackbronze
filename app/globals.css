@@ -7,6 +7,8 @@
 
 @theme inline {
   --color-background: var(--color-background);
+
+  --font-tektur: var(--font-tektur);
 }
 
 @layer base {
