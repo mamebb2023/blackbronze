@@ -8,9 +8,9 @@ import SurferAnimation from "../ui/SurferAnimation";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex-center px-6 py-20">
+    <section className="relative min-h-screen flex-center px-6 py-20 overflow-hidden">
       <ScrollParallax strength={0.2} isAbsolutelyPositioned>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex-center">
+        <div className="absolute -top-1/2 -right-1/4 flex-center">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -20,65 +20,65 @@ const Hero = () => {
         </div>
       </ScrollParallax>
 
-    <div className="flex flex-1 px-5 gap-3 h-full">
-      <div className="relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 py-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.6, delay: 0 }}
-        >
-          <Tag>Let&apos;s Build</Tag>
-        </motion.div>
+      <div className="absolute z-999 bottom-0 w-full h-24 bg-linear-to-b from-transparent to-black"></div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight"
-        >
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-zinc-400">
-            We build stunning websites
-          </span>
-          <br />
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-400 to-white">
-            that drive growth
-          </span>
-        </motion.h1>
+      <div className="flex flex-1 px-5 gap-3 h-full">
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 py-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0 }}
+          >
+            <Tag>Let&apos;s Build</Tag>
+          </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="md:text-md text-gray-400 max-w-2xl leading-relaxed"
-        >
-          Fast, scalable and engaging - turn your vision into reality with
-          custom websites and web apps that streamline operations and elevate
-          your brand.
-        </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight"
+          >
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-zinc-400">
+              We build websites
+            </span>
+            <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-400 to-white">
+              that drive growth
+            </span>
+          </motion.h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center gap-6"
-        >
-          <Button variant="liquid" className="min-w-52">
-            Get Started
-          </Button>
-          <Button variant="outline" className="min-w-52 h-12">
-            Our Work
-          </Button>
-        </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="md:text-md text-gray-400 max-w-xl leading-relaxed"
+          >
+            Fast, scalable and engaging - turn your vision into reality with
+            custom websites and web apps that streamline operations and elevate
+            your brand.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center gap-6"
+          >
+            <Button variant="liquid" className="min-w-52">
+              Get Started
+            </Button>
+            <Button variant="outline" className="min-w-52 h-12">
+              Our Work
+            </Button>
+          </motion.div>
+        </div>
+
+        <div className="flex-1 w-1/2">
+          <div className="absolute inset-0 translate-x-1/4">
+            <SurferAnimation />
+          </div>
+        </div>
       </div>
-
-      <div className="flex-1 border border-white w-1/2">
-      <div className="absolute inset-0">
-
-        {/* <SurferAnimation imageCount={26} /> */}
-      </div>
-      </div>
-    </div>
-
     </section>
   );
 };

@@ -61,7 +61,7 @@ const Features = () => {
   }, [])
   
   return (
-    <div ref={containerRef} className="relative min-h-[200vh] flex-center">
+    <div id="features" ref={containerRef} className="relative min-h-[200vh] flex-center">
       <div 
         ref={boxRef}
         className="bg-white"
