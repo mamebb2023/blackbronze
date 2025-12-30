@@ -3,9 +3,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-/* ----------------------------------
-   Animated Digit
------------------------------------ */
 function AnimatedDigit({ digit }: { digit: string }) {
 	return (
 		<motion.span
@@ -23,9 +20,6 @@ function AnimatedDigit({ digit }: { digit: string }) {
 	);
 }
 
-/* ----------------------------------
-   Digit Slot (IMPORTANT)
------------------------------------ */
 function DigitSlot({ digit }: { digit: string }) {
 	return (
 		<span className="relative inline-block w-[0.75em] h-[1em] overflow-hidden">
@@ -36,16 +30,13 @@ function DigitSlot({ digit }: { digit: string }) {
 	);
 }
 
-/* ----------------------------------
-   Loading Screen
------------------------------------ */
 export default function LoadingScreen({ onComplete }: { onComplete?: () => void }) {
 	const [count, setCount] = useState(0);
 	const [textVisible, setTextVisible] = useState(true);
 	const [panelsVisible, setPanelsVisible] = useState(true);
 
 	useEffect(() => {
-		document.body.style.overflow = 'hidden';
+		
 
 		const assets = ['/bb-logo-white.png', '/cta-bg.jpg'];
 		let loadedCount = 0;
@@ -100,7 +91,7 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 		return () => {
 			clearInterval(fastInterval);
 			clearInterval(slowInterval);
-			document.body.style.overflow = '';
+			
 		};
 	}, [onComplete]);
 

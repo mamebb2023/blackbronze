@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 :root {
   --color-background: #101010;
 }
@@ -15,4 +14,18 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ababab;
+  border-radius: 4px;
+  border: 2px solid transparent;
 }
