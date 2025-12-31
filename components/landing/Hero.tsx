@@ -9,8 +9,8 @@ import SurferAnimation from "../ui/SurferAnimation";
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex-center px-6 py-20 overflow-hidden">
-      <ScrollParallax strength={0.2} isAbsolutelyPositioned>
-        <div className="absolute -top-1/2 -right-1/4 flex-center">
+      {/* <ScrollParallax strength={0.2} isAbsolutelyPositioned>
+        <div className="absolute -top-1/2 left-1/2 -translate-x-1/2 flex-center">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -18,9 +18,10 @@ const Hero = () => {
             className="size-[900px] bg-white/10 blur-3xl rounded-[50%] flex-center"
           />
         </div>
-      </ScrollParallax>
+      </ScrollParallax> */}
 
-      <div className="absolute z-999 bottom-0 w-full h-24 bg-linear-to-b from-transparent to-black"></div>
+      <div className="absolute z-199 bottom-0 w-full h-24 bg-linear-to-b from-transparent to-black"/>
+      <div className="absolute z-199 top-0 w-full h-30 bg-linear-to-t from-transparent to-black"/>
 
       <div className="flex flex-1 px-5 gap-3 h-full">
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 py-10">
@@ -73,11 +74,15 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        <div className="flex-1 w-1/2">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 1 }}
+        className="flex-1 w-1/2">
           <div className="absolute inset-0 translate-x-1/4">
             <SurferAnimation />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
