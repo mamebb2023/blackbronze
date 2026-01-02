@@ -8,6 +8,7 @@
   --color-background: var(--color-background);
 
   --font-tektur: var(--font-tektur);
+  --font-noto_serif: var(--font-noto_serif);
 }
 
 @layer base {

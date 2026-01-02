@@ -3,10 +3,9 @@
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
-import Features from "@/components/landing/Features";
+import Services from "@/components/landing/Services";
 import { HeaderThemeProvider } from "@/contexts/HeaderThemeContext";
 import { useState } from "react";
-import SurferAnimation from "@/components/ui/SurferAnimation";
 
 
 export default function Page() {
@@ -21,8 +20,7 @@ export default function Page() {
           <>
             <Header />
             <Hero />
-            {/* <SurferAnimation /> */}
-            <Features />
+            <Services />
           </>
         )}
       </div>

@@ -5,13 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { FaDribbble, FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
+  const lenis = useLenis();
+
   const navigationLinks = [
     { href: "#services", label: "Services" },
-    { href: "#projects", label: "Work" },
+    { href: "#works", label: "Works" },
     { href: "#about", label: "About" },
     { href: "#contact", label: "Contact" },
   ];
@@ -35,6 +38,7 @@ export default function Header() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               style={{ display: "flex" }}
+              
             >
               <Image
                 src={isDark ? "/bb-logo-black.png" : "/bb-logo-white.png"}
@@ -68,10 +72,17 @@ export default function Header() {
                   hover:after:opacity-100 
                   hover:after:w-[60%]
                   ${isDark 
-                    ? 'text-black hover:text-gray-700 after:bg-black' 
+                    ? 'text-gray-800 hover:text-black after:bg-black' 
                     : 'text-gray-200 hover:text-white after:bg-white'
                   }`}
-              >
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (lenis) {
+                      lenis.scrollTo(link.href);
+                    }
+                  }}
+                >
+                
                 {link.label}
               </Link>
             </Reveal>

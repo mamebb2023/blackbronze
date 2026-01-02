@@ -3,7 +3,7 @@
 import { Button } from "../ui/Button";
 import { motion } from "framer-motion";
 import { Tag } from "../ui/Tag";
-import { ScrollParallax } from "react-just-parallax";
+// import { ScrollParallax } from "react-just-parallax";
 import SurferAnimation from "../ui/SurferAnimation";
 
 const Hero = () => {
@@ -78,7 +78,8 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1 }}
-        className="flex-1 w-1/2">
+          className="flex-1 w-1/2"
+        >
           <div className="absolute inset-0 translate-x-1/4">
             <SurferAnimation />
           </div>

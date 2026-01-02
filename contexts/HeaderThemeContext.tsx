@@ -4,19 +4,19 @@ import { createContext, useContext, useState, ReactNode, useEffect, useCallback 
 
 interface HeaderThemeContextType {
   isDark: boolean;
-  toggleTheme: () => void;
+  toggleTheme: (value: boolean) => void;
 }
 
 const HeaderThemeContext = createContext<HeaderThemeContextType | undefined>(undefined);
 
 // Module-level state to allow external toggle function
-let globalToggleRef: (() => void) | null = null;
+let globalToggleRef: ((value: boolean) => void) | null = null;
 
 export function HeaderThemeProvider({ children }: { children: ReactNode }) {
   const [isDark, setIsDark] = useState(false);
 
-  const toggleTheme = useCallback(() => {
-    setIsDark((prev) => !prev);
+  const toggleTheme = useCallback((value: boolean) => {
+    setIsDark(value);
   }, []);
 
   // Register the toggle function globally
@@ -43,9 +43,9 @@ export function useHeaderTheme() {
 }
 
 // Exported function that can be called from anywhere
-export function toggleHeaderTheme() {
+export function toggleHeaderTheme(value: boolean) {
   if (globalToggleRef) {
-    globalToggleRef();
+    globalToggleRef(value);
   } else {
     console.warn("HeaderThemeProvider is not mounted. Cannot toggle theme.");
   }

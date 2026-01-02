@@ -5,10 +5,11 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { toggleHeaderTheme } from '@/contexts/HeaderThemeContext'
 import { AnimatePresence, motion } from 'framer-motion'
+import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const Features = () => {
+const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null)
   const boxRef = useRef<HTMLDivElement>(null)
 
@@ -41,7 +42,7 @@ const Features = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'center center',
-          end: 'bottom center',
+          end: 'bottom top',
           scrub: true,
           // markers: true,
           pin: true,
@@ -58,34 +59,39 @@ const Features = () => {
       
       scrollTrigger = animation.scrollTrigger || null
     }
-    
-    // Create ScrollTrigger for theme toggle at 50% visibility
+
     const createThemeToggle = () => {
       if (themeToggleTrigger) themeToggleTrigger.kill()
       
       themeToggleTrigger = ScrollTrigger.create({
-        trigger: "#featuresContainer",
-        start: 'top top',
-        end: 'bottom bottom',
+        trigger: "#serviceContainer",
+        start: 'top+=200 top',
+        end: 'bottom-=200 bottom',
+        markers:true,
         onEnter: () => {
           if (!hasToggled) {
-            toggleHeaderTheme()
+            toggleHeaderTheme(true)
             hasToggled = true
           }
         },
         onLeaveBack: () => {
           if (hasToggled) {
-            toggleHeaderTheme()
+            toggleHeaderTheme(false)
+            hasToggled = false
+          }
+        },
+        onUpdate: (self) => {
+          if (self.progress <= 1) {
+            toggleHeaderTheme(false)
             hasToggled = false
           }
         }
-        
       })
     }
     
     createAnimation()
     createThemeToggle()
-    
+
     const handleResize = () => {
       createAnimation()
       createThemeToggle()
@@ -102,41 +108,70 @@ const Features = () => {
   }, [])
   
   return (
-    <div id="features" className="relative text-black overflow-hidden">
+    <div id="serviceContainer" className="relative text-black overflow-hidden">
       <div className="h-[50vh]"/>
 
-      <div className="h-screen flex-center" ref={containerRef}>
+      <div className="relaive h-screen flex-center" ref={containerRef}>
         <div 
-          id="featuresContainer"
           ref={boxRef}
-          className="bg-white flex-center flex-col gap-4"
+          className="bg-white flex-center flex-wrap"
           style={{
             width: 250,
             height: 400,
             borderRadius: 999
           }}
         >
-          <AnimatePresence>
-            {showContents && (
-              <motion.div
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
-              transition={{ duration: 0.6, delay: 0 }}
-              className="h-screen flex-center"
-              >
-              hello
-              </motion.div>
-            )}
-          </AnimatePresence>
+            <AnimatePresence>
+              {showContents && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -30, filter: 'blur(10px)' }}
+                  transition={{ duration: 0.5, delay: 0, staggerChildren: 0.1 }}
+                  className="absolute text-center text-3xl md:text-5xl max-w-3xl font-thin"
+                >
+                  <p>We design and build modern,</p>
+                  <div className="flex-center">
+                    <span className="w-32 h-14 rounded-full border border-gray-300 inline-block mx-2 overflow-hidden">
+                      <Image
+                        src="/cta-bg.jpg"
+                        alt="text image"
+                        width={500}
+                        height={500}
+                        className="object-center object-cover"
+                      />
+                    </span>
+                    high-performance 
+                  </div>
+                  <p>websites that help businesses</p>
+                  <div className="flex-center">
+                    grow online.
+                    <span className="w-32 h-14 rounded-full border border-gray-300 inline-block mx-2 overflow-hidden">
+                      <Image
+                        src="/cta-bg.jpg"
+                        alt="text image"
+                        width={500}
+                        height={500}
+                        className="object-center object-cover"
+                      />
+                    </span>
+                  </div>
+
+                </motion.div>
+              )}
+            </AnimatePresence>
         </div>
       </div>
 
-      <div className="min-h-screen bg-white">
-        <h1>Hello, again</h1>
+      <div id="services" className="min-h-screen bg-white">
+        <div className="flex min-h-screen">1</div>
+        <div className="flex min-h-screen">2</div>
+        <div className="flex min-h-screen">3</div>
       </div>
+
+      <div className="h-[50vh] bg-linear-to-b from-white to-black"/>
     </div>
   )
 }
 
-export default Features
+export default Services
