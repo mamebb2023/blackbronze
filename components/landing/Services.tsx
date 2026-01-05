@@ -7,7 +7,9 @@ import { toggleHeaderTheme } from '@/contexts/HeaderThemeContext'
 import { AnimatePresence, motion } from 'framer-motion'
 import Image from 'next/image'
 
-gsap.registerPlugin(ScrollTrigger)
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger)
+}
 
 const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -65,10 +67,21 @@ const Services = () => {
       
       themeToggleTrigger = ScrollTrigger.create({
         trigger: "#serviceContainer",
-        start: 'top+=200 top',
-        end: 'bottom-=200 bottom',
-        markers:true,
+        start: 'top+=500 top',
+        end: 'bottom+=200 bottom',
         onEnter: () => {
+          if (!hasToggled) {
+            toggleHeaderTheme(true)
+            hasToggled = true
+          }
+        },
+        onLeave: () => {
+          if (hasToggled) {
+            toggleHeaderTheme(false)
+            hasToggled = false
+          }
+        },
+        onEnterBack: () => {
           if (!hasToggled) {
             toggleHeaderTheme(true)
             hasToggled = true
@@ -76,12 +89,6 @@ const Services = () => {
         },
         onLeaveBack: () => {
           if (hasToggled) {
-            toggleHeaderTheme(false)
-            hasToggled = false
-          }
-        },
-        onUpdate: (self) => {
-          if (self.progress <= 1) {
             toggleHeaderTheme(false)
             hasToggled = false
           }

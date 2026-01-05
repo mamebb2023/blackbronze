@@ -77,7 +77,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
           className="flex-1 w-1/2"
         >
           <div className="absolute inset-0 translate-x-1/4">

@@ -38,7 +38,7 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 	useEffect(() => {
 		
 
-		const assets = ['/bb-logo-white.png', '/cta-bg.jpg'];
+		const assets = ['/bb-logo-black.png', '/bb-logo-white.png', '/cta-bg.jpg'];
 		let loadedCount = 0;
 		let realProgress = 0;
 
@@ -80,7 +80,7 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 						setPanelsVisible(false);
 						setTimeout(() => onComplete?.(), 1500);
 					}, 1000);
-				}, 1000);
+				}, 1200);
 
 				return;
 			}
@@ -114,6 +114,10 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 							exit={{ y: '100%' }}
 							transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
 						/>
+
+						<div className="z-99 absolute inset-0 flex-center">
+							<div className="absolute h-[1px] bg-gray-500/20 transition-all" style={{ width: `${count}%` }} />
+						</div>
 					</>
 				)}
 			</AnimatePresence>
@@ -123,8 +127,10 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 				{textVisible && (
 					<motion.div
 						className="fixed inset-0 z-101 flex items-center justify-center pointer-events-none text-white"
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+						transition={{ duration: 0.6 }}
 					>
 						<span className="text-7xl font-thin tracking-tight flex">
 							{formattedCount.split('').map((char, index) => (
