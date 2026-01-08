@@ -7,6 +7,7 @@ import { FaDribbble, FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6"
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
+import Logo from "./ui/Logo";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
@@ -31,7 +32,7 @@ export default function Header() {
       <div className="flex justify-between items-center pointer-events-auto">
         <Reveal>
           <Link href="/" className="flex items-center space-x-2">
-            <motion.div
+            {/* <motion.div
               key={isDark ? "dark" : "light"}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -47,7 +48,8 @@ export default function Header() {
                 height={32}
                 className="size-10 object-contain"
               />
-            </motion.div>
+            </motion.div> */}
+            <Logo />
           </Link>
         </Reveal>
 

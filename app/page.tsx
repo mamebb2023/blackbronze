@@ -6,7 +6,7 @@ import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
 import Works from "@/components/landing/Works";
 import Contact from "@/components/landing/Contact";
-import Footer from "@/components/Footer";
+import Footer from "@/components/Footer"; 
 import { HeaderThemeProvider } from "@/contexts/HeaderThemeContext";
 import { useState } from "react";
 

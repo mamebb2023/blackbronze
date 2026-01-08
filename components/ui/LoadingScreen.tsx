@@ -115,8 +115,8 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 							transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
 						/>
 
-						<div className="z-99 absolute inset-0 flex-center">
-							<div className="absolute h-[1px] bg-gray-500/20 transition-all" style={{ width: `${count}%` }} />
+						<div className="fixed z-99 inset-0 flex-center">
+							<div className="absolute h-px bg-gray-500/20 transition-all" style={{ width: `${count}%` }} />
 						</div>
 					</>
 				)}
@@ -127,9 +127,9 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 				{textVisible && (
 					<motion.div
 						className="fixed inset-0 z-101 flex items-center justify-center pointer-events-none text-white"
-            initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
+						initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+						animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+						exit={{ opacity: 0, y: -20, filter: 'blur(10px)' }}
 						transition={{ duration: 0.6 }}
 					>
 						<span className="text-7xl font-thin tracking-tight flex">

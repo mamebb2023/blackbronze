@@ -119,15 +119,7 @@ const Services = () => {
       <div className="h-[50vh]"/>
 
       <div className="relaive h-screen flex-center" ref={containerRef}>
-        <div 
-          ref={boxRef}
-          className="bg-white flex-center flex-wrap"
-          style={{
-            width: 250,
-            height: 400,
-            borderRadius: 999
-          }}
-        >
+        
             <AnimatePresence>
               {showContents && (
                 <motion.div
@@ -167,6 +159,16 @@ const Services = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            <div 
+          ref={boxRef}
+          className="bg-white flex-center flex-wrap"
+          style={{
+            width: 250,
+            height: 400,
+            borderRadius: 999
+          }}
+        >
         </div>
       </div>
 
