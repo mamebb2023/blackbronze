@@ -115,9 +115,9 @@ export default function LoadingScreen({ onComplete }: { onComplete?: () => void 
 							transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
 						/>
 
-						<div className="fixed z-99 inset-0 flex-center">
+						<motion.div exit={{ opacity: 0 }} className="fixed z-99 inset-0 flex-center">
 							<div className="absolute h-px bg-gray-500/20 transition-all" style={{ width: `${count}%` }} />
-						</div>
+						</motion.div>
 					</>
 				)}
 			</AnimatePresence>

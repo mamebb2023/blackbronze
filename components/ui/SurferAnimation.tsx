@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react"
 
 const SPACING = 140
 const SPEED = 1
-const RESET_X = -400
+const RESET_X = -450
 
 const imageSources = [
   { text: 'Surfer 1', link: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=600&fit=crop' },
