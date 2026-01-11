@@ -2,8 +2,13 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { FaDribbble, FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+// import Image from "next/image";
+import {
+  FaDribbble,
+  FaGithub,
+  FaLinkedinIn,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
@@ -56,7 +61,7 @@ export default function Header() {
         <nav className="hidden md:flex items-center space-x-1">
           {navigationLinks.map((link, index) => (
             <Reveal key={link.href} index={index}>
-              <Link 
+              <Link
                 href={link.href}
                 className={`relative uppercase tracking-[2px] text-xs px-4 py-2 h-9 flex items-center justify-center transition-all duration-500
                   after:content-['']
@@ -73,18 +78,18 @@ export default function Header() {
                   hover:after:scale-100 
                   hover:after:opacity-100 
                   hover:after:w-[60%]
-                  ${isDark 
-                    ? 'text-gray-800 hover:text-black after:bg-black' 
-                    : 'text-gray-200 hover:text-white after:bg-white'
+                  ${
+                    isDark
+                      ? "text-gray-800 hover:text-black after:bg-black"
+                      : "text-gray-200 hover:text-white after:bg-white"
                   }`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (lenis) {
-                      lenis.scrollTo(link.href);
-                    }
-                  }}
-                >
-                
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (lenis) {
+                    lenis.scrollTo(link.href);
+                  }
+                }}
+              >
                 {link.label}
               </Link>
             </Reveal>
@@ -106,20 +111,24 @@ export default function Header() {
                   <a
                     href={social.href}
                     className={`relative overflow-hidden group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-500 ${
-                      isDark 
-                        ? 'bg-black/5 border border-gray-300/20 text-black' 
-                        : 'bg-white/5 border border-gray-500/20 text-white'
+                      isDark
+                        ? "bg-black/5 border border-gray-300/20 text-black"
+                        : "bg-white/5 border border-gray-500/20 text-white"
                     }`}
                     aria-label={social.label}
                     target="_blank"
                   >
-                    <div className={`absolute top-0 left-0 size-5 group-hover:bottom-0 group-hover:right-0 rounded-full blur-sm transition-all ${
-                      isDark ? 'bg-black/40' : 'bg-white/40'
-                    }`}/>
+                    <div
+                      className={`absolute top-0 left-0 size-5 group-hover:bottom-0 group-hover:right-0 rounded-full blur-sm transition-all ${
+                        isDark ? "bg-black/40" : "bg-white/40"
+                      }`}
+                    />
                     <Icon className="text-lg" />
-                    <div className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${
-                      isDark ? 'bg-gray-300/60' : 'bg-gray-700/60'
-                    }`}/>
+                    <div
+                      className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${
+                        isDark ? "bg-gray-300/60" : "bg-gray-700/60"
+                      }`}
+                    />
                   </a>
                 </Reveal>
               );
@@ -131,13 +140,23 @@ export default function Header() {
   );
 }
 
-function Reveal({ children, index = 0 }: { children: ReactNode; index?: number }) {
+function Reveal({
+  children,
+  index = 0,
+}: {
+  children: ReactNode;
+  index?: number;
+}) {
   return (
     <div className="overflow-hidden">
       <motion.div
         initial={{ y: "100%" }}
         animate={{ y: "0%" }}
-        transition={{ duration: 1.5, ease: [0.85, 0.09, 0.15, 0.91], delay: 1.5 + (0.1 * index) }}
+        transition={{
+          duration: 1.5,
+          ease: [0.85, 0.09, 0.15, 0.91],
+          delay: 1.5 + 0.1 * index,
+        }}
       >
         {children}
       </motion.div>
