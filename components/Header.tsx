@@ -2,7 +2,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
 import {
   FaDribbble,
   FaGithub,
@@ -12,7 +12,7 @@ import {
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
-import Logo from "./ui/Logo";
+// import Logo from "./ui/Logo";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
@@ -33,18 +33,18 @@ export default function Header() {
   ];
 
   return (
-    <div className="fixed inset-0 z-999 flex flex-col justify-between p-5 pointer-events-none transition-colors duration-500">
-      <div className="flex justify-between items-center pointer-events-auto">
+    <>
+      {/* Logo - Top Left */}
+      <div className="fixed top-5 left-5 z-999 pointer-events-auto">
         <Reveal>
           <Link href="/" className="flex items-center space-x-2">
-            {/* <motion.div
+            <motion.div
               key={isDark ? "dark" : "light"}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
               style={{ display: "flex" }}
-              
             >
               <Image
                 src={isDark ? "/bb-logo-black.png" : "/bb-logo-white.png"}
@@ -53,11 +53,14 @@ export default function Header() {
                 height={32}
                 className="size-10 object-contain"
               />
-            </motion.div> */}
-            <Logo />
+            </motion.div>
+            {/* <Logo /> */}
           </Link>
         </Reveal>
+      </div>
 
+      {/* Navigation Links - Top Right */}
+      <div className="fixed top-5 right-5 z-999 pointer-events-auto">
         <nav className="hidden md:flex items-center space-x-1">
           {navigationLinks.map((link, index) => (
             <Reveal key={link.href} index={index}>
@@ -65,18 +68,18 @@ export default function Header() {
                 href={link.href}
                 className={`relative uppercase tracking-[2px] text-xs px-4 py-2 h-9 flex items-center justify-center transition-all duration-500
                   after:content-['']
-                  after:absolute 
-                  after:bottom-0 
-                  after:left-1/2 
-                  after:-translate-x-1/2 
-                  after:w-[50%] 
-                  after:h-px 
-                  after:transition-all 
-                  after:duration-300 
-                  after:scale-90 
-                  after:opacity-0 
-                  hover:after:scale-100 
-                  hover:after:opacity-100 
+                  after:absolute
+                  after:bottom-0
+                  after:left-1/2
+                  after:-translate-x-1/2
+                  after:w-[50%]
+                  after:h-px
+                  after:transition-all
+                  after:duration-300
+                  after:scale-90
+                  after:opacity-0
+                  hover:after:scale-100
+                  hover:after:opacity-100
                   hover:after:w-[60%]
                   ${
                     isDark
@@ -97,46 +100,41 @@ export default function Header() {
         </nav>
       </div>
 
-      <div className="flex justify-between items-center pointer-events-auto">
-        <Reveal>
-          <div className="flex justify-between items-center" />
-        </Reveal>
-
-        <div className="flex justify-between items-center">
-          <div className="flex gap-3">
-            {socialLinks.map((social, index) => {
-              const Icon = social.Icon;
-              return (
-                <Reveal key={social.label} index={index}>
-                  <a
-                    href={social.href}
-                    className={`relative overflow-hidden group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-500 ${
-                      isDark
-                        ? "bg-black/5 border border-gray-300/20 text-black"
-                        : "bg-white/5 border border-gray-500/20 text-white"
+      {/* Social Links - Bottom Right */}
+      <div className="fixed bottom-5 right-5 z-999 pointer-events-auto">
+        <div className="flex gap-3">
+          {socialLinks.map((social, index) => {
+            const Icon = social.Icon;
+            return (
+              <Reveal key={social.label} index={index}>
+                <a
+                  href={social.href}
+                  className={`relative overflow-hidden group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-500 ${
+                    isDark
+                      ? "bg-black/5 border border-gray-300/20 text-black"
+                      : "bg-white/5 border border-gray-500/20 text-white"
+                  }`}
+                  aria-label={social.label}
+                  target="_blank"
+                >
+                  <div
+                    className={`absolute top-0 left-0 size-5 group-hover:top-1/2 group-hover:left-1/2 rounded-full blur-sm transition-all ${
+                      isDark ? "bg-black/40" : "bg-white/40"
                     }`}
-                    aria-label={social.label}
-                    target="_blank"
-                  >
-                    <div
-                      className={`absolute top-0 left-0 size-5 group-hover:bottom-0 group-hover:right-0 rounded-full blur-sm transition-all ${
-                        isDark ? "bg-black/40" : "bg-white/40"
-                      }`}
-                    />
-                    <Icon className="text-lg" />
-                    <div
-                      className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${
-                        isDark ? "bg-gray-300/60" : "bg-gray-700/60"
-                      }`}
-                    />
-                  </a>
-                </Reveal>
-              );
-            })}
-          </div>
+                  />
+                  <Icon className="text-lg" />
+                  <div
+                    className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${
+                      isDark ? "bg-gray-300/60" : "bg-gray-700/60"
+                    }`}
+                  />
+                </a>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

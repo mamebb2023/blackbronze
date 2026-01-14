@@ -1,57 +1,71 @@
 export const projects = [
   {
-    id: 1,
     title: "E-Commerce Platform",
     description:
-      "A modern e-commerce solution with advanced features and seamless checkout experience.",
-    category: "Web Development",
-    image: "/projects/project-1.jpg",
-    tags: ["Next.js", "TypeScript", "Stripe"],
+      "A modern, scalable e-commerce solution with React and Node.js",
+    color:
+      "bg-gradient-to-tr from-blue-950/80 via-transparent to-transparent",
+    textColor: "text-blue-300",
+    image: "/work-1.jpg",
   },
   {
-    id: 2,
-    title: "SaaS Dashboard",
+    title: "Financial Dashboard",
     description:
-      "Intuitive admin dashboard for managing business operations and analytics.",
-    category: "Web Application",
-    image: "/projects/project-2.jpg",
-    tags: ["React", "Node.js", "PostgreSQL"],
+      "Real-time analytics dashboard for financial data visualization",
+    color:
+      "bg-gradient-to-tr from-emerald-950/80 via-transparent to-transparent",
+    textColor: "text-emerald-300",
+    image: "/work-2.jpg",
   },
   {
-    id: 3,
+    title: "Social Media App",
+    description: "Mobile-first social platform with real-time messaging",
+    color:
+      "bg-gradient-to-tr from-purple-950/80 via-transparent to-transparent",
+    textColor: "text-purple-300",
+    image: "/work-3.jpg",
+  },
+  {
     title: "Portfolio Website",
-    description:
-      "Stunning portfolio showcasing creative work with smooth animations and interactions.",
-    category: "Web Design",
-    image: "/projects/project-3.jpg",
-    tags: ["Next.js", "Framer Motion", "Tailwind"],
+    description: "Creative portfolio website with advanced animations",
+    color:
+      "bg-gradient-to-tr from-rose-950/80 via-transparent to-transparent",
+    textColor: "text-rose-300",
+    image: "/work-4.jpg",
   },
   {
-    id: 4,
-    title: "Booking System",
-    description:
-      "Real-time booking platform with calendar integration and payment processing.",
-    category: "Web Application",
-    image: "/projects/project-4.jpg",
-    tags: ["React", "Firebase", "Stripe"],
-  },
-  {
-    id: 5,
-    title: "Marketing Website",
-    description:
-      "High-converting landing page with SEO optimization and lead generation.",
-    category: "Web Development",
-    image: "/projects/project-5.jpg",
-    tags: ["Next.js", "SEO", "Analytics"],
-  },
-  {
-    id: 6,
-    title: "Mobile App Landing",
-    description:
-      "Modern landing page for mobile app with app store integration.",
-    category: "Web Design",
-    image: "/projects/project-6.jpg",
-    tags: ["React", "Responsive", "Animation"],
+    title: "SaaS Platform",
+    description: "Cloud-based SaaS solution for business management",
+    color:
+      "bg-gradient-to-tr from-amber-950/80 via-transparent to-transparent",
+    textColor: "text-amber-300",
+    image: "/work-5.jpg",
   },
 ];
 
+export const services = [
+  {
+    miniText: "WEB DEVELOPMENT",
+    title: "Custom Websites",
+    description:
+      "We create bespoke websites tailored to your business needs, ensuring optimal performance, beautiful design, and seamless user experiences across all devices.",
+    imageSrc: "/service-1.jpg",
+    altText: "Custom Websites",
+  },
+  {
+    miniText: "UI/UX DESIGN",
+    title: "User Experience",
+    description:
+      "Our design philosophy centers on user needs. We craft intuitive interfaces that not only look stunning but also provide exceptional user experiences that drive engagement.",
+    imageSrc: "/service-2.jpg",
+    altText: "User Experience Design",
+  },
+  {
+    miniText: "PERFORMANCE",
+    title: "Optimization",
+    description:
+      "We optimize every aspect of your digital presence for speed and performance. Fast loading times, smooth interactions, and scalable solutions that grow with your business.",
+    imageSrc: "/service-3.jpg",
+    altText: "Performance Optimization",
+  },
+];

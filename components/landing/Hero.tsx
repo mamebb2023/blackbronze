@@ -24,13 +24,13 @@ const Hero = () => {
         </div>
       </ScrollParallax> */}
 
-      <motion.div
-        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.6, delay: 0 }}
-        className="flex flex-1 px-5 gap-3 h-full"
-      >
-        <div className="flex-1 relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 justify-between">
+      <div className="flex flex-1 px-5 gap-3 h-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.6, delay: 0 }}
+          className="flex-1 relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 justify-between"
+        >
           <div></div>
 
           <div className="flex flex-col md:items-start items-center space-y-3">
@@ -89,20 +89,20 @@ const Hero = () => {
               />
             </div>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* right section */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1.5 }}
+          transition={{ delay: 0.5, duration: 2 }}
           className="flex-1 w-1/2"
         >
           <div className="absolute inset-0 translate-x-1/4">
             <SurferAnimation />
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

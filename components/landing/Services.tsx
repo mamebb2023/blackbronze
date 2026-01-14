@@ -6,37 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { toggleHeaderTheme } from "@/contexts/HeaderThemeContext";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { services } from "@/constants";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-const services = [
-  {
-    miniText: "WEB DEVELOPMENT",
-    title: "Custom Websites",
-    description:
-      "We create bespoke websites tailored to your business needs, ensuring optimal performance, beautiful design, and seamless user experiences across all devices.",
-    imageSrc: "/service-1.jpg",
-    altText: "Custom Websites",
-  },
-  {
-    miniText: "UI/UX DESIGN",
-    title: "User Experience",
-    description:
-      "Our design philosophy centers on user needs. We craft intuitive interfaces that not only look stunning but also provide exceptional user experiences that drive engagement.",
-    imageSrc: "/service-2.jpg",
-    altText: "User Experience Design",
-  },
-  {
-    miniText: "PERFORMANCE",
-    title: "Optimization",
-    description:
-      "We optimize every aspect of your digital presence for speed and performance. Fast loading times, smooth interactions, and scalable solutions that grow with your business.",
-    imageSrc: "/service-3.jpg",
-    altText: "Performance Optimization",
-  },
-];
 
 const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null);
