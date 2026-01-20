@@ -47,10 +47,8 @@ const Services = () => {
           start: "center center",
           end: "bottom top",
           scrub: true,
-          // markers: true,
           pin: true,
           onUpdate: (self) => {
-            // Show content when progress reaches 70%
             if (self.progress >= 0.7) {
               setShowContents(true);
             } else {
@@ -174,9 +172,7 @@ const Services = () => {
         {services.map((service, index) => (
           <div
             key={index}
-            className={`flex flex-col-reverse md:flex-row min-h-screen ${
-              index % 2 === 0 ? "" : "md:flex-row-reverse"
-            }`}
+            className={`flex flex-col-reverse md:flex-row min-h-screen`}
           >
             <div className="flex-1 p-4 md:p-10 flex flex-col justify-center">
               <p className="font-tektur tracking-wide uppercase text-sm mb-4 text-gray-600">

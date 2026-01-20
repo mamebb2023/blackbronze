@@ -20,33 +20,17 @@ const Works = () => {
   useEffect(() => {
     if (!worksRef.current) return;
 
-    ScrollTrigger.create({
-      trigger: slideContRef.current,
-      start: "top top",
-      end: `bottom top+=${slidesRef.current.length * 100}vh`,
-      pin: true,
-      markers: true,
-    });
-
     slidesRef.current.forEach((slide, index) => {
-      ScrollTrigger.create({
-        trigger: slide,
-        start: "top top",
-        end: `bottom top`,
-        pin: true,
-        markers: true,
-      });
 
-      gsap.fromTo(
+      gsap.to(
         slide,
-        { opacity: 1 },
         {
           opacity: 0,
           ease: "power1.out",
           scrollTrigger: {
-            trigger: slideContRef.current,
-            start: "center center",
-            end: "bottom top",
+            trigger: slide,
+            start: "top top",
+            end: `bottom top-=${(index + 1) * 5000}px`,
             pin: true,
             scrub: true,
           },
@@ -60,7 +44,7 @@ const Works = () => {
   }, []);
 
   return (
-    <section ref={worksRef} id="works" className="min-h-screen flex flex-col">
+    <section ref={worksRef} id="works" className="min-h-screen flex flex-col overflow-hidden">
       <div className="shrink-0 text-center py-8 px-6">
         <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-white to-gray-300">
           Our Work
@@ -71,22 +55,21 @@ const Works = () => {
       </div>
 
       <div className="flex-1 relative">
-        {/* <div className="absolute z-10 left-0 top-0 w-32 h-full bg-linear-to-r from-black to-transparent pointer-events-none" />
-        <div className="absolute z-10 right-0 top-0 w-32 h-full bg-linear-to-l from-black to-transparent pointer-events-none" /> */}
 
-        <div ref={slideContRef} className="flex flex-col px-5 md:px-10">
+        <div ref={slideContRef} className="relative min-h-screen flex flex-col px-5 md:px-10">
           {projects.map((project, index) => (
             <div
               key={index}
               ref={(el) => setSlideRef(el, index)}
-              className="w-screen h-screen flex items-center"
+              className="sticky w-screen h-screen flex items-center"
             >
               <div
                 className={`relative shrink-0 size-[700px] mx-4 p-4 border-2 border-white/30 rounded-4xl`}
-                style={{ transform: `translateX(${index * 20}%)` }}
+                style={{ transform: `translateX(${index * 25}%)` }}
               >
                 <div
-                  className={`flex-center flex-1 h-full rounded-2xl p-4 ${project.color} ${project.textColor}`}
+                  className={`flex-center flex-1 h-full rounded-2xl p-4 ${project.color} ${project.textColor} overflow-hidden`}
+                  style={{ background: "url('/cta-bg.jpg') no-repeat center center/cover" }}
                 >
                   <div className="flex items-end flex-1 h-full">
                     <div>

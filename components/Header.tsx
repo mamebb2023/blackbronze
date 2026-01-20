@@ -153,7 +153,7 @@ function Reveal({
         transition={{
           duration: 1.5,
           ease: [0.85, 0.09, 0.15, 0.91],
-          delay: 1.5 + 0.1 * index,
+          delay: 1 + 0.1 * index,
         }}
       >
         {children}
