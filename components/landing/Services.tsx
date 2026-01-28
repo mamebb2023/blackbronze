@@ -177,7 +177,7 @@ const Services = () => {
             <div className="flex-1 p-4 md:p-10 flex flex-col justify-center">
               <p className="font-tektur tracking-wide uppercase text-sm mb-4 text-gray-600">
                 {service.miniText}
-              </p>
+              </p> 
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">
                 {service.title}
               </h2>
@@ -188,7 +188,8 @@ const Services = () => {
             <div className="flex-1 flex items-center justify-center p-4 md:p-10">
               <div className="w-full max-w-md h-80 bg-gray-500 rounded-2xl flex items-center justify-center">
                 <Image
-                  src={service.imageSrc}
+                  src={"/cta-bg.jpg"}
+                  // src={service.imageSrc}
                   alt={service.altText}
                   width={400}
                   height={320}

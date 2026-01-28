@@ -6,7 +6,7 @@ import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
 import Works from "@/components/landing/Works";
 import Contact from "@/components/landing/Contact";
-import Footer from "@/components/Footer"; 
+import Footer from "@/components/Footer";
 import { HeaderThemeProvider } from "@/contexts/HeaderThemeContext";
 import { useState } from "react";
 
@@ -17,18 +17,18 @@ export default function Page() {
   return (
     <HeaderThemeProvider>
       <div className="relative min-h-screen overflow-x-hidden">
-        <LoadingScreen onComplete={() => setIsLoaded(true)} />
+        {/* <LoadingScreen onComplete={() => setIsLoaded(true)} />
 
-        {isLoaded && (
-          <>
-            <Header />
-            <Hero />
-            <Services />
-            <Works />
-            <Contact />
-            <Footer />
-          </>
-        )}
+        {isLoaded && ( */}
+        <>
+          <Header />
+          <Hero />
+          <Services />
+          {/* <Works /> */}
+          {/* <Contact /> */}
+          <Footer />
+        </>
+        {/* )} */}
       </div>
     </HeaderThemeProvider>
   );
