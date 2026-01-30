@@ -6,6 +6,7 @@ import { Tag } from "../ui/Tag";
 // import { ScrollParallax } from "react-just-parallax";
 import SurferAnimation from "../ui/SurferAnimation";
 import Link from "next/link";
+import { BsStars } from "react-icons/bs";
 
 const Hero = () => {
   return (
@@ -31,11 +32,16 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0 }}
           className="flex-1 relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 justify-between"
         >
-          <div></div>
+          <div />
 
           <div className="flex flex-col md:items-start items-center space-y-3">
             <div>
-              <Tag>Let&apos;s Build</Tag>
+              <Tag>
+                <span className="flex-center gap-2">
+                  <BsStars className="text-md" />
+                  Let&apos;s Build
+                </span>
+              </Tag>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight">
@@ -57,7 +63,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row items-center gap-6">
               <Link href="#contact">
                 <Button variant="liquid" className="min-w-52">
-                  Contact
+                  Contact Us
                 </Button>
               </Link>
               <Link href="#works">

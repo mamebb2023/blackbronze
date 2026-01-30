@@ -169,36 +169,7 @@ const Services = () => {
       </div>
 
       <div id="services" className="min-h-screen bg-white">
-        {services.map((service, index) => (
-          <div
-            key={index}
-            className={`flex flex-col-reverse md:flex-row min-h-screen`}
-          >
-            <div className="flex-1 p-4 md:p-10 flex flex-col justify-center">
-              <p className="font-tektur tracking-wide uppercase text-sm mb-4 text-gray-600">
-                {service.miniText}
-              </p> 
-              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-black">
-                {service.title}
-              </h2>
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-            <div className="flex-1 flex items-center justify-center p-4 md:p-10">
-              <div className="w-full max-w-md h-80 bg-gray-500 rounded-2xl flex items-center justify-center">
-                <Image
-                  src={"/cta-bg.jpg"}
-                  // src={service.imageSrc}
-                  alt={service.altText}
-                  width={400}
-                  height={320}
-                  className="w-full h-full object-cover rounded-2xl"
-                />
-              </div>
-            </div>
-          </div>
-        ))}
+
       </div>
 
       <div className="h-[50vh] bg-linear-to-b from-white to-black" />

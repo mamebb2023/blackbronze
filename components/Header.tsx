@@ -66,26 +66,12 @@ export default function Header() {
             <Reveal key={link.href} index={index}>
               <Link
                 href={link.href}
-                className={`relative uppercase tracking-[2px] text-xs px-4 py-2 h-9 flex items-center justify-center transition-all duration-500
-                  after:content-['']
-                  after:absolute
-                  after:bottom-0
-                  after:left-1/2
-                  after:-translate-x-1/2
-                  after:w-[50%]
-                  after:h-px
-                  after:transition-all
-                  after:duration-300
-                  after:scale-90
-                  after:opacity-0
-                  hover:after:scale-100
-                  hover:after:opacity-100
-                  hover:after:w-[60%]
-                  ${
-                    isDark
-                      ? "text-gray-800 hover:text-black after:bg-black"
-                      : "text-gray-200 hover:text-white after:bg-white"
-                  }`}
+                className={`relative uppercase tracking-[2px] text-xs px-4 py-2 h-9 flex items-center justify-center transition-all duration-500 after:content-[''] after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-[50%] after:h-px after:transition-all after:duration-300 after:scale-90 after:opacity-0 hover:after:scale-100 hover:after:opacity-100 hover:after:w-[60%] 
+                  ${isDark
+                    ? "text-gray-800 hover:text-black after:bg-black"
+                    : "text-gray-200 hover:text-white after:bg-white"
+                  }`
+                }
                 onClick={(e) => {
                   e.preventDefault();
                   if (lenis) {
@@ -109,24 +95,21 @@ export default function Header() {
               <Reveal key={social.label} index={index}>
                 <a
                   href={social.href}
-                  className={`relative overflow-hidden group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-500 ${
-                    isDark
-                      ? "bg-black/5 border border-gray-300/20 text-black"
-                      : "bg-white/5 border border-gray-500/20 text-white"
-                  }`}
+                  className={`relative overflow-hidden group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-500 ${isDark
+                    ? "bg-black/5 border border-gray-300/20 text-black"
+                    : "bg-white/5 border border-gray-500/20 text-white"
+                    }`}
                   aria-label={social.label}
                   target="_blank"
                 >
                   <div
-                    className={`absolute top-0 left-0 size-5 group-hover:top-1/2 group-hover:left-1/2 rounded-full blur-sm transition-all ${
-                      isDark ? "bg-black/40" : "bg-white/40"
-                    }`}
+                    className={`absolute top-0 left-0 size-5 group-hover:top-1/2 group-hover:left-1/2 rounded-full blur-sm transition-all ${isDark ? "bg-black/40" : "bg-white/40"
+                      }`}
                   />
                   <Icon className="text-lg" />
                   <div
-                    className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${
-                      isDark ? "bg-gray-300/60" : "bg-gray-700/60"
-                    }`}
+                    className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${isDark ? "bg-gray-300/60" : "bg-gray-700/60"
+                      }`}
                   />
                 </a>
               </Reveal>
