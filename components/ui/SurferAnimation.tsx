@@ -11,11 +11,11 @@ const RESET_X = -450;
 const imageSources = [
   {
     text: "Surfer 1",
-    link: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=600&fit=crop",
+    link: "/hero/img-1.png",
   },
   {
     text: "Surfer 2",
-    link: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=600&fit=crop",
+    link: "/hero/img-2.png",
   },
   {
     text: "Surfer 3",
