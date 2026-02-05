@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Tektur, Montserrat, Noto_Serif } from "next/font/google";
 import "./globals.css";
+import "@/styles/styles.css"
 import ReactLenis from "lenis/react";
 
 const montserrat = Montserrat({

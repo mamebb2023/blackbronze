@@ -1,6 +1,6 @@
 "use client"
 
-import LoadingScreen from "@/components/ui/LoadingScreen";
+// import LoadingScreen from "@/components/LoadingScreen";
 import Header from "@/components/Header";
 import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
@@ -12,7 +12,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Page() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <HeaderThemeProvider>
@@ -22,18 +22,18 @@ export default function Page() {
         transition={{ duration: 1 }}
         className="relative min-h-screen overflow-x-hidden"
       >
-        <LoadingScreen onComplete={() => setIsLoaded(true)} />
+        {/* <LoadingScreen onComplete={() => setIsLoaded(true)} /> */}
 
-        {isLoaded && (
-          <>
-            <Header />
-            <Hero />
-            <Services />
-            {/* <Works /> */}
-            {/* <Contact /> */}
-            {/* <Footer /> */}
-          </>
-        )}
+        {/* {isLoaded && ( */}
+        <>
+          <Header />
+          <Hero />
+          <Services />
+          {/* <Works /> */}
+          {/* <Contact /> */}
+          {/* <Footer /> */}
+        </>
+        {/* )} */}
       </motion.div>
     </HeaderThemeProvider>
   );

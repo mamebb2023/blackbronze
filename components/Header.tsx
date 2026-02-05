@@ -95,7 +95,7 @@ export default function Header() {
               <Reveal key={social.label} index={index}>
                 <a
                   href={social.href}
-                  className={`relative overflow-hidden group w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-500 ${isDark
+                  className={`relative overflow-hidden group size-10 rounded-lg flex items-center justify-center transition-all duration-500 ${isDark
                     ? "bg-black/5 border border-gray-300/20 text-black"
                     : "bg-white/5 border border-gray-500/20 text-white"
                     }`}
@@ -103,7 +103,7 @@ export default function Header() {
                   target="_blank"
                 >
                   <div
-                    className={`absolute top-0 left-0 size-5 group-hover:top-1/2 group-hover:left-1/2 rounded-full blur-sm transition-all ${isDark ? "bg-black/40" : "bg-white/40"
+                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all ${isDark ? "bg-black/40" : "bg-white/40"
                       }`}
                   />
                   <Icon className="text-lg" />
