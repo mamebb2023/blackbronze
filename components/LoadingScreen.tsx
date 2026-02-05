@@ -40,7 +40,7 @@ export default function LoadingScreen({
   const [panelsVisible, setPanelsVisible] = useState(true);
 
   useEffect(() => {
-    const assets = ["/bb-logo-black.png", "/bb-logo-white.png", "/cta-bg.jpg"];
+    const assets = ["/bb-logo-black.png", "/bb-logo-white.png", "/cta-bg.jpg", "/hero/img-1.png", "/hero/img-2.png", "/hero/img-3.png", "/hero/img-4.png", "/hero/img-5.png", "/hero/img-6.png", "/hero/img-7.png"];
     let loadedCount = 0;
     let realProgress = 0;
 

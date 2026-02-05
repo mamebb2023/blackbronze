@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 import { motion } from "framer-motion";
 import { Tag } from "../ui/Tag";
 // import { ScrollParallax } from "react-just-parallax";
-import SurferAnimation from "../ui/SurferAnimation";
+import SurferAnimation from "../SurferAnimation";
 import Link from "next/link";
 import { BsStars } from "react-icons/bs";
 
@@ -71,6 +71,25 @@ const Hero = () => {
                   Our Works
                 </Button>
               </Link>
+            </div>
+
+            <div className="flex-center ml-6 md:ml-14 gap-12 pt-4">
+              <div className="flex flex-col items-center md:items-start">
+                <span className="flex-center gap-1 text-4xl md:text-5xl text-white">
+                  <span className="text-gray-300/50 self-end text-2xl">+</span>50
+                </span>
+                <span className="text-sm text-zinc-500 uppercase tracking-widest font-medium">
+                  Clients
+                </span>
+              </div>
+              <div className="flex flex-col items-center md:items-start">
+                <span className="flex-center gap-1 text-4xl md:text-5xl text-white">
+                  <span className="text-gray-300/50 self-end text-2xl">+</span>100
+                </span>
+                <span className="text-sm text-zinc-500 uppercase tracking-widest font-medium">
+                  Projects
+                </span>
+              </div>
             </div>
           </div>
 
