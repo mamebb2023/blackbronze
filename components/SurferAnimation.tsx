@@ -9,13 +9,17 @@ const SPEED = 1;
 const RESET_X = -450;
 
 const imageSources = [
-  { text: "Surfer 1", link: "/hero/img-1.png" },
-  { text: "Surfer 2", link: "/hero/img-2.png" },
   { text: "Surfer 3", link: "/hero/img-3.png" },
   { text: "Surfer 4", link: "/hero/img-4.png" },
+  { text: "Surfer 8", link: "/hero/img-8.png" },
   { text: "Surfer 5", link: "/hero/img-5.png" },
   { text: "Surfer 6", link: "/hero/img-6.png" },
+  { text: "Surfer 11", link: "/hero/img-11.png" },
   { text: "Surfer 7", link: "/hero/img-7.png" },
+  { text: "Surfer 2", link: "/hero/img-2.png" },
+  { text: "Surfer 9", link: "/hero/img-9.png" },
+  { text: "Surfer 1", link: "/hero/img-1.png" },
+  { text: "Surfer 10", link: "/hero/img-10.png" },
 ];
 
 
@@ -130,7 +134,7 @@ function InfiniteCard({
       <Image
         src={src}
         alt=""
-        width={1000}
+        width={700}
         height={500}
         className="w-full h-full object-cover rounded-md shadow-2xl"
         unoptimized

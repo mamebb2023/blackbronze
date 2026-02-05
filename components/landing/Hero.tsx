@@ -44,18 +44,16 @@ const Hero = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight">
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-zinc-400">
-                We build websites
+                Websites built with clarity,
               </span>
               <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-400 to-white">
-                that drive growth
+                purpose, and longevity.
               </span>
             </h1>
 
             <p className="md:text-md text-gray-400 max-w-xl leading-relaxed">
-              Fast, scalable and engaging - turn your vision into reality with
-              custom websites and web apps that streamline operations and
-              elevate your brand.
+              A web agency creating considered digital experiences for businesses that value quality over nois
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6">

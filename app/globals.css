@@ -12,7 +12,6 @@
 }
 
 @theme inline {
-
   --color-background: var(--color-background);
 
   --font-tektur: var(--font-tektur);
@@ -25,8 +24,9 @@
   }
 }
 
-.shiny-text {
-  display: inline-block;
+::selection {
+  background-color: #464646;
+  color: #fff;
 }
 
 ::-webkit-scrollbar {
