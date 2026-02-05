@@ -1,5 +1,7 @@
 "use client";
 
+import { BsStars } from "react-icons/bs";
+
 interface TagProps {
   children: React.ReactNode;
   className?: string;
@@ -14,7 +16,10 @@ export const Tag = ({ children, className = "" }: TagProps) => {
         className="relative z-20 text-gray-300 text-xs uppercase tracking-wider font-medium"
         style={{ fontFamily: "var(--font-tektur)" }}
       >
-        {children}
+        <span className="flex-center gap-2">
+          <BsStars className="text-md" />
+          {children}
+        </span>
       </span>
     </div>
   );

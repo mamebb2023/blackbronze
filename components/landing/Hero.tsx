@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Tag } from "../ui/Tag";
 // import { ScrollParallax } from "react-just-parallax";
 import SurferAnimation from "../SurferAnimation";
+import MouseAnimation from "../MouseAnimation";
 import Link from "next/link";
 import { BsStars } from "react-icons/bs";
 
@@ -37,10 +38,7 @@ const Hero = () => {
           <div className="flex flex-col md:items-start items-center space-y-3">
             <div>
               <Tag>
-                <span className="flex-center gap-2">
-                  <BsStars className="text-md" />
-                  Let&apos;s Build
-                </span>
+                Let&apos;s Build
               </Tag>
             </div>
 
@@ -94,26 +92,7 @@ const Hero = () => {
           </div>
 
           {/* Mouse animation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 3 }}
-          >
-            <div className="h-12 w-7 border-2 border-white rounded-full flex justify-center py-2 opacity-30">
-              <motion.div
-                animate={{
-                  y: [0, 25, 0],
-                  opacity: [1, 0, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 1.8,
-                  ease: "easeInOut",
-                }}
-                className="h-2 w-1 rounded-full bg-white will-change-transform"
-              />
-            </div>
-          </motion.div>
+          <MouseAnimation />
         </motion.div>
 
         {/* right section */}

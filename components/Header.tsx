@@ -103,14 +103,10 @@ export default function Header() {
                   target="_blank"
                 >
                   <div
-                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all ${isDark ? "bg-black/40" : "bg-white/40"
+                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 ${isDark ? "bg-black/40" : "bg-white/40"
                       }`}
                   />
                   <Icon className="text-lg" />
-                  <div
-                    className={`absolute bottom-0 right-0 size-5 rounded-full blur-sm ${isDark ? "bg-gray-300/60" : "bg-gray-700/60"
-                      }`}
-                  />
                 </a>
               </Reveal>
             );

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useMotionValue, useAnimationFrame } from "framer-motion";
+import { motion, useMotionValue, useAnimationFrame, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const SPACING = 140;
@@ -18,7 +18,6 @@ const imageSources = [
   { text: "Surfer 7", link: "/hero/img-7.png" },
 ];
 
-const images = [...imageSources, ...imageSources];
 
 export default function SurferAnimation() {
   const isPausedRef = useRef(false);
@@ -33,6 +32,8 @@ export default function SurferAnimation() {
     isPausedRef.current = false;
     setHoveredIndex(null);
   };
+
+  const images = [...imageSources, ...imageSources]
 
   return (
     <div className="relative h-screen">
@@ -51,6 +52,7 @@ export default function SurferAnimation() {
             hoveredIndex={hoveredIndex}
             pause={pause}
             resume={resume}
+            alt={image.text}
           />
         ))}
       </div>
@@ -67,6 +69,7 @@ function InfiniteCard({
   hoveredIndex,
   pause,
   resume,
+  alt,
 }: {
   src: string;
   text: string;
@@ -76,6 +79,7 @@ function InfiniteCard({
   hoveredIndex: number | null;
   pause: (index: number) => void;
   resume: () => void;
+  alt: string;
 }) {
   const [startX, setStartX] = useState(0);
 
@@ -99,23 +103,25 @@ function InfiniteCard({
     z.set(z.get() + SPEED);
 
     if (x.get() < RESET_X) {
-      const offset = (total - 1) * SPACING;
-      x.set(startX + offset);
-      y.set(-offset);
-      z.set(-offset);
+      const shift = total * SPACING;
+      x.set(x.get() + shift);
+      y.set(y.get() - shift);
+      z.set(z.get() - shift);
     }
   });
+
+  const zIndex = useTransform(z, (v) => Math.round(v + 2000));
 
   const opacity = hoveredIndex === null ? 1 : hoveredIndex === index ? 1 : 0.2;
 
   return (
     <motion.div
-      className="absolute w-[400px] h-[240px] group flex-center"
+      className="absolute w-[450px] h-[250px] group flex-center"
       onHoverStart={() => pause(index)}
       onHoverEnd={resume}
       animate={{ opacity }}
       transition={{ duration: 0.2 }}
-      style={{ x, y, z, rotateX: -20, rotateY: -30, zIndex: 100 - index }}
+      style={{ x, y, z, rotateX: -20, rotateY: -30, zIndex }}
     >
       <div className="absolute -top-3 -translate-y-1/2 flex-center opacity-0 group-hover:opacity-100 group-hover:-translate-y-full transition-all duration-300">
         <p className="text-white text-md font-tektur">{text}</p>
@@ -124,10 +130,11 @@ function InfiniteCard({
       <Image
         src={src}
         alt=""
-        width={500}
-        height={300}
+        width={1000}
+        height={500}
         className="w-full h-full object-cover rounded-md shadow-2xl"
         unoptimized
+        draggable={false}
       />
     </motion.div>
   );
