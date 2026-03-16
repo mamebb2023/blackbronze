@@ -43,11 +43,11 @@ const Hero = () => {
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight">
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-zinc-400">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-zinc-300 to-zinc-400">
                 Websites built with clarity,
               </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-400 to-white">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-400 via-zinc-300 to-white">
                 purpose, and longevity.
               </span>
             </h1>
@@ -69,24 +69,51 @@ const Hero = () => {
               </Link>
             </div>
 
-            <div className="flex-center ml-6 md:ml-14 gap-12 pt-4">
-              <div className="flex flex-col items-center md:items-start">
-                <span className="flex-center gap-1 text-4xl md:text-5xl text-white">
-                  <span className="text-gray-300/50 self-end text-2xl">+</span>50
-                </span>
-                <span className="text-sm text-zinc-500 uppercase tracking-widest font-medium">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex items-center gap-px mt-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
+            >
+              {/* Clients */}
+              <div className="flex flex-col items-start px-6 py-4">
+                <div className="flex items-end gap-1">
+                  <span className="text-3xl md:text-4xl font-semibold text-white leading-none">50</span>
+                  <span className="text-lg font-medium text-[#C9A84C] mb-0.5">+</span>
+                </div>
+                <span className="mt-1 text-[11px] text-zinc-500 uppercase tracking-widest">
                   Clients
                 </span>
               </div>
-              <div className="flex flex-col items-center md:items-start">
-                <span className="flex-center gap-1 text-4xl md:text-5xl text-white">
-                  <span className="text-gray-300/50 self-end text-2xl">+</span>100
-                </span>
-                <span className="text-sm text-zinc-500 uppercase tracking-widest font-medium">
+
+              {/* Divider */}
+              <div className="w-px self-stretch bg-white/10 mx-1" />
+
+              {/* Projects */}
+              <div className="flex flex-col items-start px-6 py-4">
+                <div className="flex items-end gap-1">
+                  <span className="text-3xl md:text-4xl font-semibold text-white leading-none">100</span>
+                  <span className="text-lg font-medium text-[#C9A84C] mb-0.5">+</span>
+                </div>
+                <span className="mt-1 text-[11px] text-zinc-500 uppercase tracking-widest">
                   Projects
                 </span>
               </div>
-            </div>
+
+              {/* Divider */}
+              <div className="w-px self-stretch bg-white/10 mx-1" />
+
+              {/* Years */}
+              <div className="flex flex-col items-start px-6 py-4">
+                <div className="flex items-end gap-1">
+                  <span className="text-3xl md:text-4xl font-semibold text-white leading-none">5</span>
+                  <span className="text-lg font-medium text-[#C9A84C] mb-0.5">yr</span>
+                </div>
+                <span className="mt-1 text-[11px] text-zinc-500 uppercase tracking-widest">
+                  Experience
+                </span>
+              </div>
+            </motion.div>
           </div>
 
           {/* Mouse animation */}

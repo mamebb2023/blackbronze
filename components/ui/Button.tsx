@@ -14,7 +14,7 @@ const buttonVariants = cva(
         destructive:
           "bg-linear-to-br from-red-600 via-red-400 to-red-600 text-white hover:bg-red-500/90",
         outline:
-          "border-3 text-bold border-white hover:bg-white hover:text-black duration-300",
+          "border-3 text-bold border-white hover:bg-white hover:text-[#8C6A3D] duration-300",
         ghost: "hover:bg-gray-500/20",
         link: `relative text-gray-200 transition-colors
         after:content-['']
@@ -50,7 +50,7 @@ const buttonVariants = cva(
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 

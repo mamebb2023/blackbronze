@@ -40,7 +40,20 @@ export default function LoadingScreen({
   const [panelsVisible, setPanelsVisible] = useState(true);
 
   useEffect(() => {
-    const assets = ["/bb-logo-black.png", "/bb-logo-white.png", "/cta-bg.jpg", "/hero/img-1.png", "/hero/img-2.png", "/hero/img-3.png", "/hero/img-4.png", "/hero/img-5.png", "/hero/img-6.png", "/hero/img-7.png"];
+    const assets = [
+      "/bb-logo-black.png",
+      "/bb-logo-white.png",
+      "/cta-bg.jpg",
+      "/hero/img-1.png",
+      "/hero/img-2.png",
+      "/hero/img-3.png",
+      "/hero/img-4.png",
+      "/hero/img-5.png",
+      "/hero/img-7.png",
+      "/hero/img-8.png",
+      "/hero/img-9.png",
+      "/hero/img-11.png"
+    ];
     let loadedCount = 0;
     let realProgress = 0;
 
@@ -111,13 +124,13 @@ export default function LoadingScreen({
         {panelsVisible && (
           <>
             <motion.div
-              className="fixed top-0 left-0 w-full h-[50vh] bg-zinc-950 z-99"
+              className="fixed top-0 left-0 w-full h-[50vh] bg-white z-99"
               exit={{ y: "-100%" }}
               transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
             />
 
             <motion.div
-              className="fixed bottom-0 left-0 w-full h-[50vh] bg-zinc-950 z-99"
+              className="fixed bottom-0 left-0 w-full h-[50vh] bg-white z-99"
               exit={{ y: "100%" }}
               transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
             />
@@ -140,7 +153,7 @@ export default function LoadingScreen({
       <AnimatePresence>
         {textVisible && (
           <motion.div
-            className="fixed inset-0 z-101 flex items-center justify-center pointer-events-none text-white"
+            className="fixed inset-0 z-101 flex items-center justify-center pointer-events-none text-black"
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}

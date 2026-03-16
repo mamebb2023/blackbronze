@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -17,6 +17,28 @@ import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
 export default function Header() {
   const { isDark } = useHeaderTheme();
   const lenis = useLenis();
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsVisible(!entry.isIntersecting);
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(footer);
+
+    return () => {
+      observer.unobserve(footer);
+      observer.disconnect();
+    };
+  }, []);
 
   const navigationLinks = [
     { href: "#services", label: "Services" },
@@ -33,9 +55,17 @@ export default function Header() {
   ];
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 1, y: 0 }}
+      animate={{
+        opacity: isVisible ? 1 : 0,
+        y: isVisible ? 0 : -20
+      }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ pointerEvents: isVisible ? "auto" : "none" }}
+    >
       {/* Logo - Top Left */}
-      <div className="fixed top-5 left-5 z-999 pointer-events-auto">
+      <div className="fixed top-5 left-5 z-999">
         <Reveal>
           <Link href="/" className="flex items-center space-x-2">
             <motion.div
@@ -60,7 +90,7 @@ export default function Header() {
       </div>
 
       {/* Navigation Links - Top Right */}
-      <div className="fixed top-5 right-5 z-999 pointer-events-auto">
+      <div className="fixed top-5 right-5 z-999">
         <nav className="hidden md:flex items-center space-x-1">
           {navigationLinks.map((link, index) => (
             <Reveal key={link.href} index={index}>
@@ -87,7 +117,7 @@ export default function Header() {
       </div>
 
       {/* Social Links - Bottom Right */}
-      <div className="fixed bottom-5 right-5 z-999 pointer-events-auto">
+      <div className="fixed bottom-5 right-5 z-999">
         <div className="flex gap-3">
           {socialLinks.map((social, index) => {
             const Icon = social.Icon;
@@ -113,7 +143,7 @@ export default function Header() {
           })}
         </div>
       </div>
-    </>
+    </motion.div>
   );
 }
 
