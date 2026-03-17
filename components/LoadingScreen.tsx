@@ -144,8 +144,8 @@ export default function LoadingScreen({
           setTimeout(() => {
             setPanelsVisible(false);
             setTimeout(() => onComplete?.(), 1000);
-          }, 1000);
-        }, 800);
+          }, 1050);
+        }, 1000);
       }
     };
 
@@ -154,12 +154,12 @@ export default function LoadingScreen({
 
       img.onload = () => {
         loadedCount++;
-        setInterval(updateProgress, 500);
+        setInterval(updateProgress, 800);
       };
 
       img.onerror = () => {
         loadedCount++;
-        setInterval(updateProgress, 500);
+        setInterval(updateProgress, 800);
       };
 
       img.src = url;
