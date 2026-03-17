@@ -12,34 +12,35 @@ import {
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
-import gsap from "gsap";
 // import Logo from "./ui/Logo";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
   const lenis = useLenis();
 
+  const [hideHeader, setHideHeader] = useState(false);
+
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to("#header", {
-        opacity: 0,
-        ease: "power3.inOut",
-        duration: 1,
-        scrollTrigger: {
-          trigger: "#footer",
-          start: "top top", // 🔥 when footer hits middle
-          end: "bottom bottom",
-          toggleActions: "play reverse play reverse",
-          markers: true,
-          // play = hide
-          // reverse = show back
-        },
-      });
-    });
+    const handleScroll = () => {
+      const footer = document.querySelector("#footer");
+      if (!footer) return;
 
-    return () => ctx.revert();
+      const rect = footer.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // 🔥 Trigger when footer reaches middle of screen
+      const isHalfVisible =
+        rect.top <= viewportHeight * 0.5 &&
+        rect.bottom >= viewportHeight * 0.5;
+
+      setHideHeader(isHalfVisible);
+    };
+
+    handleScroll(); // run once
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
   const navigationLinks = [
     { href: "#services", label: "Services" },
@@ -60,7 +61,29 @@ export default function Header() {
       id="header"
     >
       {/* Logo - Top Left */}
-      <div className="fixed top-5 left-5 z-999">
+      <motion.div
+        animate={hideHeader ? "hidden" : "visible"}
+        variants={{
+          visible: {
+            opacity: 1,
+            filter: "blur(0px)",
+            transition: {
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          },
+          hidden: {
+            opacity: 0,
+            filter: "blur(6px)",
+            transition: {
+              duration: 0.5,
+              ease: [0.76, 0, 0.24, 1],
+            },
+          },
+        }}
+        style={{ pointerEvents: hideHeader ? "none" : "auto" }}
+        className="fixed top-5 left-5 z-999"
+      >
         <Reveal>
           <Link href="/" className="flex items-center space-x-2">
             <motion.div
@@ -82,10 +105,32 @@ export default function Header() {
             {/* <Logo /> */}
           </Link>
         </Reveal>
-      </div>
+      </motion.div>
 
       {/* Navigation Links - Top Right */}
-      <div className="fixed top-5 right-5 z-999">
+      <motion.div
+        animate={hideHeader ? "hidden" : "visible"}
+        variants={{
+          visible: {
+            opacity: 1,
+            filter: "blur(0px)",
+            transition: {
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          },
+          hidden: {
+            opacity: 0,
+            filter: "blur(6px)",
+            transition: {
+              duration: 0.5,
+              ease: [0.76, 0, 0.24, 1],
+            },
+          },
+        }}
+        style={{ pointerEvents: hideHeader ? "none" : "auto" }}
+        className="fixed top-5 right-5 z-999"
+      >
         <nav className="hidden md:flex items-center space-x-1">
           {navigationLinks.map((link, index) => (
             <Reveal key={link.href} index={index}>
@@ -109,10 +154,32 @@ export default function Header() {
             </Reveal>
           ))}
         </nav>
-      </div>
+      </motion.div>
 
       {/* Social Links - Bottom Right */}
-      <div className="fixed bottom-5 right-5 z-999">
+      <motion.div
+        animate={hideHeader ? "hidden" : "visible"}
+        variants={{
+          visible: {
+            opacity: 1,
+            filter: "blur(0px)",
+            transition: {
+              duration: 0.6,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          },
+          hidden: {
+            opacity: 0,
+            filter: "blur(6px)",
+            transition: {
+              duration: 0.5,
+              ease: [0.76, 0, 0.24, 1],
+            },
+          },
+        }}
+        style={{ pointerEvents: hideHeader ? "none" : "auto" }}
+        className="fixed bottom-5 right-5 z-999"
+      >
         <div className="flex gap-3">
           {socialLinks.map((social, index) => {
             const Icon = social.Icon;
@@ -137,7 +204,7 @@ export default function Header() {
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -149,6 +216,7 @@ function Reveal({
   children: ReactNode;
   index?: number;
 }) {
+
   return (
     <div className="overflow-hidden">
       <motion.div
