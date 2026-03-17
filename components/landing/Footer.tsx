@@ -10,6 +10,7 @@ import {
   BsBehance,
 } from "react-icons/bs";
 import { BsArrowUpRight } from "react-icons/bs";
+import Logo from "../ui/Logo";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -45,13 +46,14 @@ const Footer = () => {
           <div className="flex flex-col gap-5">
             <div>
               <Link href="/">
-                <Image
+                {/* <Image
                   src="/bb-logo-white.png"
                   alt="BlackBronze Logo"
                   width={32}
                   height={32}
                   className="size-10 object-contain"
-                />
+                /> */}
+                <Logo />
               </Link>
               <p className="mt-3 text-sm text-zinc-500 leading-relaxed max-w-xs">
                 A web agency creating considered digital experiences for

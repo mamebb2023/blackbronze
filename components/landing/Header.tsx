@@ -12,7 +12,6 @@ import {
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
-// import Logo from "./ui/Logo";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
