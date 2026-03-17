@@ -39,6 +39,82 @@ export default function LoadingScreen({
   const [textVisible, setTextVisible] = useState(true);
   const [panelsVisible, setPanelsVisible] = useState(true);
 
+  // useEffect(() => {
+  //   const assets = [
+  //     "/bb-logo-black.png",
+  //     "/bb-logo-white.png",
+  //     "/cta-bg.jpg",
+  //     "/hero/img-1.png",
+  //     "/hero/img-2.png",
+  //     "/hero/img-3.png",
+  //     "/hero/img-4.jpg",
+  //     "/hero/img-5.png",
+  //     "/hero/img-7.png",
+  //     "/hero/img-8.png",
+  //     "/hero/img-9.png",
+  //   ];
+
+  //   let loadedCount = 0;
+  //   let realProgress = 0;
+
+  //   assets.forEach((url) => {
+  //     const xhr = new XMLHttpRequest();
+  //     xhr.open("GET", url, true);
+  //     xhr.responseType = "blob";
+
+  //     xhr.onload = xhr.onerror = () => {
+  //       loadedCount++;
+  //       realProgress = (loadedCount / assets.length) * 100;
+  //     };
+
+  //     xhr.send();
+  //   });
+
+  //   let internalCount = 0;
+
+  //   const fastInterval = setInterval(() => {
+  //     if (internalCount >= 100) return;
+
+  //     if (internalCount < realProgress) {
+  //       internalCount = Math.min(
+  //         internalCount + Math.random() * 1.5 + 0.5,
+  //         realProgress
+  //       );
+  //     } else if (realProgress === 0) {
+  //       internalCount = Math.min(
+  //         internalCount + Math.random() * 1.5 + 0.5,
+  //         100
+  //       );
+  //     }
+  //   }, 30);
+
+  //   const slowInterval = setInterval(() => {
+  //     if (internalCount >= 100) {
+  //       clearInterval(fastInterval);
+  //       clearInterval(slowInterval);
+  //       setCount(100);
+
+  //       setTimeout(() => {
+  //         setTextVisible(false);
+
+  //         setTimeout(() => {
+  //           setPanelsVisible(false);
+  //           setTimeout(() => onComplete?.(), 1500);
+  //         }, 1000);
+  //       }, 1100);
+
+  //       return;
+  //     }
+
+  //     setCount(internalCount);
+  //   }, 600);
+
+  //   return () => {
+  //     clearInterval(fastInterval);
+  //     clearInterval(slowInterval);
+  //   };
+  // }, [onComplete]);
+
   useEffect(() => {
     const assets = [
       "/bb-logo-black.png",
@@ -47,72 +123,47 @@ export default function LoadingScreen({
       "/hero/img-1.png",
       "/hero/img-2.png",
       "/hero/img-3.png",
-      "/hero/img-4.png",
+      "/hero/img-4.jpg",
       "/hero/img-5.png",
       "/hero/img-7.png",
       "/hero/img-8.png",
       "/hero/img-9.png",
-      "/hero/img-11.png"
     ];
+
     let loadedCount = 0;
-    let realProgress = 0;
 
-    assets.forEach((url) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open("GET", url, true);
-      xhr.responseType = "blob";
+    const updateProgress = () => {
+      const progress = (loadedCount / assets.length) * 100;
+      setCount(progress);
 
-      xhr.onload = xhr.onerror = () => {
-        loadedCount++;
-        realProgress = (loadedCount / assets.length) * 100;
-      };
-
-      xhr.send();
-    });
-
-    let internalCount = 0;
-
-    const fastInterval = setInterval(() => {
-      if (internalCount >= 100) return;
-
-      if (internalCount < realProgress) {
-        internalCount = Math.min(
-          internalCount + Math.random() * 1.5 + 0.5,
-          realProgress
-        );
-      } else if (realProgress === 0) {
-        internalCount = Math.min(
-          internalCount + Math.random() * 1.5 + 0.5,
-          100
-        );
-      }
-    }, 30);
-
-    const slowInterval = setInterval(() => {
-      if (internalCount >= 100) {
-        clearInterval(fastInterval);
-        clearInterval(slowInterval);
-        setCount(100);
-
+      if (loadedCount === assets.length) {
+        // finish animation sequence
         setTimeout(() => {
           setTextVisible(false);
 
           setTimeout(() => {
             setPanelsVisible(false);
-            setTimeout(() => onComplete?.(), 1500);
+            setTimeout(() => onComplete?.(), 1000);
           }, 1000);
-        }, 1100);
-
-        return;
+        }, 800);
       }
-
-      setCount(internalCount);
-    }, 1000);
-
-    return () => {
-      clearInterval(fastInterval);
-      clearInterval(slowInterval);
     };
+
+    assets.forEach((url) => {
+      const img = new Image();
+
+      img.onload = () => {
+        loadedCount++;
+        setInterval(updateProgress, 500);
+      };
+
+      img.onerror = () => {
+        loadedCount++;
+        setInterval(updateProgress, 500);
+      };
+
+      img.src = url;
+    });
   }, [onComplete]);
 
   const formattedCount = `${count.toFixed(1)}%`;

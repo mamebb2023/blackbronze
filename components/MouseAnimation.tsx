@@ -31,10 +31,10 @@ const MouseAnimation = () => {
 			transition={{ duration: 0.5 }}
 		>
 			<div className="flex items-center gap-2">
-				<div className="h-12 w-7 border-2 border-white rounded-full flex justify-center py-2 opacity-30">
+				<div className="h-10 w-6 border-2 border-white rounded-full flex justify-center py-2 opacity-30">
 					<motion.div
 						animate={{
-							y: [0, 25, 0],
+							y: [0, 23, 0],
 							opacity: [1, 0, 0],
 						}}
 						transition={{

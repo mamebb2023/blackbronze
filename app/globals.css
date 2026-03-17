@@ -1,18 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --color-dark-black: #0B0B0B;
-  --color-soft-white: #F7F7F7;
-  --color-charcoal: #1A1A1A;
-  --color-graphite: #2A2A2A;
-  --color-mist-grey: #DADADA;
-  --color-warm-bronze: #8C6A3D;
-
-  --color-background: #101010;
+  --color-bronze: #C9A84C;
+  --color-bronze-dark: #8C6A3D;
+  --color-bronze-light: #d2bb84;
 }
 
 @theme inline {
-  --color-background: var(--color-background);
+  --color-bronze: var(--color-bronze);
+  --color-bronze-dark: var(--color-bronze-dark);
+  --color-bronze-light: var(--color-bronze-light);
 
   --font-tektur: var(--font-tektur);
   --font-noto_serif: var(--font-noto_serif);

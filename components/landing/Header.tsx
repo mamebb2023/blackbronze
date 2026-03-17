@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -12,33 +12,34 @@ import {
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
+import gsap from "gsap";
 // import Logo from "./ui/Logo";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
   const lenis = useLenis();
-  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const footer = document.querySelector('footer');
-    if (!footer) return;
+    const ctx = gsap.context(() => {
+      gsap.to("#header", {
+        opacity: 0,
+        ease: "power3.inOut",
+        duration: 1,
+        scrollTrigger: {
+          trigger: "#footer",
+          start: "top top", // 🔥 when footer hits middle
+          end: "bottom bottom",
+          toggleActions: "play reverse play reverse",
+          markers: true,
+          // play = hide
+          // reverse = show back
+        },
+      });
+    });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible(!entry.isIntersecting);
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observer.observe(footer);
-
-    return () => {
-      observer.unobserve(footer);
-      observer.disconnect();
-    };
+    return () => ctx.revert();
   }, []);
+
 
   const navigationLinks = [
     { href: "#services", label: "Services" },
@@ -56,13 +57,7 @@ export default function Header() {
 
   return (
     <motion.div
-      initial={{ opacity: 1, y: 0 }}
-      animate={{
-        opacity: isVisible ? 1 : 0,
-        y: isVisible ? 0 : -20
-      }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      style={{ pointerEvents: isVisible ? "auto" : "none" }}
+      id="header"
     >
       {/* Logo - Top Left */}
       <div className="fixed top-5 left-5 z-999">
@@ -98,8 +93,8 @@ export default function Header() {
                 href={link.href}
                 className={`relative uppercase tracking-[2px] text-xs px-4 py-2 h-9 flex items-center justify-center transition-all duration-500 after:content-[''] after:absolute after:bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-[50%] after:h-px after:transition-all after:duration-300 after:scale-90 after:opacity-0 hover:after:scale-100 hover:after:opacity-100 hover:after:w-[60%] 
                   ${isDark
-                    ? "text-gray-800 hover:text-black after:bg-black"
-                    : "text-gray-200 hover:text-white after:bg-white"
+                    ? "text-gray-800 hover:text-black after:bg-bronze"
+                    : "text-gray-200 hover:text-white after:bg-bronze"
                   }`
                 }
                 onClick={(e) => {
@@ -133,10 +128,10 @@ export default function Header() {
                   target="_blank"
                 >
                   <div
-                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 ${isDark ? "bg-black/40" : "bg-white/40"
+                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 ${isDark ? "bg-bronze" : "bg-bronze-dark"
                       }`}
                   />
-                  <Icon className="text-lg" />
+                  <Icon className="text-lg relative" />
                 </a>
               </Reveal>
             );

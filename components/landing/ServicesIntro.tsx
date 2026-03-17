@@ -7,10 +7,6 @@ import { toggleHeaderTheme } from "@/contexts/HeaderThemeContext";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 const ServicesIntro = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);

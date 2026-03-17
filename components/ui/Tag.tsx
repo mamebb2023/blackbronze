@@ -11,14 +11,14 @@ interface TagProps {
 export const Tag = ({ children, className = "", variant = "default" }: TagProps) => {
   const variantStyles = {
     default:
-      "bg-linear-to-br from-white/5 via-white/20 to-white/5 border border-white/10",
+      "bg-linear-to-br from-bronze/5 via-bronze/20 to-bronze/5 border border-bronze/10",
     black:
-      "bg-linear-to-br from-black/5 via-black/20 to-black/5 border border-black/10",
+      "bg-linear-to-br from-bronze-dark/5 via-bronze-dark/20 to-bronze-dark/5 border border-bronze-dark/10",
   };
 
   const textStyles = {
-    default: "text-gray-300",
-    black: "text-black/80",
+    default: "text-bronze",
+    black: "text-bronze-dark",
   };
 
   return (
@@ -30,7 +30,7 @@ export const Tag = ({ children, className = "", variant = "default" }: TagProps)
         style={{ fontFamily: "var(--font-tektur)" }}
       >
         <span className="flex-center gap-2">
-          <BsStars className="text-md" />
+          <BsStars className="text-md text-bronze-dark" />
           {children}
         </span>
       </span>

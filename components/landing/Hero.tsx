@@ -31,7 +31,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.6, delay: 0 }}
-          className="flex-1 relative z-10 max-w-4xl mx-auto flex flex-col md:items-start items-center space-y-6 justify-between"
+          className="flex-1 relative z-10 max-w-5xl mx-auto flex flex-col md:items-start items-center space-y-6 justify-between"
         >
           <div />
 
@@ -42,12 +42,12 @@ const Hero = () => {
               </Tag>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-5xl font-bold text-white leading-tight">
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-white via-zinc-300 to-zinc-400">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-bronze-dark">
                 Websites built with clarity,
               </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-400 via-zinc-300 to-white">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-bronze-dark to-white">
                 purpose, and longevity.
               </span>
             </h1>
@@ -76,10 +76,10 @@ const Hero = () => {
               className="flex items-center gap-px mt-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm overflow-hidden"
             >
               {/* Clients */}
-              <div className="flex flex-col items-start px-6 py-4">
+              <div className="flex flex-col items-start px-4 py-2">
                 <div className="flex items-end gap-1">
-                  <span className="text-3xl md:text-4xl font-semibold text-white leading-none">50</span>
-                  <span className="text-lg font-medium text-[#C9A84C] mb-0.5">+</span>
+                  <span className="text-3xl md:text-2xl font-semibold text-white leading-none">50</span>
+                  <span className="text-lg font-medium text-bronze mb-0.5">+</span>
                 </div>
                 <span className="mt-1 text-[11px] text-zinc-500 uppercase tracking-widest">
                   Clients
@@ -90,10 +90,10 @@ const Hero = () => {
               <div className="w-px self-stretch bg-white/10 mx-1" />
 
               {/* Projects */}
-              <div className="flex flex-col items-start px-6 py-4">
+              <div className="flex flex-col items-start px-4 py-2">
                 <div className="flex items-end gap-1">
-                  <span className="text-3xl md:text-4xl font-semibold text-white leading-none">100</span>
-                  <span className="text-lg font-medium text-[#C9A84C] mb-0.5">+</span>
+                  <span className="text-3xl md:text-2xl font-semibold text-white leading-none">100</span>
+                  <span className="text-lg font-medium text-bronze mb-0.5">+</span>
                 </div>
                 <span className="mt-1 text-[11px] text-zinc-500 uppercase tracking-widest">
                   Projects
@@ -104,10 +104,10 @@ const Hero = () => {
               <div className="w-px self-stretch bg-white/10 mx-1" />
 
               {/* Years */}
-              <div className="flex flex-col items-start px-6 py-4">
+              <div className="flex flex-col items-start px-4 py-2">
                 <div className="flex items-end gap-1">
-                  <span className="text-3xl md:text-4xl font-semibold text-white leading-none">5</span>
-                  <span className="text-lg font-medium text-[#C9A84C] mb-0.5">yr</span>
+                  <span className="text-3xl md:text-2xl font-semibold text-white leading-none">5</span>
+                  <span className="text-lg font-medium text-bronze mb-0.5">yr</span>
                 </div>
                 <span className="mt-1 text-[11px] text-zinc-500 uppercase tracking-widest">
                   Experience
