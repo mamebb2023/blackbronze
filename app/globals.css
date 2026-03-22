@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 :root {
+  --color-bronze-100: FFE0B8;
+  --color-bronze-300: F0BF7E;
+  --color-bronze-500: AA7939;
+  --color-bronze-700: 643F0E;
+  --color-bronze-900: 1E1100;
+
+
   --color-bronze: #C9A84C;
   --color-bronze-dark: #8C6A3D;
   --color-bronze-light: #d2bb84;

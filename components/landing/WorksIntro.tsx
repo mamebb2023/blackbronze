@@ -7,7 +7,7 @@ import { toggleHeaderTheme } from "@/contexts/HeaderThemeContext";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 
-const ServicesIntro = () => {
+const WorksIntro = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
@@ -60,7 +60,7 @@ const ServicesIntro = () => {
       if (themeToggleTrigger) themeToggleTrigger.kill();
 
       themeToggleTrigger = ScrollTrigger.create({
-        trigger: "#serviceContainer",
+        trigger: "#worksContainer",
         start: "top+=500 top",
         end: "bottom+=200 bottom",
         onEnter: () => {
@@ -166,4 +166,4 @@ const ServicesIntro = () => {
   );
 };
 
-export default ServicesIntro;
+export default WorksIntro;

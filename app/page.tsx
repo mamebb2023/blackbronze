@@ -13,6 +13,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Works from "@/components/landing/Works";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -35,6 +36,7 @@ export default function Page() {
           <>
             <Header />
             <Hero />
+            <Works />
             <Services />
             {/* <Works /> */}
             {/* <Contact /> */}

@@ -43,29 +43,70 @@ export const projects = [
   },
 ];
 
+// export const services = [
+//   {
+//     miniText: "WEB DEVELOPMENT",
+//     title: "Custom Websites",
+//     description:
+//       "We create bespoke websites tailored to your business needs, ensuring optimal performance, beautiful design, and seamless user experiences across all devices.",
+//     imageSrc: "/service-1.jpg",
+//     altText: "Custom Websites",
+//   },
+//   {
+//     miniText: "UI/UX DESIGN",
+//     title: "User Experience",
+//     description:
+//       "Our design philosophy centers on user needs. We craft intuitive interfaces that not only look stunning but also provide exceptional user experiences that drive engagement.",
+//     imageSrc: "/service-2.jpg",
+//     altText: "User Experience Design",
+//   },
+//   {
+//     miniText: "PERFORMANCE",
+//     title: "Optimization",
+//     description:
+//       "We optimize every aspect of your digital presence for speed and performance. Fast loading times, smooth interactions, and scalable solutions that grow with your business.",
+//     imageSrc: "/service-3.jpg",
+//     altText: "Performance Optimization",
+//   },
+// ];
+
 export const services = [
   {
-    miniText: "WEB DEVELOPMENT",
-    title: "Custom Websites",
+    id: "web-design",
+    title: "Custom Web Design",
     description:
-      "We create bespoke websites tailored to your business needs, ensuring optimal performance, beautiful design, and seamless user experiences across all devices.",
-    imageSrc: "/service-1.jpg",
-    altText: "Custom Websites",
+      "Bespoke websites tailored to your brand identity.",
+    variant: "featured",
+    span: "md:col-span-3 lg:col-span-4 md:row-span-2",
+    cta: "Learn more",
   },
   {
-    miniText: "UI/UX DESIGN",
-    title: "User Experience",
-    description:
-      "Our design philosophy centers on user needs. We craft intuitive interfaces that not only look stunning but also provide exceptional user experiences that drive engagement.",
-    imageSrc: "/service-2.jpg",
-    altText: "User Experience Design",
+    id: "brand",
+    title: "Brand Identity",
+    description: "Cohesive visual language across all touchpoints",
+    variant: "outline",
+    span: "md:col-span-2",
   },
   {
-    miniText: "PERFORMANCE",
-    title: "Optimization",
-    description:
-      "We optimize every aspect of your digital presence for speed and performance. Fast loading times, smooth interactions, and scalable solutions that grow with your business.",
-    imageSrc: "/service-3.jpg",
-    altText: "Performance Optimization",
+    id: "seo",
+    title: "SEO Optimization",
+    description: "Rank higher, reach further",
+    variant: "gold",
+    span: "md:col-span-2",
+  },
+  {
+    id: "responsive",
+    title: "Responsive Design",
+    description: "Perfect on every device",
+    variant: "darkSmall",
+    span: "md:col-span-2",
+  },
+  {
+    id: "performance",
+    title: "Lightning Fast",
+    description: "Optimized performance",
+    variant: "performance",
+    span: "md:col-span-2 lg:col-span-3",
+    extra: "<1s",
   },
 ];
