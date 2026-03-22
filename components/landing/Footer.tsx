@@ -32,10 +32,10 @@ const Footer = () => {
   return (
     <footer id="footer" className="relative bg-[#0B0B0B] text-white overflow-hidden">
       {/* Top gradient border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-bronze/60 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-bronze-500/60 to-transparent" />
 
       {/* Ambient glow */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-bronze/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-bronze-500/10 blur-[100px] rounded-full pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-10">
 
@@ -72,7 +72,7 @@ const Footer = () => {
                   aria-label={label}
                   whileHover={{ y: -2, scale: 1.1 }}
                   transition={{ duration: 0.2 }}
-                  className="w-9 h-9 rounded-full border border-bronze/20 bg-white/5 flex-center text-zinc-400 hover:text-white hover:border-bronze/80 transition-colors"
+                  className="w-9 h-9 rounded-full border border-bronze-500/20 bg-white/5 flex-center text-zinc-400 hover:text-white hover:border-bronze-500/80 transition-colors"
                 >
                   <Icon className="text-sm" />
                 </motion.a>
@@ -95,7 +95,7 @@ const Footer = () => {
                     href={href}
                     className="group flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
                   >
-                    <span className="w-4 h-px bg-zinc-700 group-hover:w-6 group-hover:bg-bronze transition-all duration-300" />
+                    <span className="w-4 h-px bg-zinc-700 group-hover:w-6 group-hover:bg-bronze-500 transition-all duration-300" />
                     {label}
                   </Link>
                 </li>
@@ -119,7 +119,7 @@ const Footer = () => {
               href="#contact"
               whileHover={{ x: 3 }}
               transition={{ duration: 0.2 }}
-              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white border border-bronze/40 hover:border-white/20 rounded-full px-5 py-2.5 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white border border-bronze-500/40 hover:border-white/20 rounded-full px-5 py-2.5 transition-colors"
             >
               Let&apos;s talk
               <BsArrowUpRight className="text-xs" />

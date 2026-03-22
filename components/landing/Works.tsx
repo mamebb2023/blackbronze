@@ -13,11 +13,11 @@ const Works = () => {
         <div className="flex-center flex-col gap-3">
           <Tag variant="black">Our Works</Tag>
           <h1 className="text-7xl">Selected Works</h1>
-          <p className="text-md text-bronze">Turning complex problems, repeatitive tasks into elegant solutions.</p>
+          <p className="text-md text-bronze-500">Turning complex problems, repeatitive tasks into elegant solutions.</p>
         </div>
       </div>
 
-      <div className="h-[60vh] bg-gradient-to-b from-white via-bronze-dark/50 to-black" />
+      <div className="h-[60vh] bg-gradient-to-b from-white via-bronze-500-dark/50 to-black" />
     </div>
   );
 };

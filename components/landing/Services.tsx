@@ -9,32 +9,81 @@ const Services = () => {
       <div className="flex-center flex-col gap-3">
         <Tag>Services</Tag>
         <h1 className="text-7xl">What We Do</h1>
-        <p className="text-md text-bronze">Turning complex problems, repeatitive tasks into elegant solutions.</p>
+        <p className="text-md text-bronze-300">Turning complex problems, repeatitive tasks into elegant solutions.</p>
       </div>
 
-      <div className="flex gap-5 flex-col w-4xl my-10">
-        <div className="flex gap-3 flex-col md:flex-row gap-5">
-          {services.slice(0, 2).map((service, index) => (
-            <div key={`top-${index}`} className="flex flex-col gap-3 justify-between border border-bronze/30 flex-1 rounded-3xl p-3">
-              <div className="w-full h-[200px] border border-bronze/30 rounded-3xl"></div>
-              <div className="space-y-1 px-2">
-                <p className="text-2xl text-bronze-light">{service.title}</p>
-                <p className="">{service.description}</p>
+      <div className="relative flex gap-5 flex-col w-4xl my-7">
+        <div className="absolute -top-1/4 left-1/2 -translate-x-1/2 size-80 rounded-full bg-bronze-700/30 flex-center blur-3xl" />
+        <div className="absolute bottom-10 right-0 translate-x-1/2 size-80 rounded-full bg-bronze-700/30 flex-center blur-3xl" />
+
+        {/* top two */}
+        <div className="relative flex gap-3 flex-col md:flex-row gap-5">
+          {/* one */}
+          <div className="relative border border-bronze-500/30 flex-1 rounded-3xl p-3">
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <div className="absolute bottom-0 translate-y-1/2 left-0 -translate-x-1/4 size-80 rounded-full bg-bronze-700/40 flex-center blur-2xl">
+                <div className="absolute size-[60%] rounded-full bg-bronze-700"></div>
+                <div className="absolute size-[20%] rounded-full bg-bronze-100"></div>
               </div>
             </div>
-          ))}
+
+            <div className="relative space-y-1 px-2 py-1 text-right">
+              <p className="text-2xl text-bronze-300">Custom Web Design</p>
+              <p className="">Bespoke websites tailored to your brand identity</p>
+            </div>
+            <div className="w-full h-[200px] border border-bronze-500/30 rounded-2xl"></div>
+          </div>
+
+          {/* two */}
+          <div className="relative border border-bronze-500/30 flex-1 rounded-3xl p-3">
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <div className="absolute top-0 -translate-y-1/2 right-0 translate-x-1/4 size-80 rounded-full bg-bronze-700/40 flex-center blur-2xl">
+                <div className="absolute size-[60%] rounded-full bg-bronze-700"></div>
+                <div className="absolute size-[20%] rounded-full bg-bronze-100"></div>
+              </div>
+            </div>
+
+            <div className="w-full h-[200px] border border-bronze-500/30 rounded-2xl"></div>
+            <div className="relative space-y-1 px-2 py-1">
+              <p className="text-2xl text-bronze-300">Brand Identity</p>
+              <p className="">Cohesive visual language across all touchpoints</p>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-5 ">
-          {services.slice(2).map((service, index) => (
-            <div key={`bottom-${index}`} className={`flex flex-col gap-3 justify-between border border-bronze/30 flex-1 rounded-3xl p-3 ${index === 3 && ""}`}>
-              <div className="w-full h-[150px] border border-bronze/30 rounded-3xl"></div>
-              <div className="space-y-1 px-2">
-                <p className="text-2xl text-bronze-light">{service.title}</p>
-                <p className="">{service.description}</p>
+        {/* bottom three */}
+        <div className="flex flex-col md:flex-row gap-5">
+          {/* three */}
+          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 flex-1 rounded-3xl p-3">
+            <div className="w-full h-[150px] border border-bronze-500/30 rounded-2xl"></div>
+            <div className="relative space-y-1 px-2 py-1">
+              <p className="text-2xl text-bronze-300">Responsive Design</p>
+              <p className="">Perfect on every device</p>
+            </div>
+          </div>
+          {/* four */}
+          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 flex-1 rounded-3xl p-3">
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <div className="absolute -bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 size-72 rounded-full bg-bronze-700/40 flex-center blur-xl">
+                <div className="absolute size-[70%] rounded-full bg-bronze-700"></div>
+                <div className="absolute size-[10%] rounded-full bg-bronze-100"></div>
               </div>
             </div>
-          ))}
+
+            <div className="relative space-y-1 px-2 py-1 text-center">
+              <p className="text-2xl text-bronze-300">Lightning Fast</p>
+              <p className="">Optimized performance</p>
+            </div>
+            <div className="w-full h-[150px] border border-bronze-500/30 rounded-2xl"></div>
+          </div>
+          {/* five */}
+          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 flex-1 rounded-3xl p-3">
+            <div className="w-full h-[150px] border border-bronze-500/30 rounded-2xl"></div>
+            <div className="relative space-y-1 px-2 py-1 text-right">
+              <p className="text-2xl text-bronze-300">SEO Optimization</p>
+              <p className="">Rank higher, reach further</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

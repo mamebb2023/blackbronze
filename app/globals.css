@@ -1,22 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --color-bronze-100: FFE0B8;
-  --color-bronze-300: F0BF7E;
-  --color-bronze-500: AA7939;
-  --color-bronze-700: 643F0E;
-  --color-bronze-900: 1E1100;
-
-
-  --color-bronze: #C9A84C;
-  --color-bronze-dark: #8C6A3D;
-  --color-bronze-light: #d2bb84;
+  --color-bronze-100: #FFE0B8;
+  --color-bronze-300: #F0BF7E;
+  --color-bronze-500: #AA7939;
+  --color-bronze-700: #643F0E;
+  --color-bronze-900: #1E1100;
 }
 
 @theme inline {
-  --color-bronze: var(--color-bronze);
-  --color-bronze-dark: var(--color-bronze-dark);
-  --color-bronze-light: var(--color-bronze-light);
+  --color-bronze-100: var(--color-bronze-100);
+  --color-bronze-300: var(--color-bronze-300);
+  --color-bronze-500: var(--color-bronze-500);
+  --color-bronze-700: var(--color-bronze-700);
+  --color-bronze-900: var(--color-bronze-900);
 
   --font-tektur: var(--font-tektur);
   --font-noto_serif: var(--font-noto_serif);
@@ -29,8 +26,8 @@
 }
 
 ::selection {
-  background-color: #464646;
-  color: #fff;
+  background-color: var(--color-bronze-300);
+  color: var(--color-bronze-900);
 }
 
 ::-webkit-scrollbar {
