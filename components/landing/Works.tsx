@@ -17,7 +17,7 @@ const Works = () => {
         </div>
       </div>
 
-      <div className="h-[60vh] bg-gradient-to-b from-white via-bronze-500-dark/50 to-black" />
+      <div className="h-[70vh] bg-gradient-to-b from-white via-bronze-500/50 to-black" />
     </div>
   );
 };

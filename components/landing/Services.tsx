@@ -1,9 +1,22 @@
 "use client";
 
-import { services } from "@/constants";
+// import { services } from "@/constants";
 import { Tag } from "../ui/Tag";
+import Lottie, { LottieRefCurrentProps } from "lottie-react";
+import animationData from "@/public/lottie/lightning.json";
+import { useRef } from "react";
 
 const Services = () => {
+  const lottieRef = useRef<LottieRefCurrentProps>(null);
+
+  const handleMouseEnter = () => {
+    lottieRef.current?.play();
+  };
+
+  const handleMouseLeave = () => {
+    lottieRef.current?.stop();
+  };
+
   return (
     <div id="services" className="min-h-screen px-6 py-20 flex-center gap-4 flex-col">
       <div className="flex-center flex-col gap-3">
@@ -19,7 +32,7 @@ const Services = () => {
         {/* top two */}
         <div className="relative flex gap-3 flex-col md:flex-row gap-5">
           {/* one */}
-          <div className="relative border border-bronze-500/30 flex-1 rounded-3xl p-3">
+          <div className="relative border border-bronze-500/30 hover:border-bronze-500/50 transition-all flex-1 rounded-3xl p-3">
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <div className="absolute bottom-0 translate-y-1/2 left-0 -translate-x-1/4 size-80 rounded-full bg-bronze-700/40 flex-center blur-2xl">
                 <div className="absolute size-[60%] rounded-full bg-bronze-700" />
@@ -35,7 +48,7 @@ const Services = () => {
           </div>
 
           {/* two */}
-          <div className="relative border border-bronze-500/30 flex-1 rounded-3xl p-3">
+          <div className="relative border border-bronze-500/30 hover:border-bronze-500/50 transition-all flex-1 rounded-3xl p-3">
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <div className="absolute top-0 -translate-y-1/2 right-0 translate-x-1/4 size-80 rounded-full bg-bronze-700/40 flex-center blur-2xl">
                 <div className="absolute size-[60%] rounded-full bg-bronze-700" />
@@ -54,8 +67,17 @@ const Services = () => {
         {/* bottom three */}
         <div className="flex flex-col md:flex-row gap-5">
           {/* three */}
-          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 flex-1 rounded-3xl p-3">
-            <div className="w-full h-[150px] border border-bronze-500/30 rounded-2xl"></div>
+          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 hover:border-bronze-500/50 transition-all flex-1 rounded-3xl p-3 overflow-hidden">
+            <div className="absolute top-0 left-0 -translate-x-1/7 -translate-y-1/7 -rotate-45 flex gap-3 blur-md">
+              {[1, 2, 3, 2, 1].map((n, index) => (
+                <div
+                  key={index}
+                  className="bg-gradient-to-b from-bronze-500 to-transparent rounded-[50%]"
+                  style={{ width: `${n * 15}px`, height: `${n * 70}px` }}
+                />
+              ))}
+            </div>
+            <div className="w-full h-[150px] border-r border-b border-bronze-500/30 rounded-2xl"></div>
             <div className="relative space-y-1 px-2 py-1">
               <p className="text-2xl text-bronze-300">Responsive Design</p>
               <p className="">Perfect on every device</p>
@@ -63,7 +85,7 @@ const Services = () => {
           </div>
 
           {/* four */}
-          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 flex-1 rounded-3xl p-3">
+          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 hover:border-bronze-500/50 transition-all flex-1 rounded-3xl p-3">
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <div className="absolute -bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 size-72 rounded-full bg-bronze-700/40 flex-center blur-xl">
                 <div className="absolute size-[70%] rounded-full bg-bronze-700" />
@@ -74,12 +96,31 @@ const Services = () => {
               <p className="text-2xl text-bronze-300">Lightning Fast</p>
               <p className="">Optimized performance</p>
             </div>
-            <div className="w-full h-[150px] border-x border-t border-bronze-500/30 rounded-2xl"></div>
+            <div className="w-full h-[150px] border-x border-t border-bronze-500/30 rounded-2xl"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <Lottie
+                lottieRef={lottieRef}
+                animationData={animationData}
+                loop={false}
+                autoplay={false}
+              />
+            </div>
           </div>
 
           {/* five */}
-          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 flex-1 rounded-3xl p-3">
-            <div className="w-full h-[150px] border border-bronze-500/30 rounded-2xl"></div>
+          <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 hover:border-bronze-500/50 transition-all flex-1 rounded-3xl p-3 overflow-hidden">
+            <div className="absolute top-0 right-0 translate-x-1/7 -translate-y-1/7 rotate-45 flex gap-3 blur-md">
+              {[1, 2, 3, 2, 1].map((n, index) => (
+                <div
+                  key={index}
+                  className="bg-gradient-to-b from-bronze-500 to-transparent rounded-[50%]"
+                  style={{ width: `${n * 15}px`, height: `${n * 70}px` }}
+                />
+              ))}
+            </div>
+            <div className="w-full h-[150px] border-l border-b border-bronze-500/30 rounded-2xl"></div>
             <div className="relative space-y-1 px-2 py-1 text-right">
               <p className="text-2xl text-bronze-300">SEO Optimization</p>
               <p className="">Rank higher, reach further</p>
@@ -87,7 +128,7 @@ const Services = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
