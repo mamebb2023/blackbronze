@@ -44,7 +44,9 @@ const Services = () => {
               <p className="text-2xl text-bronze-300">Custom Web Design</p>
               <p className="">Bespoke websites tailored to your brand identity</p>
             </div>
-            <div className="w-full h-[200px] rounded-2xl"></div>
+            <div className="w-full h-[200px] rounded-2xl flex-center">
+              {/* here */}
+            </div>
           </div>
 
           {/* two */}
@@ -56,7 +58,9 @@ const Services = () => {
               </div>
             </div>
 
-            <div className="w-full h-[200px] rounded-2xl"></div>
+            <div className="w-full h-[200px] rounded-2xl flex-center">
+              {/* here */}
+            </div>
             <div className="relative space-y-1 px-2 py-1">
               <p className="text-2xl text-bronze-300">Brand Identity</p>
               <p className="">Cohesive visual language across all touchpoints</p>
@@ -77,7 +81,9 @@ const Services = () => {
                 />
               ))}
             </div>
-            <div className="w-full h-[150px] rounded-2xl"></div>
+            <div className="w-full h-[150px] rounded-2xl flex-center">
+              {/* here */}
+            </div>
             <div className="relative space-y-1 px-2 py-1">
               <p className="text-2xl text-bronze-300">Responsive Design</p>
               <p className="">Perfect on every device</p>
@@ -123,7 +129,9 @@ const Services = () => {
                 />
               ))}
             </div>
-            <div className="w-full h-[150px] rounded-2xl"></div>
+            <div className="w-full h-[150px] rounded-2xl flex-center">
+              {/* here */}
+            </div>
             <div className="relative space-y-1 px-2 py-1 text-right">
               <p className="text-2xl text-bronze-300">SEO Optimization</p>
               <p className="">Rank higher, reach further</p>
