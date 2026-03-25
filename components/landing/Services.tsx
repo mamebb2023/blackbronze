@@ -154,6 +154,6 @@ const Services = () => {
       </div>
     </div >
   );
-}; update
+};
 
 export default Services;
