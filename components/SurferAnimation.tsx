@@ -13,6 +13,7 @@ const imageSources = [
   { text: "Surfer 2", link: "/hero/img-2.png" },
   { text: "Surfer 3", link: "/hero/img-3.png" },
   { text: "Surfer 4", link: "/hero/img-4.jpg" },
+  { text: "Surfer 9", link: "/hero/unleash.png" },
   { text: "Surfer 5", link: "/hero/img-5.png" },
   { text: "Surfer 6", link: "/hero/img-6.png" },
   { text: "Surfer 7", link: "/hero/img-7.png" },

@@ -3,8 +3,10 @@
 // import { services } from "@/constants";
 import { Tag } from "../ui/Tag";
 import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import animationData from "@/public/lottie/lightning.json";
+import lightning from "@/public/lottie/lightning.json";
+import ux from "@/public/lottie/ux.json";
 import { useRef } from "react";
+import Image from "next/image";
 
 const Services = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
@@ -41,7 +43,7 @@ const Services = () => {
             </div>
 
             <div className="relative space-y-1 px-2 py-1 text-right">
-              <p className="text-2xl text-bronze-300">Custom Web Design</p>
+              <p className="text-2xl text-bronze-300">Custom Web Development</p>
               <p className="">Bespoke websites tailored to your brand identity</p>
             </div>
             <div className="w-full h-[200px] rounded-2xl flex-center">
@@ -72,6 +74,15 @@ const Services = () => {
         <div className="flex flex-col md:flex-row gap-5">
           {/* three */}
           <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 hover:border-bronze-500/50 transition-all duration-500 flex-1 rounded-3xl p-3 overflow-hidden">
+            <div className="w-full h-[150px] translate-x-1/4 translate-y-3">
+              {/* <Image
+                src="/services/devices.png"
+                alt="Responsive Design"
+                width={1000}
+                height={1000}
+                className="rounded-2xl opacity-80"
+              /> */}
+            </div>
             <div className="absolute top-0 left-0 -translate-x-1/7 -translate-y-1/7 -rotate-45 flex gap-3 blur-md">
               {[1, 2, 3, 2, 1].map((n, index) => (
                 <div
@@ -80,9 +91,6 @@ const Services = () => {
                   style={{ width: `${n * 15}px`, height: `${n * 70}px` }}
                 />
               ))}
-            </div>
-            <div className="w-full h-[150px] rounded-2xl flex-center">
-              {/* here */}
             </div>
             <div className="relative space-y-1 px-2 py-1">
               <p className="text-2xl text-bronze-300">Responsive Design</p>
@@ -106,15 +114,15 @@ const Services = () => {
               <p className="">Optimized performance</p>
             </div>
             <div className="w-full h-[150px] rounded-2xl flex-center">
-              <div className="flex-center rounded-full border border-bronze-500/30 group-hover:border-bronze-500/50 transition-all duration-500">
+              {/* <div className="flex-center rounded-full border border-bronze-500/30 group-hover:border-bronze-500/50 transition-all duration-500">
                 <Lottie
                   lottieRef={lottieRef}
                   className="h-35"
-                  animationData={animationData}
+                  animationData={lightning}
                   loop={false}
                   autoplay={false}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -130,17 +138,22 @@ const Services = () => {
               ))}
             </div>
             <div className="w-full h-[150px] rounded-2xl flex-center">
-              {/* here */}
+              {/* <Lottie
+                className="h-35"
+                animationData={ux}
+                loop={true}
+                autoplay={true}
+              /> */}
             </div>
             <div className="relative space-y-1 px-2 py-1 text-right">
-              <p className="text-2xl text-bronze-300">SEO Optimization</p>
-              <p className="">Rank higher, reach further</p>
+              <p className="text-2xl text-bronze-300">User Experience</p>
+              <p className="">Crafting immersive web interactions</p>
             </div>
           </div>
         </div>
       </div>
     </div >
   );
-};
+}; update
 
 export default Services;
