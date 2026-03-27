@@ -122,8 +122,8 @@ const WorksIntro = () => {
               transition={{ duration: 0.5, delay: 0, staggerChildren: 0.1 }}
               className="absolute text-center text-3xl md:text-5xl max-w-3xl font-thin"
             >
-              <p className="text-transparent bg-clip-text bg-gradient-to-br from-black to-bronze-500 leading-14">We design and build modern,</p>
-              <div className="flex-center text-transparent bg-clip-text bg-gradient-to-tr from-black to-bronze-500">
+              <p className="text-transparent bg-clip-text bg-gradient-to-br from-black to-bronze-300 leading-14">We design and build modern,</p>
+              <div className="flex-center text-transparent bg-clip-text bg-gradient-to-tr from-black to-bronze-300">
                 <span className="relative w-32 h-14 rounded-full border border-bronze-100 inline-block mx-2 overflow-hidden">
                   <Image
                     src="/hero/unleash.png"
@@ -135,8 +135,8 @@ const WorksIntro = () => {
                 </span>
                 high-performance
               </div>
-              <p className="text-transparent bg-clip-text bg-gradient-to-bl from-black to-bronze-500 leading-14">websites that help businesses</p>
-              <div className="flex-center text-transparent bg-clip-text bg-gradient-to-tl from-black to-bronze-500">
+              <p className="text-transparent bg-clip-text bg-gradient-to-bl from-black to-bronze-300 leading-14">websites that help businesses</p>
+              <div className="flex-center text-transparent bg-clip-text bg-gradient-to-tl from-black to-bronze-300">
                 grow online.
                 <span className="relative w-32 h-14 rounded-full border border-bronze-100 inline-block mx-2 overflow-hidden">
                   <Image

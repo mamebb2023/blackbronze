@@ -1,4 +1,4 @@
-export const projects = [
+export const works = [
   {
     title: "E-Commerce Platform",
     description:
