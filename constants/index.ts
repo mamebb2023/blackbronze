@@ -1,37 +1,86 @@
 export const works = [
   {
-    title: "E-Commerce Platform",
-    description:
-      "A modern, scalable e-commerce solution with React and Node.js",
+    title: "LotusFlow",
+    mini_title: "AI-Powered React Component Generator",
+    description: "AI-powered tool to generate React components just from text prompts.",
     color:
       "bg-gradient-to-tr from-blue-950/80 via-transparent to-transparent",
     textColor: "text-blue-300",
-    image: "/work-1.jpg",
+    images: [
+      "/assets/lotusflow/lotusflow-1.png",
+      "/assets/lotusflow/lotusflow-2.png",
+      "/assets/lotusflow/lotusflow-3.png",
+      "/assets/lotusflow/lotusflow-4.png",
+      "/assets/lotusflow/lotusflow-5.png",
+      "/assets/lotusflow/lotusflow-6.png",
+    ],
   },
   {
-    title: "Financial Dashboard",
+    color: "#6BCF91",
+    title: "WeMD Africa",
+    mini_title: "Online Dermatology Clinic",
+    description: "Connecting patients with dermatologists across Africa.",
+    links: { live: "https://wemd-africa.vercel.app/" },
+    features: [
+      "Light/Dark Theme",
+      "Fully Responsive",
+      "Localization (English and Amharic)",
+      "Doctor Consultation Stepped Form",
+      "Chat Page",
+      "Animations ...",
+    ],
+    logo: "/assets/wemd/wemd-logo.webp",
+    images: [
+      "/assets/wemd/wemd-1.jpg",
+      "/assets/wemd/wemd-2.jpg",
+      "/assets/wemd/wemd-3.jpg",
+      "/assets/wemd/wemd-4.jpg",
+      "/assets/wemd/wemd-5.jpg",
+      "/assets/wemd/wemd-6.jpg",
+    ],
+  },
+  {
+    color: "#00D9FF",
+    forClient: true,
+    title: "SanAI",
+    mini_title: "Your Personal AI Doctor",
+    description: "AI-powered health assistant for personalized care.",
+    links: { live: "https://sanai-nu.vercel.app/" },
+    features: [
+      "AI Voice Chatbot",
+      "Image Recognition",
+      "Symptom Checker",
+      "Health Tips",
+      "Personalized Health Insights",
+      "Responsive Design",
+    ],
+    logo: "/assets/sanai/sanai-logo.png",
+    images: [
+      "/assets/sanai/sanai-1.png",
+      "/assets/sanai/sanai-2.png",
+      "/assets/sanai/sanai-3.png",
+      "/assets/sanai/sanai-4.png",
+      "/assets/sanai/sanai-5.png",
+      "/assets/sanai/sanai-6.png",
+    ],
+  },
+  {
+    color: "#1010a0",
+    title: "CalHabit",
+    mini_title: "Habit tracking web app",
     description:
-      "Real-time analytics dashboard for financial data visualization",
-    color:
-      "bg-gradient-to-tr from-emerald-950/80 via-transparent to-transparent",
-    textColor: "text-emerald-300",
-    image: "/work-2.jpg",
-  },
-  {
-    title: "Social Media App",
-    description: "Mobile-first social platform with real-time messaging",
-    color:
-      "bg-gradient-to-tr from-purple-950/80 via-transparent to-transparent",
-    textColor: "text-purple-300",
-    image: "/work-3.jpg",
-  },
-  {
-    title: "Portfolio Website",
-    description: "Creative portfolio website with advanced animations",
-    color:
-      "bg-gradient-to-tr from-rose-950/80 via-transparent to-transparent",
-    textColor: "text-rose-300",
-    image: "/work-4.jpg",
+      "Modern habit tracker designed to help you stay on top of your goals",
+    links: { live: "https://cal-habit.vercel.app/", code: "https://github.com/mamebb2023/CalHabit" },
+    features: ["Easy Habit Tracking", "Responsive Design"],
+    logo: "/assets/calhabit/calhabit-logo.png",
+    images: [
+      "/assets/calhabit/calhabit-1.png",
+      "/assets/calhabit/calhabit-2.png",
+      "/assets/calhabit/calhabit-3.png",
+      "/assets/calhabit/calhabit-4.png",
+      "/assets/calhabit/calhabit-5.png",
+      "/assets/calhabit/calhabit-6.png",
+    ],
   },
   {
     title: "SaaS Platform",
@@ -40,6 +89,14 @@ export const works = [
       "bg-gradient-to-tr from-amber-950/80 via-transparent to-transparent",
     textColor: "text-amber-300",
     image: "/work-5.jpg",
+    images: [
+      "/assets/saas/saas-1.png",
+      "/assets/saas/saas-2.png",
+      "/assets/saas/saas-3.png",
+      "/assets/saas/saas-4.png",
+      "/assets/saas/saas-5.png",
+      "/assets/saas/saas-6.png",
+    ]
   },
 ];
 
