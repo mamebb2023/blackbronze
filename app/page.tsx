@@ -4,8 +4,6 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
-// import Works from "@/components/landing/Works";
-// import Contact from "@/components/landing/Contact";
 import Cta from "@/components/landing/Cta";
 import Footer from "@/components/landing/Footer";
 import { HeaderThemeProvider } from "@/contexts/HeaderThemeContext";
@@ -36,11 +34,9 @@ export default function Page() {
           <>
             <Header />
             <Hero />
-            <Works />
-            <Services />
             {/* <Works /> */}
-            {/* <Contact /> */}
-            <Cta />
+            <Services />
+            {/* <Cta /> */}
             <Footer />
           </>
         )}
