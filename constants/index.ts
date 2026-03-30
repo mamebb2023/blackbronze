@@ -1,3 +1,10 @@
+export const links = [
+  { href: "#services", label: "Services" },
+  { href: "#works", label: "Works" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+];
+
 export const works = [
   {
     title: "LotusFlow",

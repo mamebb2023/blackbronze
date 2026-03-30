@@ -4,14 +4,14 @@ import { ReactNode, useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  FaDribbble,
-  FaGithub,
+  FaFacebook,
   FaLinkedinIn,
   FaXTwitter,
 } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { useHeaderTheme } from "@/contexts/HeaderThemeContext";
+import { links } from "@/constants";
 
 export default function Header() {
   const { isDark } = useHeaderTheme();
@@ -41,24 +41,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigationLinks = [
-    { href: "#services", label: "Services" },
-    { href: "#works", label: "Works" },
-    { href: "#about", label: "About" },
-    { href: "#contact", label: "Contact" },
-  ];
-
-  const socialLinks = [
+  const socials = [
     { label: "Twitter", href: "#", Icon: FaXTwitter },
     { label: "LinkedIn", href: "#", Icon: FaLinkedinIn },
-    { label: "GitHub", href: "#", Icon: FaGithub },
-    { label: "Dribbble", href: "#", Icon: FaDribbble },
+    { label: "FaceBook", href: "#", Icon: FaFacebook },
   ];
 
   return (
-    <motion.div
-      id="header"
-    >
+    <motion.div id="header">
       {/* Logo - Top Left */}
       <motion.div
         animate={hideHeader ? "hidden" : "visible"}
@@ -131,7 +121,7 @@ export default function Header() {
         className="fixed top-5 right-5 z-999"
       >
         <nav className="hidden md:flex items-center space-x-1">
-          {navigationLinks.map((link, index) => (
+          {links.map((link, index) => (
             <Reveal key={link.href} index={index}>
               <Link
                 href={link.href}
@@ -180,7 +170,7 @@ export default function Header() {
         className="fixed bottom-5 right-5 z-999"
       >
         <div className="flex gap-3">
-          {socialLinks.map((social, index) => {
+          {socials.map((social, index) => {
             const Icon = social.Icon;
             return (
               <Reveal key={social.label} index={index}>

@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Tektur, Montserrat, Noto_Serif } from "next/font/google";
+import { Tektur, Montserrat, Noto_Serif, Geist } from "next/font/google";
 import "./globals.css";
 import "@/styles/styles.css"
 import ReactLenis from "lenis/react";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -35,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
         className={`${montserrat.className} ${tektur.variable} ${noto_serif.variable} antialiased bg-black text-white`}
       >

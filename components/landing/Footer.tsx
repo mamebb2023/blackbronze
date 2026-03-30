@@ -1,181 +1,113 @@
-"use client";
-
-import Link from "next/link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import {
-  BsTwitterX,
-  BsInstagram,
-  BsLinkedin,
-  BsBehance,
-} from "react-icons/bs";
-import { BsArrowUpRight } from "react-icons/bs";
-import Logo from "../ui/Logo";
-
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "#services" },
-  { label: "Works", href: "#works" },
-  { label: "Contact", href: "#contact" },
-];
-
-const socialLinks = [
-  { icon: BsTwitterX, label: "X / Twitter", href: "https://x.com" },
-  { icon: BsInstagram, label: "Instagram", href: "https://instagram.com" },
-  { icon: BsLinkedin, label: "LinkedIn", href: "https://linkedin.com" },
-  { icon: BsBehance, label: "Behance", href: "https://behance.net" },
-];
+import { links } from '@/constants';
+import Logo from '../ui/Logo'
+import Link from 'next/link'
+import { FaFacebook, FaLinkedinIn, FaXTwitter } from 'react-icons/fa6';
+import Globe from '@/components/ui/globe'
 
 const Footer = () => {
-  const year = new Date().getFullYear();
+  const socials = [
+    { label: "Twitter", href: "#", Icon: FaXTwitter },
+    { label: "LinkedIn", href: "#", Icon: FaLinkedinIn },
+    { label: "FaceBook", href: "#", Icon: FaFacebook },
+  ];
 
   return (
-    <footer id="footer" className="relative bg-[#0B0B0B] text-white overflow-hidden">
+    <div id="footer" className="relative min-h-screen overflow-hidden flex flex-col">
       {/* Top gradient border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-bronze-500/60 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-bronze-500 to-transparent" />
 
-      {/* Ambient glow */}
-      <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-bronze-500/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-bronze-500/20 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-10">
+      <div className="absolute right-0 bottom-1/4 w-40 h-[500px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] rotate-45 opacity-80 blur-2xl" />
 
-        {/* Upper grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 pb-16 border-b border-white/5">
+      <div className="absolute left-0 bottom-32 w-32 h-[600px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] -rotate-30 opacity-80 blur-2xl" />
 
-          {/* Brand column */}
-          <div className="flex flex-col gap-5">
-            <div>
-              <Link href="/">
-                {/* <Image
-                  src="/bb-logo-white.png"
-                  alt="BlackBronze Logo"
-                  width={32}
-                  height={32}
-                  className="size-10 object-contain"
-                /> */}
-                <Logo />
-              </Link>
-              <p className="mt-3 text-sm text-zinc-500 leading-relaxed max-w-xs">
-                A web agency creating considered digital experiences for
-                businesses that value quality over noise.
-              </p>
-            </div>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none">
+        <h1 className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
+          BLACKBRONZE
+        </h1>
+      </div>
 
-            {/* Social icons */}
-            <div className="flex items-center gap-3 mt-2">
-              {socialLinks.map(({ icon: Icon, label, href }) => (
-                <motion.a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={label}
-                  whileHover={{ y: -2, scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                  className="w-9 h-9 rounded-full border border-bronze-500/20 bg-white/5 flex-center text-zinc-400 hover:text-white hover:border-bronze-500/80 transition-colors"
-                >
-                  <Icon className="text-sm" />
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Navigation */}
-          <div>
-            <p
-              className="text-[11px] uppercase tracking-widest text-zinc-600 mb-5"
-              style={{ fontFamily: "var(--font-tektur)" }}
-            >
-              Navigation
-            </p>
-            <ul className="flex flex-col gap-3">
-              {navLinks.map(({ label, href }) => (
-                <li key={label}>
-                  <Link
-                    href={href}
-                    className="group flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
-                  >
-                    <span className="w-4 h-px bg-zinc-700 group-hover:w-6 group-hover:bg-bronze-500 transition-all duration-300" />
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* CTA / Contact */}
-          <div>
-            <p
-              className="text-[11px] uppercase tracking-widest text-zinc-600 mb-5"
-              style={{ fontFamily: "var(--font-tektur)" }}
-            >
-              Start a project
-            </p>
-            <p className="text-sm text-zinc-500 leading-relaxed mb-6">
-              Have an idea in mind? Let&apos;s turn it into something
-              remarkable.
-            </p>
-            <motion.a
-              href="#contact"
-              whileHover={{ x: 3 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center gap-2 text-sm font-medium text-zinc-300 hover:text-white border border-bronze-500/40 hover:border-white/20 rounded-full px-5 py-2.5 transition-colors"
-            >
-              Let&apos;s talk
-              <BsArrowUpRight className="text-xs" />
-            </motion.a>
-
-            <div className="mt-8 pt-6 border-t border-white/5">
-              <p className="text-[11px] text-zinc-600 uppercase tracking-widest mb-1">
-                Email
-              </p>
-              <a
-                href="mailto:hello@blackbronze.studio"
-                className="text-sm text-zinc-400 hover:text-white transition-colors"
-              >
-                hello@blackbronze.tech
-              </a>
-            </div>
-          </div>
+      <div className="relative flex md:flex-row gap-5 p-5 md:p-12 h-[500px]">
+        <div className="absolute inset-0 rounded-[50px] p-5 md:p-12">
+          <div className="h-full border-8 border-bronze-300 rounded-[50px] blur-xl" />
         </div>
 
-        {/* Large wordmark */}
-        <div className="relative py-10 overflow-hidden select-none">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap"
-            style={{ fontFamily: "var(--font-tektur)" }}
-          >
-            BLACKBRONZE
-          </motion.p>
-        </div>
+        <div className="relative border border-bronze-300/20 rounded-[50px] flex-1 flex-center text-center text-white overflow-hidden">
+          <div className="absolute -bottom-1/4 translate-y-1/2 left-1/2 -translate-x-1/2">
+            <Globe
+              size={{ height: 700, width: 700 }}
+              baseColor="#120a00"
+              markerColor="#be6f00"
+              glowColor="#ffdac9"
+              arcColor="#be6f00"
+              markers={[
+                { location: [140.7128, -74.006], size: 0.03, },
+                { location: [37.7749, -122.4194], size: 0.03, },
 
-        {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-white/5">
-          <p className="text-xs text-zinc-600">
-            &copy; {year} BlackBronze Studio. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/privacy"
-              className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-xs text-zinc-600 hover:text-zinc-400 transition-colors"
-            >
-              Terms of Use
-            </Link>
+                { location: [-37.7595, -62.4367], size: 0.03, },
+                { location: [47.7595, 22.4367], size: 0.03, },
+              ]}
+              arcs={[
+                { startLat: 37.7749, startLng: -122.4194, endLat: 140.7128, endLng: -74.006 },
+                { startLat: -37.7595, startLng: -62.4367, endLat: 47.7595, endLng: 22.4367 },
+              ]}
+            />
           </div>
         </div>
       </div>
-    </footer>
-  );
-};
 
-export default Footer;
+      <div className="relative flex-1 max-w-7xl flex justify-between flex-col min-h-[60vh]">
+        <div />
+
+        <div className="flex flex-col md:flex-row justify-between md:items-center gap-5 p-5 md:p-14">
+          <div>
+            <Link href="/">
+              <Logo />
+            </Link>
+            <p className="mt-3 text-sm text-zinc-500 leading-relaxed max-w-xs">
+              A web agency creating considered digital experiences for
+              businesses that value quality over noise.
+            </p>
+          </div>
+          <nav className="flex flex-col gap-3">
+            <h1 className="text-lg font-bold text-white" style={{ fontFamily: "var(--font-tektur)" }}>Navigation</h1>
+            {links.map((link, i) => (
+              <Link
+                key={i}
+                href={link.href}
+                className="group flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+              >
+                <span className="w-4 h-px bg-zinc-700 group-hover:w-6 group-hover:bg-bronze-500 transition-all duration-300" />
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <nav className="flex gap-3 items-center">
+            {socials.map((social, i) => {
+              const Icon = social.Icon;
+              return (
+                <Link
+                  key={i}
+                  href={social.href}
+                  className={`relative overflow-hidden group size-10 rounded-lg flex items-center justify-center transition-all duration-500 border border-bronze-300/20 text-white`}
+                  aria-label={social.label}
+                  target="_blank"
+                >
+                  <div
+                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 bg-bronze-500`}
+                  />
+                  <Icon className="text-lg relative" />
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-5 p-5 md:p-14"></div>
+      </div>
+    </div>
+  )
+}
+
+export default Footer
