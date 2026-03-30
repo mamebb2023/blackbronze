@@ -2,22 +2,22 @@
 
 // import { services } from "@/constants";
 import { Tag } from "../ui/Tag";
-import Lottie, { LottieRefCurrentProps } from "lottie-react";
+// import Lottie, { LottieRefCurrentProps } from "lottie-react";
 import lightning from "@/public/lottie/lightning.json";
 import ux from "@/public/lottie/ux.json";
 import { useRef } from "react";
 import Image from "next/image";
 
 const Services = () => {
-  const lottieRef = useRef<LottieRefCurrentProps>(null);
+  //   const lottieRef = useRef<LottieRefCurrentProps>(null);
 
-  const handleMouseEnter = () => {
-    lottieRef.current?.play();
-  };
+  //   const handleMouseEnter = () => {
+  //     lottieRef.current?.play();
+  //   };
 
-  const handleMouseLeave = () => {
-    lottieRef.current?.stop();
-  };
+  //   const handleMouseLeave = () => {
+  //     lottieRef.current?.stop();
+  //   };
 
   return (
     <div id="services" className="min-h-screen px-6 py-20 flex-center gap-4 flex-col">
@@ -100,8 +100,8 @@ const Services = () => {
 
           {/* four */}
           <div className="relative flex flex-col gap-3 justify-between border border-bronze-500/30 hover:border-bronze-500/50 transition-all duration-500 flex-1 rounded-3xl p-3 group"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+          // onMouseEnter={handleMouseEnter}
+          // onMouseLeave={handleMouseLeave}
           >
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <div className="absolute -bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 size-72 rounded-full bg-bronze-700/40 flex-center blur-xl">

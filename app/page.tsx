@@ -4,14 +4,14 @@ import LoadingScreen from "@/components/LoadingScreen";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import Services from "@/components/landing/Services";
-import Cta from "@/components/landing/Cta";
+// import Cta from "@/components/landing/Cta";
 import Footer from "@/components/landing/Footer";
 import { HeaderThemeProvider } from "@/contexts/HeaderThemeContext";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Works from "@/components/landing/Works";
+// import Works from "@/components/landing/Works";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);

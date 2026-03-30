@@ -7,7 +7,7 @@ import { Tag } from "../ui/Tag";
 import SurferAnimation from "../SurferAnimation";
 import MouseAnimation from "../MouseAnimation";
 import Link from "next/link";
-import { BsStars } from "react-icons/bs";
+// import { BsStars } from "react-icons/bs";
 
 const Hero = () => {
   return (
@@ -16,12 +16,12 @@ const Hero = () => {
       <div className="absolute z-199 bottom-0 w-full h-24 bg-linear-to-b from-transparent to-black" />
 
       {/* <ScrollParallax strength={0.2} isAbsolutelyPositioned>
-        <div className="absolute -top-1/2 left-0 flex-center">
+        <div className="absolute bottom-0 left-1/2 translate-y-1/2 -translate-x-1/2 flex-center">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-            className="size-[900px] bg-white/10 blur-3xl rounded-[50%] flex-center z-299"
+            className="size-[900px] bg-bronze-500/20 blur-3xl rounded-[50%] flex-center z-299"
           />
         </div>
       </ScrollParallax> */}
@@ -43,17 +43,17 @@ const Hero = () => {
             </div>
 
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-bronze-700">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-bronze-500">
                 Websites built with clarity,
               </span>
               <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-bronze-700 to-white">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-bronze-500 to-white">
                 purpose, and longevity.
               </span>
             </h1>
 
             <p className="md:text-md text-gray-400 max-w-xl leading-relaxed">
-              A web agency creating considered digital experiences for businesses that value quality over nois
+              A web agency creating considered digital experiences for businesses that value quality over noise.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6">
