@@ -105,8 +105,8 @@ const Services = () => {
           >
             <div className="absolute inset-0 overflow-hidden rounded-3xl">
               <div className="absolute -bottom-0 translate-y-1/2 left-1/2 -translate-x-1/2 size-72 rounded-full bg-bronze-700/40 flex-center blur-xl">
-                <div className="absolute size-[70%] rounded-full bg-bronze-700" />
-                <div className="absolute size-[20%] rounded-full bg-bronze-100" />
+                <div className="absolute size-[70%] rounded-full bg-bronze-700/50" />
+                <div className="absolute size-[20%] rounded-full bg-bronze-/70" />
               </div>
             </div>
             <div className="relative space-y-1 px-2 py-1 text-center">

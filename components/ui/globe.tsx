@@ -28,81 +28,8 @@ const Globe = (
   const updatedArcColor = hexToRgbNormalized(arcColor)
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // const globeRef = useRef<any>(null);
-  // const phiRef = useRef(0);
-  // const thetaRef = useRef(theta);
-  // const isDragging = useRef(false);
-  // const lastMouseX = useRef(0);
-  // const lastMouseY = useRef(0);
-  // const autoRotateSpeed = 0.003;
-
-  // useEffect(() => {
-  //   // Mouse handlers
-  //   const canvas = canvasRef.current;
-  //   if (!canvas) return;
-
-  //   const onMouseDown = (e: MouseEvent) => {
-  //     isDragging.current = true;
-  //     lastMouseX.current = e.clientX;
-  //     lastMouseY.current = e.clientY;
-  //     canvas.style.cursor = "grabbing";
-  //   };
-
-  //   const onMouseMove = (e: MouseEvent) => {
-  //     if (isDragging.current) {
-  //       const deltaX = e.clientX - lastMouseX.current;
-  //       const deltaY = e.clientY - lastMouseY.current;
-  //       const rotationSpeed = 0.005;
-
-  //       phiRef.current += deltaX * rotationSpeed;
-  //       thetaRef.current = Math.max(
-  //         -Math.PI / 2,
-  //         Math.min(Math.PI / 2, thetaRef.current - deltaY * rotationSpeed)
-  //       );
-
-  //       lastMouseX.current = e.clientX;
-  //       lastMouseY.current = e.clientY;
-  //     }
-  //   };
-
-  //   const onMouseUp = () => {
-  //     isDragging.current = false;
-  //     canvas.style.cursor = "grab";
-  //   };
-
-  //   const onMouseLeave = () => {
-  //     if (isDragging.current) {
-  //       isDragging.current = false;
-  //       canvas.style.cursor = "grab";
-  //     }
-  //   };
-
-  //   // Initialize and attach listeners
-  //   initGlobe();
-  //   canvas.addEventListener("mousedown", onMouseDown);
-  //   canvas.addEventListener("mousemove", onMouseMove);
-  //   canvas.addEventListener("mouseup", onMouseUp);
-  //   canvas.addEventListener("mouseleave", onMouseLeave);
-
-  //   const handleResize = () => {
-  //     initGlobe();
-  //   };
-  //   window.addEventListener("resize", handleResize);
-
-  //   return () => {
-  //     window.removeEventListener("resize", handleResize);
-  //     if (canvas) {
-  //       canvas.removeEventListener("mousedown", onMouseDown);
-  //       canvas.removeEventListener("mousemove", onMouseMove);
-  //       canvas.removeEventListener("mouseup", onMouseUp);
-  //       canvas.removeEventListener("mouseleave", onMouseLeave);
-  //     }
-  //     if (globeRef.current) {
-  //       globeRef.current.destroy();
-  //       globeRef.current = null;
-  //     }
-  //   };
-  // }, [])
+  const globeRef = useRef<any>(null);
+  const animationFrameRef = useRef<number>(0);
 
   const normalizedMarkers = useMemo(() => {
     return markers.map((m) => ({
@@ -119,19 +46,24 @@ const Globe = (
   }, [arcs]);
 
   useEffect(() => {
-    let canvas = document.getElementById("cobe") as HTMLCanvasElement
-    if (!canvas) return
+    let canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Destroy existing globe instance
+    if (globeRef.current) {
+      globeRef.current.destroy();
+    }
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: 2,
-      width: 1000,
-      height: 1000,
+      devicePixelRatio: 1.5, // Reduced from 2
+      width: 700, // Reduced from 1000
+      height: 700, // Reduced from 1000
       phi: 0.1,
       theta: 0,
       dark: 1,
       diffuse: 1.2,
       scale: 1,
-      mapSamples: 16000,
+      mapSamples: 8000, // Reduced from 16000
       mapBrightness: 6,
       baseColor: updatedBaseColor,
       markerColor: updatedMarkerColor,
@@ -143,32 +75,43 @@ const Globe = (
       arcWidth: 0.5,
       arcHeight: 0.3,
       markerElevation: 0.02,
-      // onRender: (state) => {
-      //   state.phi = phi
-      //   phi += 0.01
-      // },
-    })
+    });
 
-    // Animate the globe
-    let phi = 0
+    globeRef.current = globe;
+
+    // Animate the globe with proper cleanup
+    let phi = 0;
     function animate() {
-      phi -= 0.005
-      globe.update({ phi })
-      requestAnimationFrame(animate)
+      if (!globeRef.current) return;
+
+      phi -= 0.005;
+      globe.update({ phi });
+      animationFrameRef.current = requestAnimationFrame(animate);
     }
 
-    animate()
-  }, [])
+    animate();
+
+    // Cleanup function
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      if (globeRef.current) {
+        globeRef.current.destroy();
+        globeRef.current = null;
+      }
+    };
+  }, [updatedBaseColor, updatedMarkerColor, updatedGlowColor, updatedArcColor, normalizedMarkers, normalizedArcs]);
 
   return (
     <canvas
       id="cobe"
       ref={canvasRef}
       style={{ width: size.width, height: size.height }}
-      width="1000"
-      height="1000"
+      width="700"
+      height="700"
     />
-  )
+  );
 }
 
 export default Globe;
