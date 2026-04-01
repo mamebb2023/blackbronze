@@ -89,50 +89,7 @@ export const works = [
       "/assets/calhabit/calhabit-6.png",
     ],
   },
-  {
-    title: "SaaS Platform",
-    description: "Cloud-based SaaS solution for business management",
-    color:
-      "bg-gradient-to-tr from-amber-950/80 via-transparent to-transparent",
-    textColor: "text-amber-300",
-    image: "/work-5.jpg",
-    images: [
-      "/assets/saas/saas-1.png",
-      "/assets/saas/saas-2.png",
-      "/assets/saas/saas-3.png",
-      "/assets/saas/saas-4.png",
-      "/assets/saas/saas-5.png",
-      "/assets/saas/saas-6.png",
-    ]
-  },
 ];
-
-// export const services = [
-//   {
-//     miniText: "WEB DEVELOPMENT",
-//     title: "Custom Websites",
-//     description:
-//       "We create bespoke websites tailored to your business needs, ensuring optimal performance, beautiful design, and seamless user experiences across all devices.",
-//     imageSrc: "/service-1.jpg",
-//     altText: "Custom Websites",
-//   },
-//   {
-//     miniText: "UI/UX DESIGN",
-//     title: "User Experience",
-//     description:
-//       "Our design philosophy centers on user needs. We craft intuitive interfaces that not only look stunning but also provide exceptional user experiences that drive engagement.",
-//     imageSrc: "/service-2.jpg",
-//     altText: "User Experience Design",
-//   },
-//   {
-//     miniText: "PERFORMANCE",
-//     title: "Optimization",
-//     description:
-//       "We optimize every aspect of your digital presence for speed and performance. Fast loading times, smooth interactions, and scalable solutions that grow with your business.",
-//     imageSrc: "/service-3.jpg",
-//     altText: "Performance Optimization",
-//   },
-// ];
 
 export const services = [
   {
