@@ -51,7 +51,13 @@ const Footer = () => {
 
       <div className="absolute right-0 bottom-1/4 w-40 h-[500px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] rotate-45 opacity-80 blur-2xl" />
 
-      <div className="absolute left-20 bottom-0 w-32 h-[700px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] -rotate-60 opacity-80 blur-2xl" />
+      <div className="absolute left-20 bottom-0 w-32 h-[400px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] -rotate-60 opacity-80 blur-2xl" />
+
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none">
+        <h1 className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
+          BLACKBRONZE
+        </h1>
+      </div>
 
       {/* globe cta */}
       <div className="relative flex md:flex-row gap-5 p-5 md:p-12 h-[490px]">
@@ -103,12 +109,12 @@ const Footer = () => {
 
           <div className="relative flex items-center flex-col text-center p-5 gap-3">
             <Tag text="Start your project" />
-            <h1 className="md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white">Let's Build,{" "}
+            <h1 className="md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white">Let's Go,{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-bronze-500">
-                Extraordinary
+                Beyond
               </span>
             </h1>
-            <p className="text-zinc-300 max-w-2xl leading-relaxed">Whether you&apos;re looking to revamp your digital presence or build a complex web application from scratch, we have the expertise to make it happen.</p>
+            <p className="text-zinc-300 max-w-2xl leading-relaxed">Whether you&apos;re looking to remap your digital presence or build a complex web application from scratch, we have the expertise to make it happen.</p>
             <Link href="#contact">
               <Button variant="liquid" className="min-w-56 h-14 text-lg group">
                 Get in touch
@@ -120,8 +126,8 @@ const Footer = () => {
       </div>
 
       {/* footer */}
-      <div className="relative flex-1 w-7xl flex justify-between flex-col min-h-[400px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between gap-5 p-5 md:p-14">
+      <div className="relative flex-1 w-7xl flex justify-between flex-col min-h-[350px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between gap-5 p-3 md:p-10">
           <div className="flex flex-col gap-3">
             <Link href="/">
               <Logo />
@@ -179,23 +185,17 @@ const Footer = () => {
             </h2>
             <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">Send us a message and let&apos;s create something extraordinary together.
             </p>
-            <Link href="#contact">
-              <button className="border-2 border-bronze-500 rounded-full min-w-48 h-12 text-lg group flex-center gap-2 hover:bg-bronze-500 cursor-pointer transition-all">
+            <Link href="mailto:[EMAIL_ADDRESS]">
+              <button className="border-2 border-bronze-500 rounded-full min-w-44 h-12 text-lg group flex-center gap-2 hover:bg-bronze-500 cursor-pointer transition-all">
                 Let&apos;s Talk
-                <BiLinkExternal className="size-5" />
+                <BiLinkExternal className="size-4" />
               </button>
             </Link>
 
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none">
-          <h1 className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
-            BLACKBRONZE
-          </h1>
-        </div>
-
-        <div className="py-5">
+        <div className="relative py-3">
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 p-5 md:px-14 md:py-6 border-t border-white/5">
             <p className="text-xs text-zinc-600">
               © {new Date().getFullYear()} BlackBronze. All rights reserved.
