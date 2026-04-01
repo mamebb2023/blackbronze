@@ -1,14 +1,16 @@
 "use client";
 
 import { BsStars } from "react-icons/bs";
+import ShinyText from "./ShinyText";
 
 interface TagProps {
-  children: React.ReactNode;
+  // children: React.ReactNode;
   className?: string;
   variant?: "default" | "black";
+  text?: string;
 }
 
-export const Tag = ({ children, className = "", variant = "default" }: TagProps) => {
+export const Tag = ({ className = "", variant = "default", text = "" }: TagProps) => {
   const variantStyles = {
     default:
       "bg-linear-to-br from-bronze-300/5 via-bronze-300/20 to-bronze-300/5 border border-bronze-300/10",
@@ -31,7 +33,7 @@ export const Tag = ({ children, className = "", variant = "default" }: TagProps)
       >
         <span className="flex-center gap-2">
           <BsStars className="text-md text-bronze-500" />
-          {children}
+          <ShinyText text={text} color="#AA7939" shineColor="#FFE0B8" />
         </span>
       </span>
     </div>

@@ -22,7 +22,7 @@ const Services = () => {
   return (
     <div id="services" className="min-h-screen px-6 py-20 flex-center gap-4 flex-col">
       <div className="flex-center flex-col gap-3">
-        <Tag>Services</Tag>
+        <Tag text="Services" />
         <h1 className="text-7xl">What We Do</h1>
         <p className="text-md text-bronze-300">Turning complex problems, repeatitive tasks into elegant solutions.</p>
       </div>

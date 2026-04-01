@@ -78,7 +78,7 @@ const Footer = () => {
           </div>
 
           <div className="absolute -bottom-1/4 translate-y-1/2 left-1/2 -translate-x-1/2">
-            <Globe
+            {/* <Globe
               size={{ height: 700, width: 700 }}
               baseColor="#120a00"
               markerColor="#be6f00"
@@ -95,11 +95,11 @@ const Footer = () => {
                 { startLat: 37.7749, startLng: -122.4194, endLat: 140.7128, endLng: -74.006 },
                 { startLat: -37.7595, startLng: -62.4367, endLat: 47.7595, endLng: 22.4367 },
               ]}
-            />
+            /> */}
           </div>
 
           <div className="relative flex items-center flex-col text-center p-5 gap-3">
-            <Tag>Start your project</Tag>
+            <Tag text="Start your project" />
             <h1 className="md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white">Let's Build,{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-bronze-500">
                 Extraordinary

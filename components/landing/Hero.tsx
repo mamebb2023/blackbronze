@@ -37,9 +37,7 @@ const Hero = () => {
 
           <div className="flex flex-col md:items-start items-center space-y-3">
             <div>
-              <Tag>
-                Let&apos;s Build
-              </Tag>
+              <Tag text="Let&apos;s Build" />
             </div>
 
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
