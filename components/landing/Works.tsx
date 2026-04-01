@@ -229,12 +229,26 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const isEven = index % 2 === 0;
 
+  const accentColor =
+    typeof work.color === "string" && work.color.startsWith("#")
+      ? work.color
+      : "#AA7939";
+
   return (
     <div
       ref={ref}
-      className={`flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-        } gap-12 lg:gap-20 items-center`}
+      className={`relative flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-20 items-center`}
     >
+      {/* Per-row orb — large, behind image side, tinted to the project color */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 1.4, ease: "easeOut" }}
+        className={`absolute pointer-events-none ${isEven ? "-left-32 top-1/2 -translate-y-1/2" : "-right-32 top-1/2 -translate-y-1/2"
+          } size-[320px] rounded-full blur-[130px] opacity-[0.12]`}
+        style={{ backgroundColor: accentColor }}
+      />
+
       <ImageStack work={work} isEven={isEven} isInView={isInView} />
       <WorkDetails
         work={work}
@@ -251,9 +265,16 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
 ───────────────────────────────────────── */
 const Works = () => {
   return (
-    <section id="works" className="px-6 py-28">
+    <section id="works" className="relative px-6 py-28 overflow-hidden">
+
+      {/* ── Section background orbs ── */}
+      {/* center-right: cool deep */}
+      <div className="absolute pointer-events-none top-[35%] -right-40 w-[500px] h-[500px] rounded-full bg-bronze-900/50 blur-[130px]" />
+      {/* mid-left: dim accent */}
+      <div className="absolute pointer-events-none top-[60%] -left-20 w-[380px] h-[380px] rounded-full bg-bronze-500/20 blur-[110px]" />
+
       {/* Header */}
-      <div className="flex-center flex-col gap-3 mb-24 text-center">
+      <div className="relative flex-center flex-col gap-3 mb-24 text-center">
         <Tag text="Works" />
         <h1 className="text-6xl lg:text-7xl font-bold">Crafted Solutions</h1>
         <p className="text-bronze-300">
@@ -262,7 +283,7 @@ const Works = () => {
       </div>
 
       {/* Work list */}
-      <div className="max-w-6xl mx-auto flex flex-col gap-36">
+      <div className="relative max-w-6xl mx-auto flex flex-col gap-36">
         {works.map((work, i) => (
           <WorkRow key={work.title} work={work} index={i} />
         ))}
