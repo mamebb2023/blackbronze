@@ -2,18 +2,19 @@
 
 import Image from "next/image";
 import { motion, useMotionValue, useAnimationFrame, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const SPACING = 140;
 const SPEED = 1;
 const RESET_X = -450;
+const CARD_HALF_WIDTH = 225; // half of 450px card
 
 const imageSources = [
   { text: "Surfer 1", link: "/hero/img-1.png" },
   { text: "Surfer 2", link: "/hero/img-2.png" },
   { text: "Surfer 3", link: "/hero/img-3.png" },
   { text: "Surfer 4", link: "/hero/img-4.jpg" },
-  { text: "Surfer 9", link: "/hero/unleash.png" },
+  { text: "Unleash", link: "/hero/unleash.png" },
   { text: "Surfer 5", link: "/hero/img-5.png" },
   { text: "Surfer 6", link: "/hero/img-6.png" },
   { text: "Surfer 7", link: "/hero/img-7.png" },
@@ -21,22 +22,30 @@ const imageSources = [
   { text: "Surfer 9", link: "/hero/img-9.png" },
 ];
 
+const images = [...imageSources, ...imageSources];
+const total = images.length;
 
 export default function SurferAnimation() {
   const isPausedRef = useRef(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [startX, setStartX] = useState(0);
 
-  const pause = (index: number) => {
+  useEffect(() => {
+    const update = () => setStartX(window.innerWidth / 2 - CARD_HALF_WIDTH);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const pause = useCallback((index: number) => {
     isPausedRef.current = true;
     setHoveredIndex(index);
-  };
+  }, []);
 
-  const resume = () => {
+  const resume = useCallback(() => {
     isPausedRef.current = false;
     setHoveredIndex(null);
-  };
-
-  const images = [...imageSources, ...imageSources]
+  }, []);
 
   return (
     <div className="relative h-screen">
@@ -50,12 +59,11 @@ export default function SurferAnimation() {
             src={image.link}
             text={image.text}
             index={i}
-            total={images.length}
+            startX={startX}
             isPausedRef={isPausedRef}
             hoveredIndex={hoveredIndex}
             pause={pause}
             resume={resume}
-            alt={image.text}
           />
         ))}
       </div>
@@ -67,33 +75,21 @@ function InfiniteCard({
   src,
   text,
   index,
-  total,
+  startX,
   isPausedRef,
   hoveredIndex,
   pause,
   resume,
-  alt,
 }: {
   src: string;
   text: string;
   index: number;
-  total: number;
+  startX: number;
   isPausedRef: React.RefObject<boolean>;
   hoveredIndex: number | null;
   pause: (index: number) => void;
   resume: () => void;
-  alt: string;
 }) {
-  const [startX, setStartX] = useState(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setStartX(window.innerWidth / 2 - 200); // 200 = half card width
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const x = useMotionValue(startX + index * SPACING);
   const y = useMotionValue(startX + index * -SPACING);
   const z = useMotionValue(index * -SPACING);
@@ -114,7 +110,6 @@ function InfiniteCard({
   });
 
   const zIndex = useTransform(z, (v) => Math.round(v + 2000));
-
   const opacity = hoveredIndex === null ? 1 : hoveredIndex === index ? 1 : 0.2;
 
   return (
@@ -132,11 +127,11 @@ function InfiniteCard({
 
       <Image
         src={src}
-        alt=""
+        alt={text}
         width={700}
         height={500}
+        sizes="450px"
         className="w-full h-full object-cover rounded-md shadow-2xl"
-        unoptimized
         draggable={false}
       />
     </motion.div>

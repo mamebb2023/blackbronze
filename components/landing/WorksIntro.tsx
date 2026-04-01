@@ -93,9 +93,13 @@ const WorksIntro = () => {
         createAnimation();
         createThemeToggle();
 
+        let resizeTimer: ReturnType<typeof setTimeout>;
         const handleResize = () => {
-            createAnimation();
-            createThemeToggle();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                createAnimation();
+                createThemeToggle();
+            }, 200);
         };
 
         window.addEventListener("resize", handleResize);

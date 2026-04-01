@@ -73,7 +73,7 @@ const Globe = (
       arcs: normalizedArcs,
       arcColor: updatedArcColor,
       arcWidth: 0.5,
-      arcHeight: 0.3,
+      arcHeight: 0.4,
       markerElevation: 0.02,
     });
 

@@ -1,11 +1,6 @@
 "use client";
 
-// import { services } from "@/constants";
 import { Tag } from "../ui/Tag";
-// import Lottie, { LottieRefCurrentProps } from "lottie-react";
-import lightning from "@/public/lottie/lightning.json";
-import ux from "@/public/lottie/ux.json";
-import { useRef } from "react";
 import Image from "next/image";
 
 const Services = () => {

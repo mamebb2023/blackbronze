@@ -1,3 +1,6 @@
+"use client";
+
+import { useMemo } from 'react';
 import { links } from '@/constants';
 import Logo from '../ui/Logo'
 import Link from 'next/link'
@@ -7,6 +10,7 @@ import { Button } from '../ui/Button';
 import { HiArrowRight } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 import { Tag } from '../ui/Tag';
+import { BiLinkExternal } from 'react-icons/bi';
 
 const Footer = () => {
   const socials = [
@@ -15,33 +19,32 @@ const Footer = () => {
     { label: "FaceBook", href: "#", Icon: FaFacebook },
   ];
 
-  const stars = [
-    { top: 10, left: 10 },
-    { top: 20, left: 40 },
-    { top: 90, left: 25 },
-    { top: 70, left: 65 },
-    { top: 20, left: 70 },
-    { top: 50, left: 90 },
-    { top: 40, left: 20 },
-    { top: 90, left: 12 },
-    { top: 65, left: 70 },
-    { top: 90, left: 80 },
-    // New random stars
-    { top: 15, left: 55 },
-    { top: 35, left: 80 },
-    { top: 55, left: 15 },
-    { top: 45, left: 45 },
-    { top: 75, left: 35 },
-    { top: 30, left: 60 },
-    { top: 60, left: 50 },
-    { top: 25, left: 85 },
-    { top: 80, left: 55 },
-    { top: 50, left: 30 }
-  ]
+  // Memoized so Math.random() doesn't re-run and re-randomize on every render
+  const stars = useMemo(() => [
+    { top: 10, left: 10, dur: 2.8, delay: 0.4 },
+    { top: 20, left: 40, dur: 3.5, delay: 1.1 },
+    { top: 90, left: 25, dur: 4.2, delay: 0.7 },
+    { top: 70, left: 65, dur: 2.3, delay: 1.8 },
+    { top: 20, left: 70, dur: 3.9, delay: 0.2 },
+    { top: 50, left: 90, dur: 2.6, delay: 1.5 },
+    { top: 40, left: 20, dur: 4.7, delay: 0.9 },
+    { top: 90, left: 12, dur: 3.1, delay: 0.0 },
+    { top: 65, left: 70, dur: 2.4, delay: 1.3 },
+    { top: 90, left: 80, dur: 4.1, delay: 0.6 },
+    { top: 15, left: 55, dur: 3.6, delay: 1.9 },
+    { top: 35, left: 80, dur: 2.9, delay: 0.3 },
+    { top: 55, left: 15, dur: 4.4, delay: 1.0 },
+    { top: 45, left: 45, dur: 3.2, delay: 1.6 },
+    { top: 75, left: 35, dur: 2.7, delay: 0.8 },
+    { top: 30, left: 60, dur: 4.8, delay: 0.1 },
+    { top: 60, left: 50, dur: 3.3, delay: 1.4 },
+    { top: 25, left: 85, dur: 2.5, delay: 1.7 },
+    { top: 80, left: 55, dur: 4.0, delay: 0.5 },
+    { top: 50, left: 30, dur: 3.7, delay: 1.2 },
+  ], [])
 
   return (
     <div id="footer" className="relative min-h-screen overflow-hidden flex flex-col">
-      {/* Top gradient border */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-bronze-500 to-transparent" />
 
       <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-bronze-500/20 blur-[100px] rounded-full pointer-events-none" />
@@ -50,8 +53,8 @@ const Footer = () => {
 
       <div className="absolute left-20 bottom-0 w-32 h-[700px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] -rotate-60 opacity-80 blur-2xl" />
 
-
-      <div className="relative flex md:flex-row gap-5 p-5 md:p-12 h-[500px]">
+      {/* globe cta */}
+      <div className="relative flex md:flex-row gap-5 p-5 md:p-12 h-[490px]">
         <div className="absolute inset-0 rounded-[50px] p-5 md:p-12">
           <div className="h-full border-8 border-bronze-300 rounded-[50px] blur-xl" />
         </div>
@@ -68,9 +71,9 @@ const Footer = () => {
                   opacity: [0.3, 1, 0.3],
                 }}
                 transition={{
-                  duration: 2 + Math.random() * 3, // Random duration between 2-5 seconds
+                  duration: pos.dur,
                   repeat: Infinity,
-                  delay: Math.random() * 2, // Random initial delay
+                  delay: pos.delay,
                   ease: "easeInOut"
                 }}
               />
@@ -105,7 +108,7 @@ const Footer = () => {
                 Extraordinary
               </span>
             </h1>
-            <p className="text-zinc-400 max-w-2xl leading-relaxed">Whether you&apos;re looking to revamp your digital presence or build a complex web application from scratch, we have the expertise to make it happen.</p>
+            <p className="text-zinc-300 max-w-2xl leading-relaxed">Whether you&apos;re looking to revamp your digital presence or build a complex web application from scratch, we have the expertise to make it happen.</p>
             <Link href="#contact">
               <Button variant="liquid" className="min-w-56 h-14 text-lg group">
                 Get in touch
@@ -117,19 +120,37 @@ const Footer = () => {
       </div>
 
       {/* footer */}
-      <div className="relative flex-1 max-w-7xl flex justify-between flex-col min-h-[60vh]">
-        <div />
-
-        <div className="flex flex-col md:flex-row justify-between md:items-center gap-5 p-5 md:p-14">
-          <div>
+      <div className="relative flex-1 w-7xl flex justify-between flex-col min-h-[400px] mx-auto">
+        <div className="flex flex-col md:flex-row justify-between gap-5 p-5 md:p-14">
+          <div className="flex flex-col gap-3">
             <Link href="/">
               <Logo />
             </Link>
-            <p className="mt-3 text-sm text-zinc-500 leading-relaxed max-w-xs">
+            <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">
               A web agency creating considered digital experiences for
               businesses that value quality over noise.
             </p>
+            <nav className="flex gap-3 items-center">
+              {socials.map((social, i) => {
+                const Icon = social.Icon;
+                return (
+                  <Link
+                    key={i}
+                    href={social.href}
+                    className={`relative overflow-hidden group size-10 rounded-lg flex items-center justify-center transition-all duration-500 border border-bronze-300/20 text-white`}
+                    aria-label={social.label}
+                    target="_blank"
+                  >
+                    <div
+                      className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 bg-bronze-500`}
+                    />
+                    <Icon className="text-lg relative" />
+                  </Link>
+                )
+              })}
+            </nav>
           </div>
+
           <nav className="flex flex-col gap-3">
             <h1
               className="text-lg font-bold text-white"
@@ -148,25 +169,24 @@ const Footer = () => {
               </Link>
             ))}
           </nav>
-          <nav className="flex gap-3 items-center">
-            {socials.map((social, i) => {
-              const Icon = social.Icon;
-              return (
-                <Link
-                  key={i}
-                  href={social.href}
-                  className={`relative overflow-hidden group size-10 rounded-lg flex items-center justify-center transition-all duration-500 border border-bronze-300/20 text-white`}
-                  aria-label={social.label}
-                  target="_blank"
-                >
-                  <div
-                    className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 bg-bronze-500`}
-                  />
-                  <Icon className="text-lg relative" />
-                </Link>
-              )
-            })}
-          </nav>
+
+          <div className="flex flex-col gap-3">
+            <h2
+              className="text-lg font-bold text-white"
+              style={{ fontFamily: "var(--font-tektur)" }}
+            >
+              Get in Touch
+            </h2>
+            <p className="text-sm text-zinc-500 leading-relaxed max-w-xs">Send us a message and let&apos;s create something extraordinary together.
+            </p>
+            <Link href="#contact">
+              <button className="border-2 border-bronze-500 rounded-full min-w-48 h-12 text-lg group flex-center gap-2 hover:bg-bronze-500 cursor-pointer transition-all">
+                Let&apos;s Talk
+                <BiLinkExternal className="size-5" />
+              </button>
+            </Link>
+
+          </div>
         </div>
 
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none">
@@ -175,9 +195,31 @@ const Footer = () => {
           </h1>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-5 p-5 md:p-14"></div>
+        <div className="py-5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 p-5 md:px-14 md:py-6 border-t border-white/5">
+            <p className="text-xs text-zinc-600">
+              © {new Date().getFullYear()} BlackBronze. All rights reserved.
+            </p>
+            <div className="flex items-center gap-5">
+              <Link
+                href="/privacy"
+                className="text-xs text-zinc-600 hover:text-bronze-300 transition-colors"
+              >
+                Privacy Policy
+              </Link>
+              <span className="text-zinc-800 text-xs">·</span>
+              <Link
+                href="/terms"
+                className="text-xs text-zinc-600 hover:text-bronze-300 transition-colors"
+              >
+                Terms of Service
+              </Link>
+            </div>
+            <p className="text-xs text-zinc-700">Crafted with care ✦</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 

@@ -39,82 +39,6 @@ export default function LoadingScreen({
   const [textVisible, setTextVisible] = useState(true);
   const [panelsVisible, setPanelsVisible] = useState(true);
 
-  // useEffect(() => {
-  //   const assets = [
-  //     "/bb-logo-black.png",
-  //     "/bb-logo-white.png",
-  //     "/cta-bg.jpg",
-  //     "/hero/img-1.png",
-  //     "/hero/img-2.png",
-  //     "/hero/img-3.png",
-  //     "/hero/img-4.jpg",
-  //     "/hero/img-5.png",
-  //     "/hero/img-7.png",
-  //     "/hero/img-8.png",
-  //     "/hero/img-9.png",
-  //   ];
-
-  //   let loadedCount = 0;
-  //   let realProgress = 0;
-
-  //   assets.forEach((url) => {
-  //     const xhr = new XMLHttpRequest();
-  //     xhr.open("GET", url, true);
-  //     xhr.responseType = "blob";
-
-  //     xhr.onload = xhr.onerror = () => {
-  //       loadedCount++;
-  //       realProgress = (loadedCount / assets.length) * 100;
-  //     };
-
-  //     xhr.send();
-  //   });
-
-  //   let internalCount = 0;
-
-  //   const fastInterval = setInterval(() => {
-  //     if (internalCount >= 100) return;
-
-  //     if (internalCount < realProgress) {
-  //       internalCount = Math.min(
-  //         internalCount + Math.random() * 1.5 + 0.5,
-  //         realProgress
-  //       );
-  //     } else if (realProgress === 0) {
-  //       internalCount = Math.min(
-  //         internalCount + Math.random() * 1.5 + 0.5,
-  //         100
-  //       );
-  //     }
-  //   }, 30);
-
-  //   const slowInterval = setInterval(() => {
-  //     if (internalCount >= 100) {
-  //       clearInterval(fastInterval);
-  //       clearInterval(slowInterval);
-  //       setCount(100);
-
-  //       setTimeout(() => {
-  //         setTextVisible(false);
-
-  //         setTimeout(() => {
-  //           setPanelsVisible(false);
-  //           setTimeout(() => onComplete?.(), 1500);
-  //         }, 1000);
-  //       }, 1100);
-
-  //       return;
-  //     }
-
-  //     setCount(internalCount);
-  //   }, 600);
-
-  //   return () => {
-  //     clearInterval(fastInterval);
-  //     clearInterval(slowInterval);
-  //   };
-  // }, [onComplete]);
-
   useEffect(() => {
     const assets = [
       "/bb-logo-black.png",
@@ -152,16 +76,15 @@ export default function LoadingScreen({
     assets.forEach((url) => {
       const img = new Image();
 
-      img.onload = () => {
+      const onSettle = () => {
         loadedCount++;
-        setInterval(updateProgress, 800);
+        setTimeout(() => {
+          updateProgress();
+        }, 700);
       };
 
-      img.onerror = () => {
-        loadedCount++;
-        setInterval(updateProgress, 800);
-      };
-
+      img.onload = onSettle;
+      img.onerror = onSettle;
       img.src = url;
     });
   }, [onComplete]);
