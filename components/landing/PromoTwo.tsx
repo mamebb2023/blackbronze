@@ -2,16 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ScrollParallax } from 'react-just-parallax';
 
 const PromoTwo = () => {
   return (
     <div className="min-h-screen flex-center p-7 relative overflow-hidden">
       <div className="h-30vh"></div>
-      {/* Subtle background elements */}
-      <div className="absolute inset-0 flex-center opacity-30">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-bronze-700/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-bronze-500/10 rounded-full blur-3xl" />
-      </div>
 
       {/* Decorative lines */}
       <motion.div
@@ -28,6 +24,17 @@ const PromoTwo = () => {
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 1, delay: 0.3 }}
       />
+
+      <ScrollParallax strength={0.2} isAbsolutelyPositioned>
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 flex-center">
+          <motion.div
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
+            className="size-[500px] bg-bronze-500/20 blur-3xl rounded-[50%] flex-center z-299"
+          />
+        </div>
+      </ScrollParallax>
 
       <div className="relative max-w-5xl mx-auto">
         {/* Number decoration */}

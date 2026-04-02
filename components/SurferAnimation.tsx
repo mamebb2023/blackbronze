@@ -121,9 +121,17 @@ function InfiniteCard({
       transition={{ duration: 0.2 }}
       style={{ x, y, z, rotateX: -20, rotateY: -30, zIndex }}
     >
-      <div className="absolute -top-3 -translate-y-1/2 flex-center opacity-0 group-hover:opacity-100 group-hover:-translate-y-full transition-all duration-300">
-        <p className="text-white text-md font-tektur">{text}</p>
-      </div>
+      {/* SCALE BORDER EFFECT */}
+      <motion.div
+        className="absolute inset-0 rounded-2xl border-x-2 border-b-2 border-bronze-500 pointer-events-none"
+        initial={{ opacity: 0, scale: 1 }}
+        whileHover={{ opacity: 1, scale: 1.05 }}
+        transition={{ duration: 0.25, ease: "easeOut" }}
+      >
+        <p className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white text-md font-tektur">
+          {text}
+        </p>
+      </motion.div>
 
       <Image
         src={src}

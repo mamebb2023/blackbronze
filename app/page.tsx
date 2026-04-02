@@ -13,6 +13,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Works from "@/components/landing/Works";
 import PromoOne from "@/components/landing/PromoOne";
 import PromoTwo from "@/components/landing/PromoTwo";
+import Lines from "@/components/Lines";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -38,6 +39,19 @@ export default function Page() {
             <PromoTwo />
             <Works />
             <PromoOne />
+            <Lines items={[
+              "BUILT FOR SCALE",
+              "MODERN MINIMALISM",
+              "ELEGANT. BOLD.",
+              "QUALITY BEYOND TREND",
+              "CRAFTED IN EVERY DETAIL",
+              "HIGH-CONVERTING WEBSITES",
+              "MODERN WEB DESIGN FOR MODERN BRANDS",
+              "LANDING PAGES THAT SELL",
+              "FAST DELIVERY — CLEAN UI",
+              "MOBILE-FIRST EXPERIENCE",
+              "CRAFTED USER EXPERIENCE",
+            ]} />
             <Services />
             <Footer />
           </>
