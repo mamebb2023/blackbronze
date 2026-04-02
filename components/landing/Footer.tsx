@@ -60,12 +60,12 @@ const Footer = () => {
       </div>
 
       {/* globe cta */}
-      <div className="relative flex md:flex-row gap-5 p-5 md:p-12 h-[490px]">
+      <div className="relative flex md:flex-row gap-5 p-3 sm:p-5 md:p-12 h-auto md:h-[490px]">
         <div className="absolute inset-0 rounded-[50px] p-5 md:p-12">
-          <div className="h-full border-8 border-bronze-300 rounded-[50px] blur-xl" />
+          <div className="h-full border-4 sm:border-8 border-bronze-300 rounded-[30px] sm:rounded-[50px] blur-xl" />
         </div>
 
-        <div className="relative border border-bronze-300/20 rounded-[50px] flex-1 flex justify-center text-center text-white overflow-hidden py-10">
+        <div className="relative border border-bronze-300/20 rounded-[30px] sm:rounded-[50px] flex-1 flex justify-center text-center text-white overflow-hidden py-8 sm:py-10">
           <div className="absolute top-0 left-0 w-full h-[90%]">
             {stars.map((pos, i) => (
               <motion.div
@@ -88,7 +88,7 @@ const Footer = () => {
 
           <div className="absolute -bottom-1/4 translate-y-1/2 left-1/2 -translate-x-1/2">
             <Globe
-              size={{ height: 700, width: 700 }}
+              size={{ height: 500, width: 500 }}
               baseColor="#120a00"
               markerColor="#be6f00"
               glowColor="#ffdac9"
@@ -109,7 +109,7 @@ const Footer = () => {
 
           <div className="relative flex items-center flex-col text-center p-5 gap-3">
             <Tag text="Start your project" />
-            <h1 className="md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white">Let's Go,{" "}
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white">Let's Go,{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-bronze-500">
                 Beyond
               </span>
@@ -126,7 +126,7 @@ const Footer = () => {
       </div>
 
       {/* footer */}
-      <div className="relative flex-1 w-7xl flex justify-between flex-col min-h-[350px] mx-auto">
+      <div className="relative flex-1 w-full max-w-7xl flex justify-between flex-col min-h-[350px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row justify-between gap-5 p-3 md:p-10">
           <div className="flex flex-col gap-3">
             <Link href="/">

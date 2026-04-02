@@ -18,11 +18,11 @@ const Services = () => {
     <div id="services" className="min-h-screen px-6 py-20 flex-center gap-4 flex-col">
       <div className="flex-center flex-col gap-3">
         <Tag text="Services" />
-        <h1 className="text-7xl">What We Do</h1>
-        <p className="text-md text-bronze-300">Turning complex problems, repeatitive tasks into elegant solutions.</p>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center">What We Do</h1>
+        <p className="text-sm md:text-md text-bronze-300 text-center px-4">Turning complex problems, repeatitive tasks into elegant solutions.</p>
       </div>
 
-      <div className="relative flex gap-5 flex-col w-4xl my-7">
+      <div className="relative flex gap-5 flex-col w-full max-w-4xl my-4 md:my-7 px-2 sm:px-0">
         <div className="absolute -top-1/4 left-1/2 -translate-x-1/2 size-80 rounded-full bg-bronze-700/30 flex-center blur-3xl" />
         <div className="absolute bottom-10 right-0 translate-x-1/2 size-80 rounded-full bg-bronze-700/30 flex-center blur-3xl" />
 

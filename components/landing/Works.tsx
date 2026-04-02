@@ -32,7 +32,7 @@ function ImageStack({
       initial={{ opacity: 0, x: isEven ? -60 : 60, filter: "blur(12px)" }}
       animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
       transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-      className="flex-1 relative w-full min-h-[400px] lg:min-h-[480px]"
+      className="flex-1 relative w-full min-h-[260px] sm:min-h-[340px] lg:min-h-[480px]"
     >
       {/* ambient glow */}
       <div
@@ -78,7 +78,7 @@ function ImageStack({
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className={`absolute -bottom-8 ${isEven ? "-right-5" : "-left-5"} w-[50%] rounded-[24px] overflow-hidden shadow-2xl border border-white/10 aspect-[3/2]`}
+          className={`absolute -bottom-8 ${isEven ? "-right-3 sm:-right-5" : "-left-3 sm:-left-5"} w-[45%] sm:w-[50%] rounded-[16px] sm:rounded-[24px] overflow-hidden shadow-2xl border border-white/10 aspect-[3/2]`}
         >
           <Image
             src={second}
@@ -97,7 +97,7 @@ function ImageStack({
           initial={{ opacity: 0, scale: 0.8, rotate: isEven ? -4 : 4 }}
           animate={isInView ? { opacity: 1, scale: 1, rotate: 0 } : {}}
           transition={{ duration: 0.65, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className={`absolute ${isEven ? "-top-6 -right-4" : "-top-6 -left-4"} w-[32%] rounded-[20px] overflow-hidden shadow-xl border border-white/10 aspect-[3/4]`}
+          className={`absolute ${isEven ? "-top-6 -right-2 sm:-right-4" : "-top-6 -left-2 sm:-left-4"} w-[28%] sm:w-[32%] rounded-[16px] sm:rounded-[20px] overflow-hidden shadow-xl border border-white/10 aspect-[3/4]`}
         >
           <Image
             src={third}
@@ -152,7 +152,7 @@ function WorkDetails({
 
       {/* Title block */}
       <div className="space-y-1.5">
-        <h2 className="text-4xl lg:text-[3.2rem] font-bold text-white leading-[1.05] tracking-tight">
+        <h2 className="text-3xl sm:text-4xl lg:text-[3.2rem] font-bold text-white leading-[1.05] tracking-tight">
           {work.title}
         </h2>
         {miniTitle && (
@@ -237,7 +237,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
   return (
     <div
       ref={ref}
-      className={`relative flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-12 lg:gap-20 items-center`}
+      className={`relative flex flex-col ${isEven ? "lg:flex-row" : "lg:flex-row-reverse"} gap-10 lg:gap-20 items-center`}
     >
       {/* Per-row orb — large, behind image side, tinted to the project color */}
       <motion.div
@@ -265,7 +265,7 @@ function WorkRow({ work, index }: { work: Work; index: number }) {
 ───────────────────────────────────────── */
 const Works = () => {
   return (
-    <section id="works" className="relative px-6 py-28 overflow-hidden">
+    <section id="works" className="relative px-4 sm:px-6 py-16 sm:py-28 overflow-hidden">
 
       {/* ── Section background orbs ── */}
       {/* center-right: cool deep */}
@@ -274,16 +274,16 @@ const Works = () => {
       <div className="absolute pointer-events-none top-[60%] -left-20 w-[380px] h-[380px] rounded-full bg-bronze-500/20 blur-[110px]" />
 
       {/* Header */}
-      <div className="relative flex-center flex-col gap-3 mb-24 text-center">
+      <div className="relative flex-center flex-col gap-3 mb-12 sm:mb-20 md:mb-24 text-center">
         <Tag text="Works" />
-        <h1 className="text-6xl lg:text-7xl font-bold">Crafted Solutions</h1>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">Crafted Solutions</h1>
         <p className="text-bronze-300">
           Turning complex problems, repetitive tasks into elegant solutions.
         </p>
       </div>
 
       {/* Work list */}
-      <div className="relative max-w-6xl mx-auto flex flex-col gap-36">
+      <div className="relative max-w-6xl mx-auto flex flex-col gap-20 sm:gap-28 md:gap-36">
         {works.map((work, i) => (
           <WorkRow key={work.title} work={work} index={i} />
         ))}

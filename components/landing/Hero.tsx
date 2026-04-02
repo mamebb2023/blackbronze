@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative h-screen flex justify-center px-6 py-20 overflow-hidden">
+    <section className="relative h-screen flex justify-center px-4 sm:px-6 py-16 sm:py-20 overflow-hidden">
       <div className="absolute z-199 top-0 w-full h-30 bg-linear-to-t from-transparent to-black" />
       <div className="absolute z-199 bottom-0 w-full h-24 bg-linear-to-b from-transparent to-black" />
 
@@ -26,12 +26,12 @@ const Hero = () => {
         </div>
       </ScrollParallax> */}
 
-      <div className="flex flex-1 px-5 gap-3 h-full">
+      <div className="flex flex-1 px-2 sm:px-5 gap-3 h-full">
         <motion.div
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.6, delay: 0 }}
-          className="flex-1 relative z-10 max-w-5xl mx-auto flex flex-col md:items-start items-center space-y-6 justify-between"
+          className="flex-1 relative z-10 max-w-5xl mx-auto flex flex-col md:items-start items-center space-y-5 md:space-y-6 justify-between"
         >
           <div />
 
@@ -40,7 +40,7 @@ const Hero = () => {
               <Tag text="Let&apos;s Build" />
             </div>
 
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-bold text-white leading-tight text-center md:text-left">
               <span className="text-transparent bg-clip-text bg-linear-to-r from-white to-bronze-500">
                 Websites built with clarity,
               </span>
@@ -50,11 +50,11 @@ const Hero = () => {
               </span>
             </h1>
 
-            <p className="md:text-md text-gray-400 max-w-xl leading-relaxed">
+            <p className="text-sm md:text-md text-gray-400 max-w-xl leading-relaxed text-center md:text-left">
               A web agency creating considered digital experiences for businesses that value quality over noise.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6">
+            <div className="flex items-center gap-6">
               <Link href="#contact">
                 <Button variant="liquid" className="min-w-52">
                   Contact Us
@@ -118,12 +118,12 @@ const Hero = () => {
           <MouseAnimation />
         </motion.div>
 
-        {/* right section */}
+        {/* right section - hidden on mobile */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 2 }}
-          className="flex-1 w-1/2"
+          className="hidden md:block flex-1 w-1/2"
         >
           <div className="absolute inset-0 translate-x-1/4">
             <SurferAnimation />

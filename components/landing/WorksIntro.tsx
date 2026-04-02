@@ -124,7 +124,7 @@ const WorksIntro = () => {
                             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                             exit={{ opacity: 0, y: -30, filter: "blur(10px)" }}
                             transition={{ duration: 0.5, delay: 0, staggerChildren: 0.1 }}
-                            className="absolute text-center text-3xl md:text-5xl max-w-3xl font-thin"
+                            className="absolute text-center text-2xl sm:text-3xl md:text-5xl max-w-3xl font-thin px-4"
                         >
                             <p className="text-transparent bg-clip-text bg-gradient-to-br from-black to-bronze-300 leading-14">We design and build modern,</p>
                             <div className="flex-center text-transparent bg-clip-text bg-gradient-to-tr from-black to-bronze-300">
