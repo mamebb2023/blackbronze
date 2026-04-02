@@ -7,6 +7,7 @@ import { Tag } from "../ui/Tag";
 import SurferAnimation from "../SurferAnimation";
 import MouseAnimation from "../MouseAnimation";
 import Link from "next/link";
+import { ScrollParallax } from "react-just-parallax";
 // import { BsStars } from "react-icons/bs";
 
 const Hero = () => {
@@ -15,16 +16,16 @@ const Hero = () => {
       <div className="absolute z-199 top-0 w-full h-30 bg-linear-to-t from-transparent to-black" />
       <div className="absolute z-199 bottom-0 w-full h-24 bg-linear-to-b from-transparent to-black" />
 
-      {/* <ScrollParallax strength={0.2} isAbsolutelyPositioned>
-        <div className="absolute bottom-0 left-1/2 translate-y-1/2 -translate-x-1/2 flex-center">
+      <ScrollParallax strength={0.2} isAbsolutelyPositioned>
+        <div className="absolute top-0 left-1/2 -translate-y-1/2 -translate-x-1/2 flex-center">
           <motion.div
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 1 }}
-            className="size-[900px] bg-bronze-500/20 blur-3xl rounded-[50%] flex-center z-299"
+            className="size-[500px] bg-bronze-500/20 blur-3xl rounded-[50%] flex-center z-299"
           />
         </div>
-      </ScrollParallax> */}
+      </ScrollParallax>
 
       <div className="flex flex-1 px-2 sm:px-5 gap-3 h-full">
         <motion.div
@@ -54,7 +55,7 @@ const Hero = () => {
               A web agency creating considered digital experiences for businesses that value quality over noise.
             </p>
 
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
               <Link href="#contact">
                 <Button variant="liquid" className="min-w-52">
                   Contact Us

@@ -140,14 +140,14 @@ function WorkDetails({
     >
       {/* Index + badges */}
       <div className="flex items-center gap-2 flex-wrap">
-        <span className="font-mono text-xs text-zinc-600 border border-zinc-800 rounded-full px-3 py-1 tracking-widest">
+        <span className="font-mono text-xs text-bronze-100 border border-bronze-500/30 rounded-full px-3 py-1 tracking-widest">
           {String(index + 1).padStart(2, "0")}
         </span>
-        {forClient && (
+        {/* {forClient && (
           <span className="text-xs text-bronze-300 border border-bronze-500/30 rounded-full px-3 py-1 bg-bronze-500/5 tracking-wide">
             Client Project
           </span>
-        )}
+      )} */}
       </div>
 
       {/* Title block */}

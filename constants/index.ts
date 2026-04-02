@@ -7,12 +7,17 @@ export const links = [
 
 export const works = [
   {
+    color: "#ff0088ff",
     title: "LotusFlow",
     mini_title: "AI-Powered React Component Generator",
     description: "AI-powered tool to generate React components just from text prompts.",
-    color:
-      "bg-gradient-to-tr from-blue-950/80 via-transparent to-transparent",
-    textColor: "text-blue-300",
+    links: { live: "https://lotusflow.vercel.app/", code: "https://github.com/mamebb2023/lotusflow" },
+    features: [
+      "Component Generaton",
+      "Copy and Paste",
+      "Responsive Design",
+    ],
+    logo: "/assets/lotusflow/lotusflow-logo.png",
     images: [
       "/assets/lotusflow/lotusflow-1.png",
       "/assets/lotusflow/lotusflow-2.png",
@@ -47,8 +52,7 @@ export const works = [
     ],
   },
   {
-    color: "#00D9FF",
-    forClient: true,
+    color: "#26ff00ff",
     title: "SanAI",
     mini_title: "Your Personal AI Doctor",
     description: "AI-powered health assistant for personalized care.",
@@ -72,7 +76,7 @@ export const works = [
     ],
   },
   {
-    color: "#1010a0",
+    color: "#0066ffff",
     title: "CalHabit",
     mini_title: "Habit tracking web app",
     description:

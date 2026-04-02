@@ -61,7 +61,6 @@ export default function LoadingScreen({
       setCount(progress);
 
       if (loadedCount === assets.length) {
-        // finish animation sequence
         setTimeout(() => {
           setTextVisible(false);
 
@@ -80,7 +79,7 @@ export default function LoadingScreen({
         loadedCount++;
         setTimeout(() => {
           updateProgress();
-        }, 700);
+        }, 1000);
       };
 
       img.onload = onSettle;

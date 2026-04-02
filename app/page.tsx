@@ -12,6 +12,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Works from "@/components/landing/Works";
 import PromoOne from "@/components/landing/PromoOne";
+import PromoTwo from "@/components/landing/PromoTwo";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -34,8 +35,9 @@ export default function Page() {
           <>
             <Header />
             <Hero />
-            <PromoOne />
+            <PromoTwo />
             <Works />
+            <PromoOne />
             <Services />
             <Footer />
           </>

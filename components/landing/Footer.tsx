@@ -53,17 +53,35 @@ const Footer = () => {
 
       <div className="absolute left-20 bottom-0 w-32 h-[400px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] -rotate-60 opacity-80 blur-2xl" />
 
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none">
+      <motion.div
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none"
+        initial={{ opacity: 0, y: 100 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
         <h1 className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
           BLACKBRONZE
         </h1>
-      </div>
+      </motion.div>
 
       {/* globe cta */}
-      <div className="relative flex md:flex-row gap-5 p-3 sm:p-5 md:p-12 h-auto md:h-[490px]">
-        <div className="absolute inset-0 rounded-[50px] p-5 md:p-12">
+      <motion.div
+        className="relative flex md:flex-row gap-5 p-3 sm:p-5 md:p-12 h-auto md:h-[490px]"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.div
+          className="absolute inset-0 rounded-[50px] p-5 md:p-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
           <div className="h-full border-4 sm:border-8 border-bronze-300 rounded-[30px] sm:rounded-[50px] blur-xl" />
-        </div>
+        </motion.div>
 
         <div className="relative border border-bronze-300/20 rounded-[30px] sm:rounded-[50px] flex-1 flex justify-center text-center text-white overflow-hidden py-8 sm:py-10">
           <div className="absolute top-0 left-0 w-full h-[90%]">
@@ -72,21 +90,27 @@ const Footer = () => {
                 key={i}
                 className="absolute size-px rounded-full bg-bronze-300"
                 style={{ top: `${pos.top}%`, left: `${pos.left}%` }}
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 0.3, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 + i * 0.02 }}
                 animate={{
                   scale: [1, 2, 1],
                   opacity: [0.3, 1, 0.3],
                 }}
-                transition={{
-                  duration: pos.dur,
-                  repeat: Infinity,
-                  delay: pos.delay,
-                  ease: "easeInOut"
-                }}
+                // Secondary animation loop
+                onAnimationComplete={() => { }}
               />
             ))}
           </div>
 
-          <div className="absolute -bottom-1/4 translate-y-1/2 left-1/2 -translate-x-1/2">
+          <motion.div
+            className="absolute -bottom-1/4 translate-y-1/2 left-1/2 -translate-x-1/2"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+          >
             <Globe
               size={{ height: 700, width: 700 }}
               baseColor="#120a00"
@@ -105,30 +129,69 @@ const Footer = () => {
                 { startLat: -37.7595, startLng: -62.4367, endLat: 47.7595, endLng: 22.4367 },
               ]}
             />
-          </div>
+          </motion.div>
 
           <div className="relative flex items-center flex-col text-center p-5 gap-3">
-            <Tag text="Start your project" />
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white">Let's Go,{" "}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Tag text="Start your project" />
+            </motion.div>
+
+            <motion.h1
+              className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Let's Go,{" "}
               <span className="bg-clip-text text-transparent bg-linear-to-r from-white to-bronze-500">
                 Beyond
               </span>
-            </h1>
-            <p className="text-zinc-300 max-w-2xl leading-relaxed">Whether you&apos;re looking to remap your digital presence or build a complex web application from scratch, we have the expertise to make it happen.</p>
-            <Link href="#contact">
-              <Button variant="liquid" className="min-w-56 h-14 text-lg group">
-                Get in touch
-                <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            </motion.h1>
+
+            <motion.p
+              className="text-zinc-300 max-w-2xl leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              Whether you&apos;re looking to remap your digital presence or build a complex web application from scratch, we have the expertise to make it happen.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              <Link href="#contact">
+                <Button variant="liquid" className="min-w-56 h-14 text-lg group">
+                  Get in touch
+                  <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </Link>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* footer */}
       <div className="relative flex-1 w-full max-w-7xl flex justify-between flex-col min-h-[350px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row justify-between gap-5 p-3 md:p-10">
-          <div className="flex flex-col gap-3">
+          {/* Logo & Description Column */}
+          <motion.div
+            className="flex flex-col gap-3"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <Link href="/">
               <Logo />
             </Link>
@@ -140,24 +203,38 @@ const Footer = () => {
               {socials.map((social, i) => {
                 const Icon = social.Icon;
                 return (
-                  <Link
+                  <motion.div
                     key={i}
-                    href={social.href}
-                    className={`relative overflow-hidden group size-10 rounded-lg flex items-center justify-center transition-all duration-500 border border-bronze-300/20 text-white`}
-                    aria-label={social.label}
-                    target="_blank"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
                   >
-                    <div
-                      className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 bg-bronze-500`}
-                    />
-                    <Icon className="text-lg relative" />
-                  </Link>
+                    <Link
+                      href={social.href}
+                      className={`relative overflow-hidden group size-10 rounded-lg flex items-center justify-center transition-all duration-500 border border-bronze-300/20 text-white`}
+                      aria-label={social.label}
+                      target="_blank"
+                    >
+                      <div
+                        className={`absolute top-1/2 -translate-x-1/2 left-1/2 size-5 group-hover:size-full rounded-full blur-sm transition-all duration-500 bg-bronze-500`}
+                      />
+                      <Icon className="text-lg relative" />
+                    </Link>
+                  </motion.div>
                 )
               })}
             </nav>
-          </div>
+          </motion.div>
 
-          <nav className="flex flex-col gap-3">
+          {/* Navigation Column */}
+          <motion.nav
+            className="flex flex-col gap-3"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <h1
               className="text-lg font-bold text-white"
               style={{ fontFamily: "var(--font-tektur)" }}
@@ -165,18 +242,32 @@ const Footer = () => {
               Navigation
             </h1>
             {links.map((link, i) => (
-              <Link
+              <motion.div
                 key={i}
-                href={link.href}
-                className="group flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.4, delay: 0.4 + i * 0.05 }}
               >
-                <span className="w-4 h-px bg-zinc-700 group-hover:w-6 group-hover:bg-bronze-500 transition-all duration-300" />
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  className="group flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors"
+                >
+                  <span className="w-4 h-px bg-zinc-700 group-hover:w-6 group-hover:bg-bronze-500 transition-all duration-300" />
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
-          </nav>
+          </motion.nav>
 
-          <div className="flex flex-col gap-3">
+          {/* Get in Touch Column */}
+          <motion.div
+            className="flex flex-col gap-3"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
             <h2
               className="text-lg font-bold text-white"
               style={{ fontFamily: "var(--font-tektur)" }}
@@ -191,11 +282,17 @@ const Footer = () => {
                 <BiLinkExternal className="size-4" />
               </button>
             </Link>
-
-          </div>
+          </motion.div>
         </div>
 
-        <div className="relative py-3">
+        {/* Copyright Footer */}
+        <motion.div
+          className="relative py-3"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 p-5 md:px-14 md:py-6 border-t border-white/5">
             <p className="text-xs text-zinc-600">
               © {new Date().getFullYear()} BlackBronze. All rights reserved.
@@ -217,7 +314,7 @@ const Footer = () => {
             </div>
             <p className="text-xs text-zinc-700">Crafted with care ✦</p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div >
   )
