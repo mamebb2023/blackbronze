@@ -88,7 +88,7 @@ const Footer = () => {
 
           <div className="absolute -bottom-1/4 translate-y-1/2 left-1/2 -translate-x-1/2">
             <Globe
-              size={{ height: 500, width: 500 }}
+              size={{ height: 700, width: 700 }}
               baseColor="#120a00"
               markerColor="#be6f00"
               glowColor="#ffdac9"
