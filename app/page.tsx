@@ -36,6 +36,7 @@ export default function Page() {
           <>
             <Header />
             <Hero />
+            <div className="h-[30vh]"></div>
             <PromoTwo />
             <Works />
             <PromoOne />
