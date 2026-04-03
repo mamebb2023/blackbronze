@@ -57,7 +57,7 @@ const Footer = () => {
         className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
         <h1 className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
@@ -70,14 +70,14 @@ const Footer = () => {
         className="relative flex md:flex-row gap-5 p-3 sm:p-5 md:p-12 h-auto md:h-[490px]"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.4 }}
+        viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <motion.div
           className="absolute inset-0 rounded-[50px] p-5 md:p-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 1, delay: 0.2 }}
         >
           <div className="h-full border-4 sm:border-8 border-bronze-300 rounded-[30px] sm:rounded-[50px] blur-xl" />
@@ -138,7 +138,7 @@ const Footer = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Tag text="Start your project" />
@@ -148,7 +148,7 @@ const Footer = () => {
               className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-[1.1] text-white"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               Let's Go,{" "}
@@ -161,7 +161,7 @@ const Footer = () => {
               className="text-zinc-300 max-w-2xl leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               Whether you&apos;re looking to remap your digital presence or build a complex web application from scratch, we have the expertise to make it happen.
@@ -170,7 +170,7 @@ const Footer = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               <Link href="#contact">
@@ -192,7 +192,7 @@ const Footer = () => {
             className="flex flex-col gap-3"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <Link href="/">
@@ -210,7 +210,7 @@ const Footer = () => {
                     key={i}
                     initial={{ opacity: 0, scale: 0 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.4 }}
+                    viewport={{ once: true, margin: "-50px" }}
                     transition={{ duration: 0.4, delay: 0.4 + i * 0.1 }}
                   >
                     <Link
@@ -235,7 +235,7 @@ const Footer = () => {
             className="flex flex-col gap-3"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <h1
@@ -249,7 +249,7 @@ const Footer = () => {
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.4, delay: 0.4 + i * 0.05 }}
               >
                 <Link
@@ -268,7 +268,7 @@ const Footer = () => {
             className="flex flex-col gap-3"
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <h2
@@ -293,7 +293,7 @@ const Footer = () => {
           className="relative py-3"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-3 p-5 md:px-14 md:py-6 border-t border-white/5">
