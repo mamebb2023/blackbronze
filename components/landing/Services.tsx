@@ -67,7 +67,7 @@ const Services = () => {
             className="relative border border-bronze-500/30 hover:border-bronze-500/50 transition-all duration-500 flex-1 rounded-3xl p-3"
             initial={{ opacity: 0, x: -50, rotateY: -15 }}
             whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             <div className="absolute inset-0 overflow-hidden rounded-3xl">

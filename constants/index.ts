@@ -93,6 +93,31 @@ export const works = [
       "/assets/calhabit/calhabit-6.png",
     ],
   },
+  {
+    color: "#8c00ff",
+    title: "Brainwave",
+    mini_title: "Modern & Responsive SaaS Landing Page",
+    description:
+      "A sleek and modern React website showcasing the latest in web design.",
+    links: {
+      live: "https://brainwave-iota-five-26.vercel.app/",
+      code: "https://github.com/mamebb2023/brainwave/",
+    },
+    features: [
+      "Responsive Design",
+      "Modern UI Components",
+      "Smooth Animations",
+    ],
+    logo: "/assets/brainwave/brainwave-logo.png",
+    images: [
+      "/assets/brainwave/brainwave-1.png",
+      "/assets/brainwave/brainwave-2.png",
+      "/assets/brainwave/brainwave-3.png",
+      "/assets/brainwave/brainwave-4.png",
+      "/assets/brainwave/brainwave-5.png",
+      "/assets/brainwave/brainwave-6.png",
+    ],
+  },
 ];
 
 export const services = [

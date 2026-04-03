@@ -85,23 +85,26 @@ const Footer = () => {
 
         <div className="relative border border-bronze-300/20 rounded-[30px] sm:rounded-[50px] flex-1 flex justify-center text-center text-white overflow-hidden py-8 sm:py-10">
           <div className="absolute top-0 left-0 w-full h-[90%]">
-            {stars.map((pos, i) => (
-              <motion.div
-                key={i}
-                className="absolute size-px rounded-full bg-bronze-300"
-                style={{ top: `${pos.top}%`, left: `${pos.left}%` }}
-                initial={{ opacity: 0, scale: 0 }}
-                whileInView={{ opacity: 0.3, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 + i * 0.02 }}
-                animate={{
-                  scale: [1, 2, 1],
-                  opacity: [0.3, 1, 0.3],
-                }}
-                // Secondary animation loop
-                onAnimationComplete={() => { }}
-              />
-            ))}
+            <div className="absolute top-0 left-0 w-full h-[90%]">
+              {stars.map((pos, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute size-px rounded-full bg-bronze-300"
+                  style={{ top: `${pos.top}%`, left: `${pos.left}%` }}
+                  animate={{
+                    scale: [1, 2, 1],
+                    opacity: [0.2, 1, 0.2],
+                  }}
+                  transition={{
+                    duration: pos.dur,
+                    delay: pos.delay,
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </div>
           </div>
 
           <motion.div
