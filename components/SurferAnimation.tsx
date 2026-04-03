@@ -10,16 +10,17 @@ const RESET_X = -450;
 const CARD_HALF_WIDTH = 225; // half of 450px card
 
 const imageSources = [
-  { text: "Surfer 1", link: "/hero/img-1.png" },
-  { text: "Surfer 2", link: "/hero/img-2.png" },
-  { text: "Surfer 3", link: "/hero/img-3.png" },
-  { text: "Surfer 4", link: "/hero/img-4.jpg" },
+  { text: "Lumino", link: "/hero/lumino.png" },
   { text: "Unleash", link: "/hero/unleash.png" },
-  { text: "Surfer 5", link: "/hero/img-5.png" },
-  { text: "Surfer 6", link: "/hero/img-6.png" },
-  { text: "Surfer 7", link: "/hero/img-7.png" },
-  { text: "Surfer 8", link: "/hero/img-8.png" },
-  { text: "Surfer 9", link: "/hero/img-9.png" },
+  { text: "Lotusflow", link: "/hero/lotusflow.png" },
+  { text: "Calhabit", link: "/hero/calhabit.png" },
+  { text: "Brainwave", link: "/hero/brainwave.png" },
+  { text: "Sanai", link: "/hero/sanai.png" },
+  { text: "CargoBid", link: "/hero/cargobid.png" },
+  { text: "TraderPro", link: "/hero/traderpro.jpg" },
+  { text: "Monur", link: "/hero/monur.png" },
+  { text: "Redefine", link: "/hero/redefine.png" },
+  { text: "iShopHere", link: "/hero/ishophere.png" },
 ];
 
 const images = [...imageSources, ...imageSources];
