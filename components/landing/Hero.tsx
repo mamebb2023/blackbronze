@@ -29,8 +29,8 @@ const Hero = () => {
 
       <div className="flex flex-1 px-2 sm:px-5 gap-3 h-full">
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0 }}
           className="flex-1 relative z-10 max-w-5xl mx-auto flex flex-col md:items-start items-center space-y-5 md:space-y-6 justify-between"
         >

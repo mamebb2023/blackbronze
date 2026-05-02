@@ -139,7 +139,8 @@ function InfiniteCard({
         alt={text}
         width={700}
         height={500}
-        sizes="450px"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 33vw"
+        loading="eager"
         className="w-full h-full object-cover rounded-md shadow-2xl"
         draggable={false}
       />
