@@ -65,7 +65,7 @@ const Works = () => {
       <div className="absolute pointer-events-none top-[60%] -left-20 w-[380px] h-[380px] rounded-full bg-bronze-500/20 blur-[110px]" />
 
       {[1, 2, 3, 4].map((n, i) => (
-        <div key={i} className="absolute left-0 h-px bg-bronze-500/50 w-full" style={{ bottom: `-${40 * n}px` }}></div>
+        <div key={i} className="absolute left-0 h-px bg-bronze-500/30 w-full" style={{ bottom: `-${40 * n}px` }}></div>
       ))}
 
       {/* Header */}
@@ -84,7 +84,7 @@ const Works = () => {
           return (
             <div
               key={index}
-              className="absolute w-[1100px] h-[700px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black flex-center transition-all duration-700 overflow-hidden"
+              className="absolute w-[1100px] h-[650px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-gradient-to-b from-black to-bronze-900 flex-center transition-all duration-700 overflow-hidden"
               style={getSlideStyle(index)}
             >
               <div className="size-[calc(100%-30px)] rounded-2xl overflow-hidden relative">
@@ -103,9 +103,18 @@ const Works = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: "100%" }}
                       transition={{ duration: 0.6, ease: "easeInOut" }}
-                      className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 flex items-end"
+                      className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 flex flex-col gap-1 justify-end p-4"
                     >
-
+                      <div className={`size-10 p-2 rounded-xl flex-center`} style={{ background: `linear-gradient(to bottom, black, ${work.color}aa)` }}>
+                        <Image src={work.logo} height={100} width={100} alt={`${work.title} logo`} />
+                      </div>
+                      <p className="text-2xl md:text-3xl font-bold">{work.title}</p>
+                      <p className="text-sm text-gray-400 mb-2 max-w-md">{work.description}</p>
+                      <div className="flex gap-1 max-w-md flex-wrap">
+                        {work.features.map((f, i) => (
+                          <div className={`px-3 py-1 text-xs rounded-full`} style={{ color: work.color, border: `1px solid ${work.color}` }}>{f}</div>
+                        ))}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -128,7 +137,7 @@ const Works = () => {
         </button>
       </div>
 
-      <div className="h-30vh"></div>
+      <div className="h-50vh"></div>
     </section>
   );
 };

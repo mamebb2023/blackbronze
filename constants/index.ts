@@ -7,7 +7,7 @@ export const links = [
 
 export const works = [
   {
-    color: "#ff0088ff",
+    color: "#ff0088",
     title: "LotusFlow",
     mini_title: "AI-Powered React Component Generator",
     description: "AI-powered tool to generate React components just from text prompts.",
@@ -52,7 +52,7 @@ export const works = [
     ],
   },
   {
-    color: "#26ff00ff",
+    color: "#26ff00",
     title: "SanAI",
     mini_title: "Your Personal AI Doctor",
     description: "AI-powered health assistant for personalized care.",
@@ -76,7 +76,7 @@ export const works = [
     ],
   },
   {
-    color: "#0066ffff",
+    color: "#0066ff",
     title: "CalHabit",
     mini_title: "Habit tracking web app",
     description:
