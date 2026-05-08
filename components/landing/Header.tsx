@@ -21,7 +21,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const footer = document.querySelector("#footer");
+      const footer = document.querySelector("#contact");
       if (!footer) return;
 
       const rect = footer.getBoundingClientRect();
