@@ -14,9 +14,9 @@ import { BiLinkExternal } from 'react-icons/bi';
 
 const Footer = () => {
   const socials = [
-    { label: "Twitter", href: "#", Icon: FaXTwitter },
-    { label: "LinkedIn", href: "#", Icon: FaLinkedinIn },
-    { label: "FaceBook", href: "#", Icon: FaFacebook },
+    // { label: "Twitter", href: "#", Icon: FaXTwitter },
+    { label: "LinkedIn", href: "https://linkedin/company/blackbronze", Icon: FaLinkedinIn },
+    // { label: "FaceBook", href: "#", Icon: FaFacebook },
   ];
 
   // Memoized so Math.random() doesn't re-run and re-randomize on every render
@@ -44,7 +44,7 @@ const Footer = () => {
   ], [])
 
   return (
-    <div id="footer" className="relative min-h-screen overflow-hidden flex flex-col">
+    <div id="contact" className="relative min-h-screen overflow-hidden flex flex-col">
       <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-bronze-500 to-transparent" />
 
       <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-bronze-500/20 blur-[100px] rounded-full pointer-events-none" />
@@ -54,13 +54,13 @@ const Footer = () => {
       <div className="absolute left-20 bottom-0 w-32 h-[400px] bg-linear-to-b from-bronze-500/80 via-bronze-500/20 to-transparent rounded-[50%] -rotate-60 opacity-80 blur-2xl" />
 
       <motion.div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 select-none"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 select-none"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <h1 className="text-[12vw] leading-none font-bold text-white/[0.03] tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
+        <h1 className="text-[12vw] leading-none font-bold text-white/5 tracking-tighter text-center whitespace-nowrap" style={{ fontFamily: "var(--font-tektur)" }}>
           BLACKBRONZE
         </h1>
       </motion.div>

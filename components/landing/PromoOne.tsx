@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const PromoOne = () => {
   return (
-    <div className="min-h-screen flex-center p-7">
+    <div id="about" className="min-h-screen flex-center p-7">
       <motion.div
         initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
