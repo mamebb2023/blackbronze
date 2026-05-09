@@ -16,7 +16,7 @@ const Footer = () => {
   const socials = [
     // { label: "Twitter", href: "#", Icon: FaXTwitter },
     { label: "LinkedIn", href: "https://linkedin/company/blackbronze", Icon: FaLinkedinIn },
-    // { label: "FaceBook", href: "#", Icon: FaFacebook },
+    { label: "FaceBook", href: "https://facebook.com/blackbronzeofficial", Icon: FaFacebook },
   ];
 
   // Memoized so Math.random() doesn't re-run and re-randomize on every render
@@ -185,7 +185,7 @@ const Footer = () => {
       </motion.div>
 
       {/* footer */}
-      <div className="relative flex-1 w-full max-w-7xl flex justify-between flex-col min-h-[350px] mx-auto px-4 sm:px-6">
+      <div className="relative flex-1 w-full max-w-7xl flex justify-between flex-col h-[400px] mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row justify-between gap-5 p-3 md:p-10">
           {/* Logo & Description Column */}
           <motion.div
